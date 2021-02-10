@@ -11,4 +11,8 @@
     <PackageReference Include="ModernUI" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KYLib-CSharp\KYLib.csproj" />
+  </ItemGroup>
+
 </Project>
