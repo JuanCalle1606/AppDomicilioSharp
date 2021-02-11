@@ -3,16 +3,14 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <IsTestProject>false</IsTestProject>
     <UseWindowsForms>true</UseWindowsForms>
     <StartupObject>Domicilios.Program</StartupObject>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="ModernUI" Version="2.0.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\KYLib-CSharp\KYLib.csproj" />
   </ItemGroup>
-
 </Project>
