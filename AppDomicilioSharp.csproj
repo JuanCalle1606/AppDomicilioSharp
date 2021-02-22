@@ -16,4 +16,9 @@
     <PackageReference Include="GtkSharp" Version="3.22.25.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KYLib-CSharp\KYLib\KYLib.csproj" />
+    <ProjectReference Include="..\KYLib-CSharp\KYLib.Data\KYLib.Data.csproj" />
+  </ItemGroup>
+
 </Project>
