@@ -1,13 +1,17 @@
 using System;
 using Gtk;
 using UI = Gtk.Builder.ObjectAttribute;
+using KYLib.Utils;
 
-namespace AppDomicilioSharp
+namespace AppDomicilioSharp.Windows
 {
     class MainWindow : Window
     {
-        [UI] private Label _label1 = null;
-        [UI] private Button _button1 = null;
+        [UI] TreeView uiTree = null;
+
+        [UI] Button _button1 = null;
+
+		[UI] ListStore liststore1 = null;
 
         private int _counter;
 
@@ -29,7 +33,8 @@ namespace AppDomicilioSharp
         private void Button1_Clicked(object sender, EventArgs a)
         {
             _counter++;
-            _label1.Text = "Hello World! This button has been clicked " + _counter + " time(s).";
+            var iter = liststore1.Append();
+            liststore1.SetValues(iter,Rand.GetInt(0,12),"Pepito",true);
         }
     }
 }
