@@ -1,23 +1,30 @@
 using System;
 using Gtk;
+using AppDomicilioSharp.Visual.Dialogs;
 
 namespace AppDomicilioSharp
 {
-    class Program
-    {
-        [STAThread]
-        public static void Main(string[] args)
-        {
-            Application.Init();
+	class Program
+	{
+		[STAThread]
+		public static void Main(string[] args)
+		{
+			//Aqui debemos cargar las preferencias
 
-            var app = new Application("org.AppDomicilioSharp.AppDomicilioSharp", GLib.ApplicationFlags.None);
-            app.Register(GLib.Cancellable.Current);
+			bool logged = false;
 
-            var win = new MainWindow();
-            app.AddWindow(win);
+			Application.Init("Domicilios App", ref args);
 
-            win.Show();
-            Application.Run();
-        }
-    }
+			var app = new Application("org.Kyt.AppDomicilioSharp", GLib.ApplicationFlags.None);
+			app.Register(GLib.Cancellable.Current);
+
+			Window winl = new LoginDialog();
+			//Window winm = new Windows.MainWindow();
+
+			app.AddWindow(winl);
+
+			winl.Show();
+			Application.Run();
+		}
+	}
 }

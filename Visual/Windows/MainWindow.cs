@@ -3,9 +3,9 @@ using Gtk;
 using UI = Gtk.Builder.ObjectAttribute;
 using KYLib.Utils;
 
-namespace AppDomicilioSharp.Windows
+namespace AppDomicilioSharp.Visual.Windows
 {
-    class MainWindow : Window
+    public class MainWindow : Window
     {
         [UI] TreeView uiTree = null;
 
