@@ -18,7 +18,7 @@ namespace AppDomicilioSharp
 			var app = new Application("org.Kyt.AppDomicilioSharp", GLib.ApplicationFlags.None);
 			app.Register(GLib.Cancellable.Current);
 
-			Window winl = new LoginDialog();
+			Dialog winl = new LoginDialog();
 			//Window winm = new Windows.MainWindow();
 
 			app.AddWindow(winl);

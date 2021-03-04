@@ -4,21 +4,22 @@ using UI = Gtk.Builder.ObjectAttribute;
 
 namespace AppDomicilioSharp.Visual.Dialogs
 {
-    class LoginDialog : Dialog
-    {
-        public LoginDialog() : this(new Builder("LoginDialog.glade")) { }
+	class LoginDialog : Dialog
+	{
+		public LoginDialog() : this(new Builder("LoginDialog.glade")) { }
 
-        private LoginDialog(Builder builder) : base(builder.GetObject("LoginDialog").Handle)
-        {
-            builder.Autoconnect(this);
-            DefaultResponse = ResponseType.Cancel;
+		private LoginDialog(Builder builder) : base(builder.GetObject("LoginDialog").Handle)
+		{
+			builder.Autoconnect(this);
+			DefaultResponse = ResponseType.Close;
 
-            Response += Dialog_Response;
-        }
+			Response += Dialog_Response;
+		}
 
-        private void Dialog_Response(object o, ResponseArgs args)
-        {
-            Hide();
-        }
-    }
+		private void Dialog_Response(object o, ResponseArgs args)
+		{
+			Hide();
+			Application.Quit();
+		}
+	}
 }
