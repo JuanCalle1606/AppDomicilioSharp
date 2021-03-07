@@ -42,7 +42,7 @@ namespace AppDomicilioSharp.UMLBased
 
 		/// <inheritdoc/>
 		public override string ToString() =>
-			$"produnto de {PrecioTotal}$ pagado a lo largo de {CuotasTotales} cuotas, actualmente pagado {CuotasPagadas} cuotas.";
+			$"producto de {PrecioTotal}$ pagado a lo largo de {CuotasTotales} cuotas, actualmente pagado {CuotasPagadas} cuotas.";
 	}
 
 }
