@@ -1,6 +1,6 @@
 using System;
-using Gtk;
 using AppDomicilioSharp.Visual.Dialogs;
+using Gtk;
 
 namespace AppDomicilioSharp
 {
@@ -11,9 +11,7 @@ namespace AppDomicilioSharp
 		{
 			//Aqui debemos cargar las preferencias
 
-			bool logged = false;
-
-			Application.Init("Domicilios App", ref args);
+			Application.Init();
 
 			var app = new Application("org.Kyt.AppDomicilioSharp", GLib.ApplicationFlags.None);
 			app.Register(GLib.Cancellable.Current);
