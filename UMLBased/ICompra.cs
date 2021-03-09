@@ -2,6 +2,7 @@ using System;
 using DO = Newtonsoft.Json.JsonObjectAttribute;
 using DP = Newtonsoft.Json.JsonPropertyAttribute;
 
+
 namespace AppDomicilioSharp.UMLBased
 {
 	[DO(Newtonsoft.Json.MemberSerialization.OptIn)]
@@ -15,10 +16,10 @@ namespace AppDomicilioSharp.UMLBased
 		/// </summary>
 		[DP] long Id { get; init; }
 
-		/**
-		 * TODO:
-		 * - Cuando se cree la clase Producto agregar aqui la propiedad "producto".
-		 */
+		/// <summary>
+		/// El producto que se esta manejando en esta compra.
+		/// </summary>
+		Producto producto { get; init; }
 
 		/// <summary>
 		/// Cantidad de productos en la compra.
