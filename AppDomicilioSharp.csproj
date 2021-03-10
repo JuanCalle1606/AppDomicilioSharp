@@ -14,10 +14,8 @@
 
   <ItemGroup>
     <PackageReference Include="GtkSharp" Version="3.22.25.*" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\KYLib-CSharp\KYLib.Data\KYLib.Data.csproj" />
+    <PackageReference Include="KYLib" Version="1.3.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
 </Project>
