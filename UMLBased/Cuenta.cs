@@ -4,7 +4,7 @@ using KYLib.MathFn;
 using DO = Newtonsoft.Json.JsonObjectAttribute;
 using DP = Newtonsoft.Json.JsonPropertyAttribute;
 
-namespace AppDomicilioSharp
+namespace AppDomicilioSharp.UMLBased
 {
 
 	[DO(Newtonsoft.Json.MemberSerialization.OptIn)]
