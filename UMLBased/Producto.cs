@@ -44,7 +44,7 @@ namespace AppDomicilioSharp.UMLBased
 		/// </summary>
 		[DP] private List<byte> Calificacion { get; } = new();
 
-		public byte CalificacionPromedio => (byte)Mathf.Mean(Calificacion.ToArray(b => (int)b));
+		public byte CalificacionPromedio => (byte)Mathf.Mean(Calificacion.ToArray(b => (Int)b));
 
 		/// <summary>
 		/// URL a una foto de internet que se usa como imagen del producto.

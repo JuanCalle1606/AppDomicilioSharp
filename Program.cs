@@ -1,6 +1,7 @@
 using System;
 using AppDomicilioSharp.Visual.Dialogs;
 using Gtk;
+using KYLib.System;
 
 namespace AppDomicilioSharp
 {
@@ -10,6 +11,7 @@ namespace AppDomicilioSharp
 		public static void Main(string[] args)
 		{
 			//Aqui debemos cargar las preferencias
+			Console.Write($"Running on {Info.CurrentSystem}");
 
 			Application.Init();
 
