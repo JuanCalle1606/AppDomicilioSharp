@@ -57,6 +57,11 @@ namespace AppDomicilioSharp.UMLBased
 		[DP] public DateTime Creacion { get; init; }
 
 		/// <summary>
+		/// Categoria a la que pertenece este producto, un producto no puede cambiarse de categoria.
+		/// </summary>
+		[DP] public Categoria Categoria { get; init; }
+
+		/// <summary>
 		/// Indica si este producto puede ser pagado por cuotas o no.
 		/// </summary>
 		[DP] public bool PermiteCuotas { get; set; }
