@@ -1,4 +1,5 @@
 using System;
+using KYLib.MathFn;
 using DO = Newtonsoft.Json.JsonObjectAttribute;
 using DP = Newtonsoft.Json.JsonPropertyAttribute;
 
@@ -34,6 +35,6 @@ namespace AppDomicilioSharp.UMLBased
 		/// <summary>
 		/// El precio total(con descuentos y domicilios) que se va a pagar por esta compra.
 		/// </summary>
-		[DP] double Precio { get; init; }
+		[DP] Real Precio { get; init; }
 	}
 }
