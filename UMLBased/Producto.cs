@@ -32,19 +32,19 @@ namespace AppDomicilioSharp.UMLBased
 		/// <summary>
 		/// Valor original de este producto, los establecimientos pueden cambiarlo cuando lo deseen.
 		/// </summary>
-		[DP] public double Precio { get; set; }
+		[DP] public Real Precio { get; set; }
 
 		/// <summary>
 		/// Valor del domicilio de este producto, los establecimientos tambien definen este valor y lo pueden cambiar, un valor de 0 indica que es un domicilio gratis.
 		/// </summary>
-		[DP] public double Domicilio { get; set; }
+		[DP] public Real Domicilio { get; set; }
 
 		/// <summary>
 		/// Lista de calificaciones que le han dado a este producto.
 		/// </summary>
 		[DP] private List<byte> Calificacion { get; } = new();
 
-		public byte CalificacionPromedio => (byte)Mathf.Mean(Calificacion.ToArray(b => (Int)b));
+		public byte CalificacionPromedio => (byte)Mathf.MeanOf(Calificacion.ToArray<byte, Int>(b => b));
 
 		/// <summary>
 		/// URL a una foto de internet que se usa como imagen del producto.

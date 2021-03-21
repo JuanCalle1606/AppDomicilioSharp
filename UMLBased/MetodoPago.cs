@@ -1,4 +1,5 @@
-﻿using DO = Newtonsoft.Json.JsonObjectAttribute;
+﻿using KYLib.MathFn;
+using DO = Newtonsoft.Json.JsonObjectAttribute;
 using DP = Newtonsoft.Json.JsonPropertyAttribute;
 
 namespace AppDomicilioSharp.UMLBased
@@ -25,7 +26,7 @@ namespace AppDomicilioSharp.UMLBased
 		/// <remarks>
 		/// Esta propiedad solo se usa para la conversión a string.
 		/// </remarks>
-		[DP] public double PrecioTotal { get; init; }
+		[DP] public Real PrecioTotal { get; init; }
 
 		/// <summary>
 		/// Define si el producto relacionado a este metodo de pago ya se ha terminado de pagar.
