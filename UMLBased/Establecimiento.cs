@@ -37,7 +37,8 @@ namespace AppDomicilioSharp.UMLBased
 
         public bool Calificar(byte calificacion)
         {
-            this.calificacion = calificacion;
+            byte score = calificacion;
+            this.calificacion.Add(score);
             return true;
         }
     }
