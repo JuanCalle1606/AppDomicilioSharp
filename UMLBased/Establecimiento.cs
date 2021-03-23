@@ -35,7 +35,7 @@ namespace AppDomicilioSharp.UMLBased
             return true;
         }
 
-        public void Calificar(byte calificacion)
+        public bool Calificar(byte calificacion)
         {
             this.calificacion = calificacion;
             return true;
