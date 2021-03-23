@@ -9,7 +9,7 @@ namespace AppDomicilioSharp.UMLBased
     /// <summary>
     /// Representa una cuenta de un establecimiento 
     /// </summary>
-    public sealed class Carrito :
+    public sealed class Carrito
     {
         private double total;
         private List<Factura> productos;
@@ -19,7 +19,7 @@ namespace AppDomicilioSharp.UMLBased
         public List<Factura> Productos { get => productos;  }
         public double Costo { get => costo; }
 
-        public Carrito() :
+        public Carrito()
         {
 
 
