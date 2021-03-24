@@ -12,7 +12,7 @@ namespace AppDomicilioSharp.UMLBased
 	public sealed class Cliente : Cuenta
 	{
 		/// <summary>
-		/// 
+		/// El tipo de este cliente
 		/// </summary>
 		[DP] public TipoCliente Tipo { get; private set; }
 

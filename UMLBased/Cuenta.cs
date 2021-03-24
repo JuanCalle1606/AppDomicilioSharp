@@ -14,6 +14,11 @@ namespace AppDomicilioSharp.UMLBased
 	public abstract class Cuenta : INameable
 	{
 		/// <summary>
+		/// Variable de bloqueo para manejo de dinero
+		/// </summary>
+		private readonly object _locker = new();
+
+		/// <summary>
 		/// Identificador unico de esta cuenta.
 		/// </summary>
 		[DP] public long Id { get; init; }
@@ -60,21 +65,25 @@ namespace AppDomicilioSharp.UMLBased
 		/// <returns>Devuelve un booleano que indica si se pudo realizar el cambio.</returns>
 		public bool SaldoDelta(Real saldo)
 		{
-			if (saldo == 0)
-				// Si no ocurre ningun cambio entonces se devuelve true porque no ocurre ningun error.
-				return true;
-			else if (saldo > 0)
+			//hacemos un bloqueo multihilo para evitar que se hagan multiples manipulaciones de dinero al tiempo.
+			lock (_locker)
 			{
-				Saldo += saldo;
-				return true;
-			}
-			else if (saldo < 0)
-			{
-				// Se valida que hacer el cambio no de un resultado negativo.
-				if (Saldo - saldo >= 0)
-				{
-					Saldo -= saldo;
+				if (saldo == 0)
+					// Si no ocurre ningun cambio entonces se devuelve true porque no ocurre ningun error.
 					return true;
+				else if (saldo > 0)
+				{
+					Saldo += saldo;
+					return true;
+				}
+				else if (saldo < 0)
+				{
+					// Se valida que hacer el cambio no de un resultado negativo.
+					if (Saldo - saldo >= 0)
+					{
+						Saldo -= saldo;
+						return true;
+					}
 				}
 			}
 			return false;
