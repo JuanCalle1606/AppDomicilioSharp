@@ -14,7 +14,7 @@ namespace Terminal
 
 		public IApp CreateApp() => new TerminalApp("Domicilios Sharp");
 
-		public ILoginWindow CreateLoginWindow(Cuenta DefaultUser)
+		public ILoginWindow CreateLoginWindow(Usuario DefaultUser)
 		{
 			Console.WriteLine("Creada la ventana de logeo");
 			return null;
