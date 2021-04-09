@@ -50,23 +50,4 @@ namespace UmlBased
             return true;
         }
     }
-
-    /// <summary>
-    /// Enumeración de tipos de clientes disponibles.
-    /// </summary>
-    public enum TipoComprador
-    {
-        /// <summary>
-        /// Tipo de cliente por defecto.
-        /// </summary>
-        Normal,
-        /// <summary>
-        /// Tipo de cliente premium.
-        /// </summary>
-        VIP,
-        /// <summary>
-        /// Tipo de cliente preferencial con descuento por compras.
-        /// </summary>
-        Prioritario
-    }
 }
