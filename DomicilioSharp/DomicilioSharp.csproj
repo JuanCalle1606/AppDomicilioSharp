@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Linux\Linux.csproj" />
     <ProjectReference Include="..\Terminal\Terminal.csproj" />
+    <ProjectReference Include="..\ICommon\ICommon.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
