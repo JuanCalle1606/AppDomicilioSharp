@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\KYLib-CSharp\KYLib.ConsoleUtils\KYLib.ConsoleUtils.csproj" />
+    <ProjectReference Include="..\UmlBased\UmlBased.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+</Project>
