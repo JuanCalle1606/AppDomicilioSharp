@@ -1,0 +1,22 @@
+{
+	"Build": {
+		"Name": "DomicilioSharp",
+		"Configuration": "Debug",
+		"OutputDir": "{CurrentDir}/bin/{Configuration}",
+		"Cmd": [
+			{
+				"Comment": "Build the source code into {OutputDir} using {Task}",
+				"RunIn": "{CurrentDir}",
+				"Task": "dotnet",
+				"Args": "build -c {Configuration} {OutRedirect} {OutputDir}",
+				"OutRedirect": "-o"
+			},
+			{
+				"Comment": "Run the program",
+				"RunIn": "{OutputDir}",
+				"Task": "dotnet",
+				"Args": "{Name}.dll -c"
+			}
+		]
+	}
+}

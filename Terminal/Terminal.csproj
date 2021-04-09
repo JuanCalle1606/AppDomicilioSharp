@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\KYLib-CSharp\KYLib.ConsoleUtils\KYLib.ConsoleUtils.csproj" />
-    <ProjectReference Include="..\UmlBased\UmlBased.csproj" />
+    <ProjectReference Include="..\ICommon\ICommon.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

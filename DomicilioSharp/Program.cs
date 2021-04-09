@@ -5,6 +5,7 @@ using KYLib.ConsoleUtils;
 using KYLib.Extensions;
 using KYLib.MathFn;
 using KYLib.System;
+using Terminal;
 
 namespace DomicilioSharp
 {
@@ -14,6 +15,8 @@ namespace DomicilioSharp
 
 		public static IApp App;
 
+		public static IFactory Factory;
+
 		static int Main(string[] args)
 		{
 			ArgsList = new(args);
@@ -22,26 +25,33 @@ namespace DomicilioSharp
 
 		public static Int RunApp(bool create)
 		{
-			// argumento que indica que nuestra app sera por consola
-			if (ArgsList.Contains("-c"))
-			{
-				return Terminal.Program.Main();
-			}
+			// cargamos los datos guardados antes de cualquier cosa
+			RestorePreferences();
 			// debemos crear la app? esta propiedad siempre es true cuando el punto de inicio es este programa, si el punto de inicio es Windows.exe esto sera false.
 			if (create)
 			{
-				var ec = CreateApp();
+				var ec = CreateFactory();
 				//si el codigo es diferente de 0 lo devolvemos.
 				if (ec != 0)
 					return ec;
 			}
 
-			return App.Start();
+			App = Factory.CreateApp();
+
+			App.AddWindow(Factory.CreateLoginWindow());
+
+			return (App?.Start()).GetValueOrDefault(1);
 		}
 
-		private static Int CreateApp()
+		private static Int CreateFactory()
 		{
-			if (Info.CurrentSystem.IsLinux() || ArgsList.Contains("--gtk"))
+			//lo primero que validamos es si sera una aplicación de consola.
+			if (ArgsList.Contains("-c"))
+			{
+				Factory = TerminalFactory.Default();
+				return 0;
+			}
+			else if (Info.CurrentSystem.IsLinux() || ArgsList.Contains("--gtk"))
 			{
 				//creamos la aplicacion con Gtk;
 				return 0;
@@ -55,6 +65,10 @@ namespace DomicilioSharp
 
 			Cons.Error = "El sistema operativo actual no esta soportado, si este sistema tiene instalado gtk ejecute este programa con el parametro \"--gtk\" para usar ese motor grafico o utilize \"-c\" para usar la aplicación por consola.";
 			return 1;
+		}
+		private static void RestorePreferences()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
