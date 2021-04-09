@@ -6,8 +6,8 @@ namespace ICommon
 {
 	public interface IApp
 	{
-		Int AddWindow(IWindow window);
+		bool AddWindow(IWindow window);
 
-		Int Start();
+		Int StartApp();
 	}
 }

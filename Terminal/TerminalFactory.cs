@@ -1,6 +1,7 @@
 
 using System;
 using ICommon;
+using UmlBased;
 
 namespace Terminal
 {
@@ -9,16 +10,14 @@ namespace Terminal
 		/// <summary>
 		/// Devuelve el factory para crear app de consola.
 		/// </summary>
-		public static IFactory Default() => new TerminalFactory();
+		public static IFactory Default => new TerminalFactory();
 
-		public IApp CreateApp()
-		{
-			throw new NotImplementedException();
-		}
+		public IApp CreateApp() => new TerminalApp("Domicilios Sharp");
 
-		public ILoginWindow CreateLoginWindow()
+		public ILoginWindow CreateLoginWindow(Cuenta DefaultUser)
 		{
-			throw new NotImplementedException();
+			Console.WriteLine("Creada la ventana de logeo");
+			return null;
 		}
 	}
 }

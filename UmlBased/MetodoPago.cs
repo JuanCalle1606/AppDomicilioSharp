@@ -2,7 +2,7 @@
 using DO = Newtonsoft.Json.JsonObjectAttribute;
 using DP = Newtonsoft.Json.JsonPropertyAttribute;
 
-namespace AppDomicilioSharp.UMLBased
+namespace UmlBased
 {
 	[DO(Newtonsoft.Json.MemberSerialization.OptIn)]
 	/// <summary>

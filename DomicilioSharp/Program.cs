@@ -27,6 +27,7 @@ namespace DomicilioSharp
 		{
 			// cargamos los datos guardados antes de cualquier cosa
 			RestorePreferences();
+
 			// debemos crear la app? esta propiedad siempre es true cuando el punto de inicio es este programa, si el punto de inicio es Windows.exe esto sera false.
 			if (create)
 			{
@@ -38,9 +39,9 @@ namespace DomicilioSharp
 
 			App = Factory.CreateApp();
 
-			App.AddWindow(Factory.CreateLoginWindow());
+			App.AddWindow(Factory.CreateLoginWindow(null));
 
-			return (App?.Start()).GetValueOrDefault(1);
+			return (App?.StartApp()).GetValueOrDefault(1);
 		}
 
 		private static Int CreateFactory()
@@ -48,7 +49,7 @@ namespace DomicilioSharp
 			//lo primero que validamos es si sera una aplicación de consola.
 			if (ArgsList.Contains("-c"))
 			{
-				Factory = TerminalFactory.Default();
+				Factory = TerminalFactory.Default;
 				return 0;
 			}
 			else if (Info.CurrentSystem.IsLinux() || ArgsList.Contains("--gtk"))
@@ -66,9 +67,13 @@ namespace DomicilioSharp
 			Cons.Error = "El sistema operativo actual no esta soportado, si este sistema tiene instalado gtk ejecute este programa con el parametro \"--gtk\" para usar ese motor grafico o utilize \"-c\" para usar la aplicación por consola.";
 			return 1;
 		}
+
+		/// <summary>
+		/// Carga los datos desde los archivos.
+		/// </summary>
 		private static void RestorePreferences()
 		{
-			throw new NotImplementedException();
+
 		}
 	}
 }
