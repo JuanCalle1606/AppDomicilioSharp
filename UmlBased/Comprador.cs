@@ -16,8 +16,6 @@ namespace UmlBased
 		/// </summary>
 		[DP] public TipoComprador Tipo { get; private set; }
 
-		//Carrito
-
 		/// <summary>
 		/// Guarda todos los pedidos que ha realizado este cliente.
 		/// </summary>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using KYLib.MathFn;
 using DO = Newtonsoft.Json.JsonObjectAttribute;
 using DP = Newtonsoft.Json.JsonPropertyAttribute;
@@ -7,34 +8,27 @@ namespace UmlBased
 {
 	[DO(Newtonsoft.Json.MemberSerialization.OptIn)]
 	/// <summary>
-	/// Representa una cuenta de un establecimiento 
+	/// Carrito que almacena una lista de pedidos.
 	/// </summary>
 	public sealed class Carrito
 	{
-		/// <summary>
-		/// Representa el costo de los pedidos almacenados en el carrito mas el IVA.
-		/// </summary>
-		private double total;
 
 		/// <summary>
 		/// Representa una lista de los pedidos del cliente.
 		/// </summary>
-		private List<Pedido> pedidos;
+		private List<Pedido> pedidos = new();
 
 		/// <summary>
 		/// Representa el costo de los pedidos almacenados en el carrito.
 		/// </summary>
-		private double costo;
+		public Real Total => Mathf.SumOf(pedidos.Select(P => P.ValorTotal));
 
-		public double Total { get => total; }
 		public List<Pedido> Pedidos { get => pedidos; }
-		public double CostoCuota { get => costo; }
 
-		public Carrito()
-		{
-
-
-		}
+		/// <summary>
+		/// Representa el costo de la primera cuota que se pagara por los pedidos.
+		/// </summary>
+		public Real CostoCuota => Mathf.SumOf(pedidos.Select(P => P.ValorCuota));
 
 		/// <summary>
 		/// Agrega un pedido al carrito.
@@ -44,14 +38,13 @@ namespace UmlBased
 		public bool Agregar(Pedido pedido)
 		{
 			Pedidos.Add(pedido);
+			ActualizarDomicilio();
 			return true;
 		}
 
-
-
-		public bool Pagar() //Esta funcion debe ir en el comprador puesto que se necesita acceso 
-		{                   //a su saldo y de acuerdo con el diagrama UML la clase carrito no puede
-			return true;    //ver a la clase comprador
+		public bool Pagar()
+		{
+			return true;
 		}
 
 		/// <summary>
@@ -62,7 +55,33 @@ namespace UmlBased
 		public bool Eliminar(Pedido pedido)
 		{
 			Pedidos.Remove(pedido);
+			ActualizarDomicilio();
 			return true;
+		}
+
+		/// <summary>
+		/// Busca el domicilio maximo entre los pedidos de una sola cuota.
+		/// </summary>
+		private void ActualizarDomicilio()
+		{
+			var unacuota = pedidos.FindAll(P => P.Cuotas.Equals(1)) ?? new();
+
+			Pedido domicilio = null;
+			Real maxdomicilio = 0;
+			unacuota.ForEach(P =>
+			{
+				//se actualizan todos por defecto como si contoran su domicilio.
+				P.Actualizar(false);
+				//se valida si su domicilio es mayor.
+				if (P.producto.ValorDomicilio > maxdomicilio)
+				{
+					domicilio = P;
+					maxdomicilio = P.producto.ValorDomicilio;
+				}
+			});
+
+			//si hay un domicilio mayor, se actualiza.
+			domicilio?.Actualizar(true);
 		}
 	}
 }
