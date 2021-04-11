@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>686</x>
+      <y>210</y>
+      <w>147</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>/Usuario/
+--
+- id: int
+- nombre:string
+- direccion: string
+- creacion: DateTime
+- clave: string
+- foto: string
+- telefono: string
+- correo: string
+- saldo: double
+--
+SaldoDelta(saldo):bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>343</y>
+      <w>147</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>190.0;10.0;190.0;40.0;10.0;40.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>343</y>
+      <w>182</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;240.0;40.0;240.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>315</x>
+      <y>707</y>
+      <w>196</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>Producto
+--
+- id: int
+- nombre: string
+- descripcion: string
+- precio: double
+- valordomicilio: double
+- calificacion: List&lt;byte&gt;
+- foto: string
+- fecha_creacion: DateTime
+- categoria: Categoria
+- permite_cuotas: bool
+--
+Calificar(byte calificacion)
+GetEstablecimiento():Establecimiento</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>763</y>
+      <w>231</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Categoria
+--
+- Nombre: string
+--
++ AllByCatEst(name):List&lt;Establecimientos&gt;
++ AllByCatPro(name):List&lt;Producto&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>364</x>
+      <y>420</y>
+      <w>119</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Enum TipoComprador
+--
++ Normal
++ VIP
++ Prioritario</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>546</x>
+      <y>427</y>
+      <w>217</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Comprador
+--
+- tipo: TipoComprador
+- carrito: Carrito
+- historial_pedidos:List&lt;Pedido&gt;
+--
++ PagoCuotas()
++ PagosPendientes():List&lt;Pedido&gt;
++ Abonar(Pedido,saldo):bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>476</x>
+      <y>441</y>
+      <w>84</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>294</x>
+      <y>483</y>
+      <w>189</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Carrito
+--
+- total: double
+- pedidos: List&lt;Pedido&gt;
+- costo_cuota: double
+--
++ Agregar(producto, cuotas): bool
++ Agregar(producto): bool
++ Pagar():bool
++ Eliminar(producto):bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>574</x>
+      <y>581</y>
+      <w>175</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>Pedido
+--
+- id: int
+- cuotas: byte
+- cantidad: byte
+- fecha: DateTime
+- valor_base
+- valor_descuento: double
+- valor_domicilio: double
+- valor_aditivo: double
+- valor_total: double
+- producto: Producto
+- cantidad_iva: double
+- valor_cuota: double
+- estado: EstadoPedido
+- pago: MetodoPago
+--
+- CalcularTotal()
+- Actualizar(bool domicilio)
+- Actualizar(cantidad,cuotas)
+- Cancelar(): bool
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>378</x>
+      <y>553</y>
+      <w>595</w>
+      <h>371</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*
+m2=1
+ofrece</panel_attributes>
+    <additional_attributes>10.0;450.0;10.0;510.0;830.0;510.0;830.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>805</y>
+      <w>273</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=*
+tiene</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;120.0;370.0;120.0;370.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>847</x>
+      <y>434</y>
+      <w>238</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Vendedor
+--
+- menu:List&lt;Producto&gt;
+- categorias: List&lt;Categoria&gt;
+- calificacion: List&lt;byte&gt;
+- atencion_al_cliente: List&lt;DateTime&gt;
+- pedidos: List&lt;Pedido&gt;
+--
++ AgregarPedido(Pedido): bool
++ AgregarPedidos(List&lt;Pedido&gt;):bool
++ CrearProducto(Producto)
++ Calificar(byte calificacion)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>476</x>
+      <y>476</y>
+      <w>84</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=-
+bg=black
+m2=1
+posee</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>658</x>
+      <y>0</y>
+      <w>224</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>/DomiciliosApp/
+--
+- Compradores: List&lt;Comprador&gt;
+- Vendedores: List&lt;Vendedor&gt;
+- Productos: List&lt;Producto&gt;
+- Categorias: List&lt;Categoria&gt;
+- ClienteActual: Usuario
+--
+GetCuenta(id): Cuenta
+GetProducto(id): Producto
+GetCat(string name): Categoria
+GetOrCreateCat(name): Categoria
+ProcesarDia()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>875</x>
+      <y>21</y>
+      <w>154</w>
+      <h>427</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*
+m2=1
+administra</panel_attributes>
+    <additional_attributes>130.0;590.0;130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>259</x>
+      <y>42</y>
+      <w>413</w>
+      <h>714</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*
+m2=1
+administra</panel_attributes>
+    <additional_attributes>80.0;990.0;10.0;990.0;10.0;10.0;570.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>728</y>
+      <w>91</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>553</y>
+      <w>840</w>
+      <h>392</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*
+m2=*
+pertenece &lt;-</panel_attributes>
+    <additional_attributes>10.0;390.0;10.0;540.0;1180.0;540.0;1180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>224</x>
+      <y>770</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=*
+pertenece &lt;-</panel_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>805</x>
+      <y>637</y>
+      <w>126</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>MetodoPago
+--
+- CuotasTotales: byte
+- CuotasPagadas: byte
+- PrecioTotal: double
+- Finalizado: bool
+--
++ ProcesarCuota()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>476</x>
+      <y>476</y>
+      <w>84</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>581</x>
+      <y>21</y>
+      <w>91</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*
+m2=1
+administra</panel_attributes>
+    <additional_attributes>10.0;580.0;10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>392</x>
+      <y>581</y>
+      <w>196</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*
+m2=1
+almacena</panel_attributes>
+    <additional_attributes>260.0;90.0;10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>784</x>
+      <y>798</y>
+      <w>105</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>Enum EstadoPedido
+--
++ Carrito
++ Pagado
++ Entregado
++ Finalizado
++ Cancelado</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>805</y>
+      <w>84</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>100.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>742</x>
+      <y>665</y>
+      <w>77</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=1
+Utiliza</panel_attributes>
+    <additional_attributes>90.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+</diagram>
