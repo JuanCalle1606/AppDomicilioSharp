@@ -21,7 +21,7 @@ namespace UmlBased
 		[DP] public byte CuotasPagadas { get; private set; }
 
 		/// <summary>
-		/// Indica el precio total del procuto que se esta pagando.
+		/// Indica el precio total del producto que se esta pagando.
 		/// </summary>
 		/// <remarks>
 		/// Esta propiedad solo se usa para la conversión a string.
