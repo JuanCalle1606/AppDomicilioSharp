@@ -18,7 +18,7 @@ namespace UmlBased
 		/// <summary>
 		/// Indica el numero de cuotas pagadas actualmente.
 		/// </summary>
-		[DP] public byte CuotasPagadas { get; private set; }
+		[DP] public byte CuotasPagadas { get; private set; } = 0;
 
 		/// <summary>
 		/// Indica el precio total del producto que se esta pagando.

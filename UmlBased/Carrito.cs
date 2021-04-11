@@ -44,7 +44,33 @@ namespace UmlBased
 
 		public bool Pagar()
 		{
-			return true;
+			var saldo = DomiciliosApp.ClienteActual.Saldo;
+			//si el saldo es menor que el valor de la primera cuota entonces no es posible pagar.
+			if (saldo < CostoCuota)
+				return false;
+			//agrupamos los pedidos por vendedores.
+			var groups = Pedidos.GroupBy(P => P.producto.ObtenerVendedor());
+			//si esta funcion devuelve false es porque no se pudo realizar el pago internamente por lo que no procesamos nada
+			if (DomiciliosApp.ClienteActual.SaldoDelta(-CostoCuota))
+			{
+				foreach (var P in pedidos)
+				{
+					// Actualizamos el estado de cada pedido
+					P.Estado = EstadoPedido.Pagado;
+					// Creamos el metodo de pago de este pedido
+					P.Pago = new MetodoPago
+					{
+						CuotasTotales = P.Cuotas,
+						PrecioTotal = P.ValorTotal
+					};
+					// indicamos al metodo de pago que ya se procesado el primer pago
+					P.Pago.ProcesarCuota();
+				}
+				//una vez que tenemos todos los pedidos actualizados y pagados debemos enviarlos a los vendedores
+				foreach (var item in groups) item.Key.AgregarPedidos(item);
+			}
+
+			return false;
 		}
 
 		/// <summary>

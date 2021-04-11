@@ -58,9 +58,9 @@ namespace UmlBased
 		/// Agrega unos pedidos a este vendedor para que los despache.
 		/// </summary>
 		/// <param name="pedidos">Pedidos a agregar</param>
-		public bool AgregarPedidos(List<Pedido> pedidos)
+		public bool AgregarPedidos(IEnumerable<Pedido> pedidos)
 		{
-			pedidos.AddRange(pedidos);
+			Pedidos.AddRange(pedidos);
 			return true;
 		}
 
