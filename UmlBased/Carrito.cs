@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using KYLib.MathFn;
-using DO = Newtonsoft.Json.JsonObjectAttribute;
-using DP = Newtonsoft.Json.JsonPropertyAttribute;
 
 namespace UmlBased
 {
-	[DO(Newtonsoft.Json.MemberSerialization.OptIn)]
 	/// <summary>
 	/// Carrito que almacena una lista de pedidos.
 	/// </summary>
