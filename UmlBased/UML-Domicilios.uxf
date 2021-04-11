@@ -68,7 +68,7 @@ SaldoDelta(saldo):bool</panel_attributes>
 - permite_cuotas: bool
 --
 Calificar(byte calificacion)
-GetEstablecimiento():Establecimiento</panel_attributes>
+GetVendedor():Vendedor</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -168,15 +168,15 @@ GetEstablecimiento():Establecimiento</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>540</x>
-      <y>810</y>
+      <y>800</y>
       <w>860</w>
-      <h>510</h>
+      <h>520</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=*
 m2=1
 ofrece</panel_attributes>
-    <additional_attributes>10.0;430.0;10.0;490.0;830.0;490.0;830.0;10.0</additional_attributes>
+    <additional_attributes>10.0;440.0;10.0;500.0;830.0;500.0;830.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -198,7 +198,7 @@ tiene</panel_attributes>
       <x>1210</x>
       <y>610</y>
       <w>340</w>
-      <h>210</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>Vendedor
 --
@@ -212,7 +212,6 @@ tiene</panel_attributes>
 + AgregarPedidos(List&lt;Pedido&gt;):bool
 + AgregarProducto(Producto): bool
 + AgregarProducto(List&lt;Producto&gt;):bool
-+ CrearProducto(Producto)
 + Calificar(byte calificacion)</panel_attributes>
     <additional_attributes/>
   </element>
@@ -297,15 +296,15 @@ m1=*</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>240</x>
-      <y>810</y>
+      <y>800</y>
       <w>1200</w>
-      <h>540</h>
+      <h>550</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=*
 m2=*
 pertenece &lt;-</panel_attributes>
-    <additional_attributes>10.0;370.0;10.0;520.0;1180.0;520.0;1180.0;10.0</additional_attributes>
+    <additional_attributes>10.0;380.0;10.0;530.0;1180.0;530.0;1180.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -447,14 +446,14 @@ Utiliza</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1060</x>
-      <y>810</y>
+      <y>800</y>
       <w>280</w>
-      <h>130</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=*
 m2=1
 posee &lt;-</panel_attributes>
-    <additional_attributes>10.0;100.0;250.0;100.0;250.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;250.0;110.0;250.0;10.0</additional_attributes>
   </element>
 </diagram>
