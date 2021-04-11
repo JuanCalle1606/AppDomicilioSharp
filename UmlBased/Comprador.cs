@@ -37,10 +37,11 @@ namespace UmlBased
 		/// <summary>
 		/// Busca y devuelve todas los pedidos que aun no ha pagado este cliente.
 		/// </summary>
-		public List<Pedido> PagosPendientes()
-		{
-			return null;
-		}
+		public List<Pedido> PagosPendientes() => HistorialPedidos.FindAll
+		(
+			//devolvemos los elementos que tengan el estado en entregado o en pagado(1 cuota) y es de varias cuotas.
+			P => P.Estado == EstadoPedido.Entregado || (P.Estado == EstadoPedido.Pagado && P.Cuotas > 1)
+		);
 
 		/// <summary>
 		/// Abona un saldo en un pedido especifico. Esta función se usara por los clientes cuando quiera pagar algo entre sus pedidos.
