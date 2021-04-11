@@ -1,7 +1,9 @@
 
 using System;
+using KYLib.Data.Converters;
 using KYLib.Interfaces;
 using KYLib.MathFn;
+using Newtonsoft.Json;
 using DO = Newtonsoft.Json.JsonObjectAttribute;
 using DP = Newtonsoft.Json.JsonPropertyAttribute;
 
@@ -42,7 +44,7 @@ namespace UmlBased
 		/// <summary>
 		/// Almacena la clave de este usuario.
 		/// </summary>
-		/*TODO: Agregar Base64Converter*/
+		[JsonConverter(typeof(Base64Converter))]
 		[DP] public string Clave { get; init; }
 
 		/// <summary>

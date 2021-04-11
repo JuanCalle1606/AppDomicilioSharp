@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using ICommon;
 using KYLib.ConsoleUtils;
+using KYLib.Data;
+using KYLib.Data.DataFiles;
 using KYLib.Extensions;
 using KYLib.MathFn;
 using KYLib.System;
+using Newtonsoft.Json;
 using Terminal;
+using UmlBased;
 
 namespace DomicilioSharp
 {
@@ -20,6 +24,7 @@ namespace DomicilioSharp
 		static int Main(string[] args)
 		{
 			ArgsList = new(args);
+			new DomiciliosApp();
 			return RunApp(true);
 		}
 
@@ -73,7 +78,8 @@ namespace DomicilioSharp
 		/// </summary>
 		private static void RestorePreferences()
 		{
-
+			JsonFile.Default.Settings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
+			Files.Save(DomiciliosApp.Instance, "saves.json", JsonFile.Default);
 		}
 	}
 }
