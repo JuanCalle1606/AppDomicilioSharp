@@ -65,6 +65,26 @@ namespace UmlBased
 		}
 
 		/// <summary>
+		/// Agrega un producto al menu de este vendedor.
+		/// </summary>
+		/// <param name="producto">Producto a agregar</param>
+		public bool AgregarProducto(Producto producto)
+		{
+			Menu.Add(producto);
+			return true;
+		}
+
+		/// <summary>
+		/// Agrega varios productos al menu de este vendedor.
+		/// </summary>
+		/// <param name="producto">Productos a agregar</param>
+		public bool AgregarProductos(List<Producto> productos)
+		{
+			Menu.AddRange(productos);
+			return true;
+		}
+
+		/// <summary>
 		/// Agrega una puntuacion a este producto.
 		/// </summary>
 		/// <param name="puntuacion">Calificacion a agregar.</param>
