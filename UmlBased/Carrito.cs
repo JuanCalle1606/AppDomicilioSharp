@@ -48,11 +48,12 @@ namespace UmlBased
 			//si el saldo es menor que el valor de la primera cuota entonces no es posible pagar.
 			if (saldo < CostoCuota)
 				return false;
-			//agrupamos los pedidos por vendedores.
-			var groups = Pedidos.GroupBy(P => P.producto.ObtenerVendedor());
 			//si esta funcion devuelve false es porque no se pudo realizar el pago internamente por lo que no procesamos nada
 			if (DomiciliosApp.ClienteActual.SaldoDelta(-CostoCuota))
 			{
+				//agrupamos los pedidos por vendedores.
+				var groups = Pedidos.GroupBy(P => P.producto.ObtenerVendedor());
+
 				foreach (var P in pedidos)
 				{
 					// Actualizamos el estado de cada pedido
@@ -66,8 +67,12 @@ namespace UmlBased
 					// indicamos al metodo de pago que ya se procesado el primer pago
 					P.Pago.ProcesarCuota();
 				}
+
 				//una vez que tenemos todos los pedidos actualizados y pagados debemos enviarlos a los vendedores
 				foreach (var item in groups) item.Key.AgregarPedidos(item);
+
+				//si pudimos pagar todo devolvemos true
+				return true;
 			}
 
 			return false;
