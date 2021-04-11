@@ -21,19 +21,15 @@ namespace UmlBased
 		/// </summary>
 		/// <param name="name">Nombre de la categoria.</param>
 		/// <returns>Lista de todos los productos que cumplen con la condición.</returns>
-		public static List<Producto> AllByCatPro(string name)
-		{
-			return null;
-		}
+		public static List<Producto> AllByCatPro(string name) =>
+			DomiciliosApp.Instance.Productos.FindAll(P => P.Categoria.Name.Equals(name));
 
 		/// <summary>
 		/// Devuelve todos los productos que tienen una categoria especifica.
 		/// </summary>
 		/// <param name="cat">Categoria especifica a buscar.</param>
 		/// <returns>Lista de todos los productos que cumplen con la condición.</returns>
-		public static List<Producto> AllByCatPro(Categoria cat)
-		{
-			return null;
-		}
+		public static List<Producto> AllByCatPro(Categoria cat) =>
+			DomiciliosApp.Instance.Productos.FindAll(P => P.Categoria.Equals(cat));
 	}
 }
