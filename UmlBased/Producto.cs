@@ -41,13 +41,13 @@ namespace UmlBased
 		/// <summary>
 		/// Lista de calificaciones que le han dado a este producto.
 		/// </summary>
-		[DP] private List<Small> Calificacion = new();
+		[DP] private List<Small> calificacion = new();
 
 		/// <summary>
 		/// Promedio de las calificaciones.
 		/// </summary>
 		/*TODO: Cambiar el tipo de Real a Float*/
-		public Real CalificacionPromedio => Mathf.MeanOf<Small, Real>(Calificacion);
+		public Real Calificacion => Mathf.MeanOf<Small, Real>(calificacion);
 
 		/// <summary>
 		/// URL a una foto de internet que se usa como imagen del producto.
@@ -70,10 +70,10 @@ namespace UmlBased
 		[DP] public bool PermiteCuotas { get; set; }
 
 		/// <summary>
-		/// Agrega una calificacion a este producto.
+		/// Agrega una puntuacion a este producto.
 		/// </summary>
-		/// <param name="calificacion">Calificacion a agregar</param>
-		public void Calificar(Small calificacion) => Calificacion.Add(calificacion);
+		/// <param name="puntuacion">Calificacion a agregar.</param>
+		public void Calificar(Small puntuacion) => calificacion.Add(puntuacion);
 
 		/// <summary>
 		/// Guarda el id del vendedor que tiene ofrece este producto.

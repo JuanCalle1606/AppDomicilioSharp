@@ -7,40 +7,71 @@ using DP = Newtonsoft.Json.JsonPropertyAttribute;
 
 namespace UmlBased
 {
-    [DO(Newtonsoft.Json.MemberSerialization.OptIn)]
-    /// <summary>
-    /// Representa una cuenta de un vendedor 
-    /// </summary>
-    public sealed class Vendedor : Usuario
-    {
-        private List<Producto> menu;
-        private List<Categoria> categorias;
-        private List<byte> calificacion;
-        private List<DateTime> atencion_al_cliente;
-        private List<Pedido> pedidos;
+	[DO(Newtonsoft.Json.MemberSerialization.OptIn)]
+	/// <summary>
+	/// Representa una cuenta de un vendedor.
+	/// </summary>
+	public sealed class Vendedor : Usuario
+	{
+		/// <summary>
+		/// Lista de calificaciones que le han dado a este vendedor.
+		/// </summary>
+		private List<Small> calificacion = new();
 
-        public List<Producto> Menu { get => menu; }
-        public List<Categoria> Categorias { get => categorias; }
-        public byte Calificacion => (byte)Mathf.MeanOf(calificacion.ToArray<byte, Int>(s => s));
-        public List<DateTime> Atencion_al_cliente { get => atencion_al_cliente; }
-        public List<Pedido> Pedidos { get => pedidos; }
+		/// <summary>
+		/// Menu de productos que ofrece este vendedor.
+		/// </summary>
+		public List<Producto> Menu { get; private set; } = new();
 
+		/// <summary>
+		/// Lista de categorias que este vendedor suele ofrecer.
+		/// </summary>
+		public List<Categoria> Categorias { get; private set; } = new();
 
-        public bool AgregarPedido(Pedido factura)
-        {
-            return true;
-        }
+		/// <summary>
+		/// Promedio de las calificaciones.
+		/// </summary>
+		/*TODO: Cambiar el tipo de Real a Float*/
+		public Real Calificacion => Mathf.MeanOf<Small, Real>(calificacion);
 
+		/// <summary>
+		/// Lista de horarios en las que este vendedor ofrece atención al cliente.
+		/// </summary>
+		public List<DateTime> AtencionCliente { get; private set; } = new();
 
-        public bool AgregarPedidos(List<Pedido> facturas)
-        {
-            return true;
-        }
+		/// <summary>
+		/// Lista de pedidos que le han realizado a este vendedor.
+		/// </summary>
+		public List<Pedido> Pedidos { get; private set; } = new();
 
-        public bool Calificar(byte puntuacion)
-        {
-            calificacion.Add(puntuacion);
-            return true;
-        }
-    }
+		/// <summary>
+		/// Agrega un pedido a este vendedor para que lo despache.
+		/// </summary>
+		/// <param name="pedido">Pedido a agregar</param>
+		public bool AgregarPedido(Pedido pedido)
+		{
+			Pedidos.Add(pedido);
+			return true;
+		}
+
+		/// <summary>
+		/// Agrega unos pedidos a este vendedor para que los despache.
+		/// </summary>
+		/// <param name="pedidos">Pedidos a agregar</param>
+		public bool AgregarPedidos(List<Pedido> pedidos)
+		{
+			pedidos.AddRange(pedidos);
+			return true;
+		}
+
+		/// <summary>
+		/// Agrega una puntuacion a este producto.
+		/// </summary>
+		/// <param name="puntuacion">Calificacion a agregar.</param>
+		public bool Calificar(Small puntuacion)
+		{
+			calificacion.Add(puntuacion);
+			return true;
+		}
+	}
 }
