@@ -10,22 +10,26 @@ namespace UmlBased
 	public sealed class Carrito
 	{
 
-		/// <summary>
-		/// Representa una lista de los pedidos del cliente.
-		/// </summary>
-		private List<Pedido> pedidos = new();
 
 		/// <summary>
 		/// Representa el costo de los pedidos almacenados en el carrito.
 		/// </summary>
-		public Real Total => Mathf.SumOf(pedidos.Select(P => P.ValorTotal));
+		public Real Total => Mathf.SumOf(Pedidos.Select(P => P.ValorTotal));
 
-		public List<Pedido> Pedidos { get => pedidos; }
+		/// <summary>
+		/// Representa una lista de los pedidos del cliente.
+		/// </summary>
+		public List<Pedido> Pedidos { get; } = new();
 
 		/// <summary>
 		/// Representa el costo de la primera cuota que se pagara por los pedidos.
 		/// </summary>
-		public Real CostoCuota => Mathf.SumOf(pedidos.Select(P => P.ValorCuota));
+		public Real CostoCuota => Mathf.SumOf(Pedidos.Select(P => P.ValorCuota));
+
+		/// <summary>
+		/// Vacia el carrito.
+		/// </summary>
+		public void Vaciar() => Pedidos.Clear();
 
 		/// <summary>
 		/// Agrega un pedido al carrito.
@@ -34,7 +38,14 @@ namespace UmlBased
 		/// <returns>Devuelve un booleano que indica si se pudo agregar el pedido.</returns>
 		public bool Agregar(Pedido pedido)
 		{
-			Pedidos.Add(pedido);
+			//vemos si ya existe un pedido cone se producto
+			var ped = Pedidos.Find(P => P.producto.Equals(pedido.producto));
+			//si no existe entonces se agrega.
+			if (ped != null)
+				Pedidos.Add(pedido);
+			//si ya existe entonces
+			else
+				ped.Actualizar(ped.Cantidad + pedido.Cantidad, ped.Cuotas);
 			ActualizarDomicilio();
 			return true;
 		}
@@ -51,7 +62,7 @@ namespace UmlBased
 				//agrupamos los pedidos por vendedores.
 				var groups = Pedidos.GroupBy(P => P.producto.ObtenerVendedor());
 
-				foreach (var P in pedidos)
+				foreach (var P in Pedidos)
 				{
 					// Actualizamos el estado de cada pedido
 					P.Estado = EstadoPedido.Pagado;
@@ -82,9 +93,9 @@ namespace UmlBased
 		/// <returns>Devuelve un booleano que indica si se pudo eliminar el pedido.</returns>
 		public bool Eliminar(Pedido pedido)
 		{
-			Pedidos.Remove(pedido);
-			ActualizarDomicilio();
-			return true;
+			var dev = Pedidos.Remove(pedido);
+			if (dev) ActualizarDomicilio();
+			return dev;
 		}
 
 		/// <summary>
@@ -92,7 +103,7 @@ namespace UmlBased
 		/// </summary>
 		private void ActualizarDomicilio()
 		{
-			var unacuota = pedidos.FindAll(P => P.Cuotas.Equals(1)) ?? new();
+			var unacuota = Pedidos.FindAll(P => P.Cuotas.Equals(1)) ?? new();
 
 			Pedido domicilio = null;
 			Real maxdomicilio = 0;

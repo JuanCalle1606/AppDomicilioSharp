@@ -35,6 +35,11 @@ namespace UmlBased
 		[DP] public Int NextUserId = 0;
 
 		/// <summary>
+		/// Guarda la siguiente id que sera usada para crear un pedido.
+		/// </summary>
+		[DP] public Int NextPedId = 0;
+
+		/// <summary>
 		/// Lista de Compradores que guarda a todos los usuarios de tipo comprador.
 		/// </summary>
 		[DP] public List<Comprador> Compradores = new();

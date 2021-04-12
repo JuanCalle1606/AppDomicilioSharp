@@ -1,8 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\KYLib-CSharp\KYLib.ConsoleUtils\KYLib.ConsoleUtils.csproj" />
     <ProjectReference Include="..\ICommon\ICommon.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="KYLib.ConsoleUtils" Version="1.4.9" />
   </ItemGroup>
 
   <PropertyGroup>

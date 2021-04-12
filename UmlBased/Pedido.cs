@@ -19,12 +19,12 @@ namespace UmlBased
 		/// <summary>
 		/// Numero de cuotas en las que se pagara este pedido.
 		/// </summary>
-		[DP] public Small Cuotas { get; private set; }
+		[DP] public Small Cuotas { get; private set; } = 1;
 
 		/// <summary>
 		/// Cantidad de <see cref="producto"/> que contiene este pedido.
 		/// </summary>
-		[DP] public Small Cantidad { get; private set; }
+		[DP] public Small Cantidad = 1;
 
 		/// <summary>
 		/// Guarda la fecha en que se realizo este pedido. Esta fecha es la fecha del primer pago
@@ -87,7 +87,19 @@ namespace UmlBased
 		/// <returns>Retorna un valor que indica si se pudo o no cancelar el pedido.</returns>
 		public bool Cancelar()
 		{
-			return true;
+			//solo se puede devolver el item si no ha sido despachado.
+			if (Estado == EstadoPedido.Pagado)
+			{
+				//removemos el pedido de la lista del vendedor
+				var rev = producto.ObtenerVendedor().Pedidos.Remove(this);
+				//si no se puedo remover retornamos.
+				if (!rev) return false;
+				//actualizamos el estado del pedido.
+				Estado = EstadoPedido.Cancelado;
+				// le devolvemos el dinero de una cuota (lo que se pago en la primera cuota) al cliente.
+				DomiciliosApp.ClienteActual.SaldoDelta(ValorCuota);
+			}
+			return false;
 		}
 
 		/// <summary>
