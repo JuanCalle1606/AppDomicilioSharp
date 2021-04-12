@@ -152,7 +152,7 @@ GetVendedor():Vendedor</panel_attributes>
 - valor_aditivo: double
 - valor_total: double
 - producto: Producto
-- cantidad_iva: double
+- porcentaje_iva: double
 - valor_cuota: double
 - estado: EstadoPedido
 - pago: MetodoPago
@@ -203,7 +203,7 @@ tiene</panel_attributes>
     <panel_attributes>Vendedor
 --
 - menu:List&lt;Producto&gt;
-- categorias: List&lt;Categoria&gt;
+- categorias: List&lt;Categoria&gt; REDUNDANTE
 - calificacion: List&lt;byte&gt;
 - atencion_al_cliente: List&lt;DateTime&gt;
 - pedidos: List&lt;Pedido&gt;
@@ -455,5 +455,33 @@ m1=*
 m2=1
 posee &lt;-</panel_attributes>
     <additional_attributes>10.0;110.0;250.0;110.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>730</y>
+      <w>120</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*
+m2=1
+almacena </panel_attributes>
+    <additional_attributes>100.0;150.0;10.0;150.0;10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1080</x>
+      <y>190</y>
+      <w>90</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=*
+m2=1
+administra </panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
