@@ -59,7 +59,7 @@ namespace UmlBased
 		/// <summary>
 		/// Guarda la cantidad de iva que sera aplicada + 1, es decir, si el iva era de 18% aqui se guarda 1.18 para mas facilidad.
 		/// </summary>
-		[DP] public Real CantidadIVA { get; init; }
+		[DP] public Real PorcentajeIVA { get; init; }
 
 		/// <summary>
 		/// Guarda el valor total que se pagara por este producto.

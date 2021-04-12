@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using ICommon;
 using KYLib.ConsoleUtils;
 using KYLib.Data;
@@ -15,7 +16,13 @@ namespace DomicilioSharp
 {
 	class Program
 	{
-		public const string SavesPath = "saves.json";
+		/// <summary>
+		/// Guarda la ruta en la que se guardan los datos de aplicación
+		/// </summary>
+		public static readonly string SavesPath = Path.Combine(
+			Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+			"DomicilioShrap/saves.json"
+		);
 
 		public static List<string> ArgsList;
 
@@ -54,6 +61,9 @@ namespace DomicilioSharp
 
 		private static Int CreateFactory()
 		{
+#if DEBUG
+			ArgsList.Add("-c");
+#endif
 			//lo primero que validamos es si sera una aplicación de consola.
 			if (ArgsList.Contains("-c"))
 			{
@@ -63,12 +73,14 @@ namespace DomicilioSharp
 			else if (Info.CurrentSystem.IsLinux() || ArgsList.Contains("--gtk"))
 			{
 				//creamos la aplicacion con Gtk;
+				Environment.Exit(0);
 				return 0;
 			}
 			//esto deberia entrar unicamente cuando se buildea en windows y el usuario abre la aplicación con DomicilioSharp.exe en lugar de con Windows.exe, esto es valido pero no recomendable ya que lo que haremos es invocar el proceso por consola lo que ocacionara que se consuma la memoria de 2 procesos.
 			else if (Info.CurrentSystem.IsWindows())
 			{
 				//invocar Windows.exe
+				Environment.Exit(0);
 				return 0;
 			}
 
@@ -81,17 +93,32 @@ namespace DomicilioSharp
 		/// </summary>
 		private static void RestorePreferences()
 		{
+			//obtenemos informacion del directorio en el que se guardaran los datos.
+			var dir = new FileInfo(SavesPath).Directory;
+			//si el directorio no existe lo creamos, esto unicamente deberia de ocurrir la primera vez que se ejecute la app pero tambien es posible que ocurra si el usuario ha borrado el directorio de guardado.
+			if (!dir.Exists)
+				dir.Create();
+			// queremos guardar las referencias en el archivo de guardado, esto se hace para que no se generen objetos duplicados al cargar los datos.
 			JsonFile.Default.Settings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
 
 			try
 			{
-				//intentamos caragr los datos guardados.
+				//intentamos cargar los datos guardados.
+				//aqui puede generarse un error porque el archivo no existe o porque los datos estan malos.
 				Files.Load<DomiciliosApp>(SavesPath, JsonFile.Default);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				Cons.Error = e.Message;
-				//si ocurre un error cargando los datos simplemento creamos unos datos nuevos, esto significa que toda la informacion esta perdida.
+				//valdiamos si el archivo esixte o no para saber cual fue el tipo de error.
+				if (File.Exists(SavesPath))
+					Cons.Error = "El archivo de guardado esta corrupto o no se puede leer.";
+				else
+					Cons.Error = "No se ha encontrado un archivo de guardado por lo que se creara uno.";
+
+				//esta linea es por prevencio de errores aunque podria ser quitada ?
+				DomiciliosApp.Instance = null;
+
+				//si ocurre un error cargando los datos simplemente creamos unos datos nuevos, esto significa que toda la informacion esta perdida.
 				new DomiciliosApp();
 			}
 		}
@@ -101,6 +128,7 @@ namespace DomicilioSharp
 		/// </summary>
 		public static void SavePreferences()
 		{
+			//guardamos los datos, aqui no es necesario crear la carpeta ya que ha sido creada al cargar los datos.
 			Files.Save(DomiciliosApp.Instance, SavesPath, JsonFile.Default);
 		}
 	}
