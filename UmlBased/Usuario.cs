@@ -29,7 +29,7 @@ namespace UmlBased
 		/// <summary>
 		/// Nomber que se le ha asignado a la cuenta.
 		/// </summary>
-		[DP("Nombre")] public string Name { get; protected set; }
+		[DP("Nombre")] public string Name { get; set; }
 
 		/// <summary>
 		/// Dirección del rpopietario de la cuenta.
@@ -39,7 +39,7 @@ namespace UmlBased
 		/// <summary>
 		/// Fecha en la que se creo esta cuenta.
 		/// </summary>
-		[DP] public string Creacion { get; private set; }
+		[DP] public DateTime Creacion { get; init; }
 
 		/// <summary>
 		/// Almacena la clave de este usuario.
@@ -50,12 +50,12 @@ namespace UmlBased
 		/// <summary>
 		/// Url a una foto para usar en la cuenta.
 		/// </summary>
-		[DP("FotoUrl")] public string Foto { get; protected set; }
+		[DP("FotoUrl")] public string Foto;
 
 		/// <summary>
 		/// Telefono del propietario de la cuenta.
 		/// </summary>
-		[DP] public string Telefono { get; protected set; }
+		[DP] public string Telefono;
 
 		/// <summary>
 		/// Correo unico registrado en la cuenta, este se usa para iniciar sesión

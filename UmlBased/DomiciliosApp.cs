@@ -32,7 +32,7 @@ namespace UmlBased
 		/// <summary>
 		/// Guarda la siguiente id que sera usada para crear un usuario.
 		/// </summary>
-		[DP] private Int NextUserId = 0;
+		[DP] public Int NextUserId = 0;
 
 		/// <summary>
 		/// Lista de Compradores que guarda a todos los usuarios de tipo comprador.

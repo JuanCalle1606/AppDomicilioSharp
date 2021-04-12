@@ -15,6 +15,8 @@ namespace DomicilioSharp
 {
 	class Program
 	{
+		public const string SavesPath = "saves.json";
+
 		public static List<string> ArgsList;
 
 		public static IApp App;
@@ -24,7 +26,6 @@ namespace DomicilioSharp
 		static int Main(string[] args)
 		{
 			ArgsList = new(args);
-			new DomiciliosApp();
 			return RunApp(true);
 		}
 
@@ -46,7 +47,9 @@ namespace DomicilioSharp
 
 			App.AddWindow(Factory.CreateLoginWindow(null));
 
-			return (App?.StartApp()).GetValueOrDefault(1);
+			var exitcode = (App?.StartApp()).GetValueOrDefault(1);
+			SavePreferences();
+			return exitcode;
 		}
 
 		private static Int CreateFactory()
@@ -79,7 +82,26 @@ namespace DomicilioSharp
 		private static void RestorePreferences()
 		{
 			JsonFile.Default.Settings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
-			Files.Save(DomiciliosApp.Instance, "saves.json", JsonFile.Default);
+
+			try
+			{
+				//intentamos caragr los datos guardados.
+				Files.Load<DomiciliosApp>(SavesPath, JsonFile.Default);
+			}
+			catch (Exception e)
+			{
+				Cons.Error = e.Message;
+				//si ocurre un error cargando los datos simplemento creamos unos datos nuevos, esto significa que toda la informacion esta perdida.
+				new DomiciliosApp();
+			}
+		}
+
+		/// <summary>
+		/// se llama a este metodo antes de cerrar el programa para guardar las preferencias.
+		/// </summary>
+		public static void SavePreferences()
+		{
+			Files.Save(DomiciliosApp.Instance, SavesPath, JsonFile.Default);
 		}
 	}
 }
