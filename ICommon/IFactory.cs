@@ -4,6 +4,9 @@ using UmlBased;
 
 namespace ICommon
 {
+	/// <summary>
+	/// Representa una instancia que se usa para crear aplicaciones y ventanas.
+	/// </summary>
 	public interface IFactory
 	{
 		/// <summary>

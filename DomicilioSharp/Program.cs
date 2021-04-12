@@ -24,18 +24,34 @@ namespace DomicilioSharp
 			"DomicilioShrap/saves.json"
 		);
 
+		/// <summary>
+		/// Lista de argumentos pasados por consola.
+		/// </summary>
 		public static List<string> ArgsList;
 
+		/// <summary>
+		/// Aplicación principal que esta corriendo.
+		/// </summary>
 		public static IApp App;
 
+		/// <summary>
+		/// Factory que se usa para obtener las ventanas y componentes de la aplicación.
+		/// </summary>
 		public static IFactory Factory;
 
+		/// <summary>
+		/// Punto de entrada de DomicilioSharp
+		/// </summary>
 		static int Main(string[] args)
 		{
 			ArgsList = new(args);
 			return RunApp(true);
 		}
 
+		/// <summary>
+		/// Metodo principal del programa, es el que ejecuta todo.
+		/// </summary>
+		/// <param name="create">Indica si se debe intancias el factory, se pasa false si ya hay uno definido.</param>
 		public static Int RunApp(bool create)
 		{
 			// cargamos los datos guardados antes de cualquier cosa
@@ -49,12 +65,15 @@ namespace DomicilioSharp
 				if (ec != 0)
 					return ec;
 			}
-
+			//creamos la aplicacion;
 			App = Factory.CreateApp();
 
+			//Agregamos la ventana/dialogo de inicio de sesion;
 			App.AddWindow(Factory.CreateLoginWindow(null));
 
+			//corremos la app
 			var exitcode = (App?.StartApp()).GetValueOrDefault(1);
+			//cuando todo termina guardamos los datos.
 			SavePreferences();
 			return exitcode;
 		}
