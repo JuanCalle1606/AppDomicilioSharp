@@ -78,7 +78,7 @@ namespace UmlBased
 		/// <summary>
 		/// Guarda el id del vendedor que tiene ofrece este producto.
 		/// </summary>
-		public Int OwnerId;
+		[DP] public Int OwnerId { get; init; }
 
 		/// <summary>
 		/// Devuelve el vendedor que esta vendiendo este producto.

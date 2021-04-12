@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using KYLib.MathFn;
 using DO = Newtonsoft.Json.JsonObjectAttribute;
@@ -31,7 +32,30 @@ namespace UmlBased
 		/// </summary>
 		public void PagoCuotas()
 		{
-			//Logica: Cada inicio de mes el programa principal llama a esta función en cada cliente para que itere su historial de pedidos y descuente una cuota de cada producto.
+			//fecha de hoy
+			var hoy = DateTime.Today;
+			//casos de retorno, dias en los que no se paga nada.
+			if (hoy.Day == 31 || (hoy.Day == 29 && hoy.Month == 2)) return;
+			//ultimo dia del mes, 28 solo si es frebrero
+			var lastday = hoy.Month == 2 ? 28 : 30;
+			//obtenemos solo los pedidos que se deben pagar hoy, por ejemplo si hoy es 5 entonces se obtienen solo los pedidos que se deben pagar los 5.
+			var deudas = PagosPendientes().FindAll
+			(P =>
+				 //el dia 28 de febrero se pagaran tambien los pedidos que se tengan que pagar los 29 y los 30
+				 P.Fecha.Day == hoy.Day || P.Fecha.Day >= lastday
+			);
+			foreach (var pedido in deudas)
+			{
+				//removemos el dinero de la cuenta del usuario.
+				Descontar(pedido.ValorCuota);
+				//le decimos al pago que se ha procesado una cuota
+				pedido.Pago.ProcesarCuota();
+				//actualziamos el estado del pedido, de ser necesarios.
+				if (pedido.Pago.Finalizado)
+					pedido.Estado = EstadoPedido.Finalizado;
+				//le damos el dinero al vendedor.
+				pedido.producto.ObtenerVendedor().SaldoDelta(pedido.ValorCuota);
+			}
 		}
 
 		/// <summary>
