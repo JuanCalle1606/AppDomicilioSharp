@@ -203,7 +203,6 @@ tiene</panel_attributes>
     <panel_attributes>Vendedor
 --
 - menu:List&lt;Producto&gt;
-- categorias: List&lt;Categoria&gt; REDUNDANTE
 - calificacion: List&lt;byte&gt;
 - atencion_al_cliente: List&lt;DateTime&gt;
 - pedidos: List&lt;Pedido&gt;
