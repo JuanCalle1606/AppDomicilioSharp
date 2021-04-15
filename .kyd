@@ -2,7 +2,7 @@
 	"Build": {
 		"Name": "DomicilioSharp",
 		"Configuration": "Debug",
-		"OutputDir": "{CurrentDir}/bin/{Configuration}",
+		"OutputDir": "{CurrentDir}/bin/{Configuration}/net5.0",
 		"Cmd": [
 			{
 				"Comment": "Build the source code into {OutputDir} using {Task}",
