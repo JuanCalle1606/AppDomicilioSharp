@@ -18,7 +18,8 @@ namespace ICommon
 		/// Crea la ventana en la que el usuario debe logearse.
 		/// </summary>
 		/// <param name="DefaultUser">Cuenta por defecto a utilizar o null si el usuario debe ingresar credenciales.</param>
-		ILoginWindow CreateLoginWindow(Usuario DefaultUser);
+		/// <param name="onUserLogin">Action que deberia ser ejecutada cuando se inicie sesión</param>
+		ILoginWindow CreateLoginWindow(Usuario DefaultUser, Action onUserLogin);
 
 
 	}

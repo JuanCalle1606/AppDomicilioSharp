@@ -1,3 +1,4 @@
+using System;
 using ICommon.Bases;
 
 namespace ICommon
@@ -16,5 +17,10 @@ namespace ICommon
 		/// Pagina para registrarse.
 		/// </summary>
 		IPage RegisterPage { get; }
+
+		/// <summary>
+		/// Accion que sera ejecutada luego de que se inicie sesión.
+		/// </summary>
+		Action OnLogin { get; set; }
 	}
 }

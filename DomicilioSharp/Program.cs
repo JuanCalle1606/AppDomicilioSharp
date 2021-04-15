@@ -70,7 +70,7 @@ namespace DomicilioSharp
 			App = Factory.CreateApp();
 
 			//creamos la ventana/dialogo de inicio de sesion;
-			var login = Factory.CreateLoginWindow(DomiciliosApp.ClienteActual);
+			var login = Factory.CreateLoginWindow(DomiciliosApp.ClienteActual, OnUserLogin);
 			App.AddWindow(login);
 			login.Show();
 
@@ -79,6 +79,15 @@ namespace DomicilioSharp
 			//cuando todo termina guardamos los datos.
 			SavePreferences();
 			return exitcode;
+		}
+
+		/// <summary>
+		/// Callback que debe ser ejecutado luego de que el usuario se loguee
+		/// </summary>
+		public static void OnUserLogin()
+		{
+			Cons.Line = "Usuario logeado!";
+			_ = Cons.Key;
 		}
 
 		private static Int CreateFactory()

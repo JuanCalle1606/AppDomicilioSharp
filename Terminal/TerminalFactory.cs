@@ -14,11 +14,12 @@ namespace Terminal
 
 		public IApp CreateApp() => new TerminalApp("Domicilios Sharp");
 
-		public ILoginWindow CreateLoginWindow(Usuario DefaultUser)
+		public ILoginWindow CreateLoginWindow(Usuario DefaultUser, Action onUserLogin)
 		{
 			if (DefaultUser == null)
 			{
 				var dev = new TerminalLoginWindow();
+				dev.OnLogin = onUserLogin;
 				return dev;
 			}
 			return null;

@@ -51,6 +51,8 @@ namespace Terminal
 				if (user.Clave == clave)
 				{
 					DomiciliosApp.ClienteActual = user;
+					//llamamos el callback, si existe
+					OnLogin?.Invoke();
 					// una vez logeados nos salimos del menos de logeo para ir a la app normal.
 					Stop();
 				}
@@ -67,6 +69,8 @@ namespace Terminal
 		public IPage RegisterPage { get; private set; }
 
 		public string Name => Title;
+
+		public Action OnLogin { get; set; }
 
 		public void Show() => Start();
 	}
