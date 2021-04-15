@@ -16,7 +16,11 @@ namespace Terminal
 
 		public ILoginWindow CreateLoginWindow(Usuario DefaultUser)
 		{
-			Console.WriteLine("Creada la ventana de logeo");
+			if (DefaultUser == null)
+			{
+				var dev = new TerminalLoginWindow();
+				return dev;
+			}
 			return null;
 		}
 	}

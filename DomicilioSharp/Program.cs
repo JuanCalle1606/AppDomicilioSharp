@@ -6,6 +6,7 @@ using KYLib.ConsoleUtils;
 using KYLib.Data;
 using KYLib.Data.DataFiles;
 using KYLib.Extensions;
+using KYLib.Helpers;
 using KYLib.MathFn;
 using KYLib.System;
 using Newtonsoft.Json;
@@ -68,8 +69,10 @@ namespace DomicilioSharp
 			//creamos la aplicacion;
 			App = Factory.CreateApp();
 
-			//Agregamos la ventana/dialogo de inicio de sesion;
-			App.AddWindow(Factory.CreateLoginWindow(null));
+			//creamos la ventana/dialogo de inicio de sesion;
+			var login = Factory.CreateLoginWindow(DomiciliosApp.ClienteActual);
+			App.AddWindow(login);
+			login.Show();
 
 			//corremos la app
 			var exitcode = (App?.StartApp()).GetValueOrDefault(1);
@@ -112,6 +115,8 @@ namespace DomicilioSharp
 		/// </summary>
 		private static void RestorePreferences()
 		{
+			//ignoramos los errores numericos que ocurran
+			ConvertHelper.IgnoreErrors = true;
 			//obtenemos informacion del directorio en el que se guardaran los datos.
 			var dir = new FileInfo(SavesPath).Directory;
 			//si el directorio no existe lo creamos, esto unicamente deberia de ocurrir la primera vez que se ejecute la app pero tambien es posible que ocurra si el usuario ha borrado el directorio de guardado.
