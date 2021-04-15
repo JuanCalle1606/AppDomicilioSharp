@@ -11,13 +11,11 @@
 			"preLaunchTask": "build",
 			// If you have changed target frameworks, make sure to update the program path.
 			"program": "${workspaceFolder}/bin/Debug/net5.0/DomicilioSharp.dll",
-			"args": [
-				"-c"
-			],
+			"args": [],
 			"cwd": "${workspaceFolder}",
 			// For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
 			"console": "internalConsole",
-			"stopAtEntry": true
+			"stopAtEntry": false
 		},
 		{
 			// Use IntelliSense to find out which attributes exist for C# debugging

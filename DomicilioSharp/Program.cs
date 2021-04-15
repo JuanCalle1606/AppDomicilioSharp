@@ -9,6 +9,7 @@ using KYLib.Extensions;
 using KYLib.Helpers;
 using KYLib.MathFn;
 using KYLib.System;
+using Linux;
 using Newtonsoft.Json;
 using Terminal;
 using UmlBased;
@@ -40,6 +41,7 @@ namespace DomicilioSharp
 		/// </summary>
 		public static IFactory Factory;
 
+		[STAThread]
 		/// <summary>
 		/// Punto de entrada de DomicilioSharp
 		/// </summary>
@@ -87,14 +89,10 @@ namespace DomicilioSharp
 		public static void OnUserLogin()
 		{
 			Cons.Line = "Usuario logeado!";
-			_ = Cons.Key;
 		}
 
 		private static Int CreateFactory()
 		{
-#if DEBUG
-			ArgsList.Add("-c");
-#endif
 			//lo primero que validamos es si sera una aplicación de consola.
 			if (ArgsList.Contains("-c"))
 			{
@@ -104,7 +102,7 @@ namespace DomicilioSharp
 			else if (Info.CurrentSystem.IsLinux() || ArgsList.Contains("--gtk"))
 			{
 				//creamos la aplicacion con Gtk;
-				Environment.Exit(0);
+				Factory = LinuxFactory.Default;
 				return 0;
 			}
 			//esto deberia entrar unicamente cuando se buildea en windows y el usuario abre la aplicación con DomicilioSharp.exe en lugar de con Windows.exe, esto es valido pero no recomendable ya que lo que haremos es invocar el proceso por consola lo que ocacionara que se consuma la memoria de 2 procesos.
