@@ -9,6 +9,9 @@ namespace ICommon.Bases
 	/// </summary>
 	public interface IWindow : INameable
 	{
-
+		/// <summary>
+		/// Muestra la ventana.
+		/// </summary>
+		void Show();
 	}
 }
