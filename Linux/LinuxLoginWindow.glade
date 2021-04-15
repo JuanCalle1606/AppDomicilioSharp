@@ -2,12 +2,13 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
+  <!-- interface-local-resource-path ../Recursos -->
   <object class="GtkDialog" id="LinuxLoginWindow">
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Registrarse / Iniciar Sesión</property>
     <property name="resizable">False</property>
-    <property name="default-width">320</property>
-    <property name="default-height">260</property>
+    <property name="default-width">500</property>
+    <property name="default-height">275</property>
     <property name="type-hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox">
@@ -61,10 +62,91 @@
                 <property name="can-focus">False</property>
                 <property name="transition-type">slide-down</property>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Iniciar sesion</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-start">11</property>
+                        <property name="label" translatable="yes">Correo:</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="LoginCorreo">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="margin-start">11</property>
+                        <property name="margin-end">11</property>
+                        <property name="max-length">50</property>
+                        <property name="caps-lock-warning">False</property>
+                        <property name="primary-icon-pixbuf">user-logo.svg</property>
+                        <property name="placeholder-text" translatable="yes">pepito@example.com</property>
+                        <property name="input-purpose">email</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-start">11</property>
+                        <property name="label" translatable="yes">Contraseña:</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="LoginClave">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="margin-start">11</property>
+                        <property name="margin-end">11</property>
+                        <property name="max-length">32</property>
+                        <property name="visibility">False</property>
+                        <property name="invisible-char">*</property>
+                        <property name="primary-icon-stock">gtk-dialog-authentication</property>
+                        <property name="placeholder-text" translatable="yes">Ingresa tu clave</property>
+                        <property name="input-purpose">password</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="LoginBtn">
+                        <property name="label" translatable="yes">Ingresar</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="margin-start">11</property>
+                        <property name="margin-end">11</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="pack-type">end</property>
+                        <property name="position">4</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
                     <property name="name">Signin</property>

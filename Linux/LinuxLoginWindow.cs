@@ -17,11 +17,8 @@ namespace Linux
 			builder.Autoconnect(this);
 			DeleteEvent += Window_DeleteEvent;
 			DefaultResponse = ResponseType.Close;
-			Response += Dialog_Response;
+			Response += Window_DeleteEvent;
 		}
-
-		private void Dialog_Response(object o, SignalArgs args) =>
-			Window_DeleteEvent(o, args);
 
 		private void Window_DeleteEvent(object o, SignalArgs args) =>
 			Gtk.Application.Quit();
