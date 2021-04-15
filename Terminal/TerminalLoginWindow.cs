@@ -16,7 +16,7 @@ namespace Terminal
 			loginpage.Task = onlogin;
 			registerpage.Task = onregister;
 
-			AddItem("Cancelar y salir", () => Environment.Exit(0));
+			AddItem("Cancelar y salir", Stop, true);
 			AddItem(loginpage);
 			AddItem(registerpage);
 
