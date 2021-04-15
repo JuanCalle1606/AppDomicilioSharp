@@ -19,4 +19,10 @@
     <ProjectReference Include="..\ICommon\ICommon.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Recursos\user-logo.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DomicilioSharp": {
+      "commandName": "Project",
+      "commandLineArgs": "--gtk"
+    }
+  }
+}
