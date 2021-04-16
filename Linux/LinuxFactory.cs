@@ -3,6 +3,7 @@ using Gdk;
 using Gtk;
 using ICommon;
 using KYLib.System;
+using KYLib.Utils;
 using UmlBased;
 
 namespace Linux
@@ -23,13 +24,14 @@ namespace Linux
 
 		private static void LoadTheme()
 		{
+			Assets.UpdateRelPath("Recursos");
 			var prov = new CssProvider();
-			prov.LoadFromPath(Info.InstallDir + "/Recursos/wind.css");
+			prov.LoadFromPath(Assets.GetPath("wind.css"));
 			var screen = Gdk.Display.Default.DefaultScreen;
 
 			StyleContext.AddProviderForScreen(screen, prov, StyleProviderPriority.Application);
 
-			IconTheme.AddBuiltinIcon("logo", (int)IconSize.Menu, new Pixbuf(Info.InstallDir + "/Recursos/logo.svg"));
+			IconTheme.AddBuiltinIcon("logo", (int)IconSize.Menu, new Pixbuf(Assets.GetPath("logo.svg")));
 
 		}
 
