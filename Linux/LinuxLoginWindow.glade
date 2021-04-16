@@ -2,6 +2,7 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
+  <!-- interface-css-provider-path Recursos/wind.css -->
   <object class="GtkDialog" id="LinuxLoginWindow">
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Registrarse / Iniciar Sesión</property>
@@ -72,14 +73,27 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Ingresa con tu cuenta existente:</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
                         <property name="margin-start">11</property>
+                        <property name="margin-bottom">2</property>
                         <property name="label" translatable="yes">Correo:</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">0</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -90,7 +104,7 @@
                         <property name="margin-end">11</property>
                         <property name="max-length">50</property>
                         <property name="caps-lock-warning">False</property>
-                        <property name="primary-icon-name">user-info</property>
+                        <property name="primary-icon-name">emblem-mail</property>
                         <property name="placeholder-text" translatable="yes">pepito@example.com</property>
                         <property name="input-purpose">email</property>
                         <signal name="changed" handler="on_Login_changed" swapped="no"/>
@@ -98,7 +112,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                     <child>
@@ -109,6 +123,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="margin-top">3</property>
                             <property name="label" translatable="yes">No se encuentra un usuario con este correo</property>
                           </object>
                         </child>
@@ -116,7 +131,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">2</property>
+                        <property name="position">3</property>
                       </packing>
                     </child>
                     <child>
@@ -129,7 +144,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">3</property>
+                        <property name="position">4</property>
                       </packing>
                     </child>
                     <child>
@@ -137,13 +152,14 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="margin-start">11</property>
+                        <property name="margin-bottom">2</property>
                         <property name="label" translatable="yes">Contraseña:</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">4</property>
+                        <property name="position">5</property>
                       </packing>
                     </child>
                     <child>
@@ -154,7 +170,7 @@
                         <property name="margin-end">11</property>
                         <property name="max-length">32</property>
                         <property name="visibility">False</property>
-                        <property name="invisible-char">*</property>
+                        <property name="invisible-char">●</property>
                         <property name="primary-icon-stock">gtk-dialog-authentication</property>
                         <property name="placeholder-text" translatable="yes">Ingresa tu clave</property>
                         <property name="input-purpose">password</property>
@@ -163,7 +179,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">5</property>
+                        <property name="position">6</property>
                       </packing>
                     </child>
                     <child>
@@ -174,6 +190,7 @@
                           <object class="GtkLabel">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <property name="margin-top">3</property>
                             <property name="label" translatable="yes">La contraseña no es correcta</property>
                           </object>
                         </child>
@@ -181,7 +198,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">6</property>
+                        <property name="position">7</property>
                       </packing>
                     </child>
                     <child>
@@ -198,7 +215,7 @@
                         <property name="expand">False</property>
                         <property name="fill">True</property>
                         <property name="pack-type">end</property>
-                        <property name="position">7</property>
+                        <property name="position">8</property>
                       </packing>
                     </child>
                   </object>
@@ -208,13 +225,296 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Registrarse</property>
+                    <property name="margin-top">5</property>
+                    <property name="margin-bottom">5</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">Crear una nueva cuenta:</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-start">11</property>
+                        <property name="label" translatable="yes">Nombre:</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="RegNombre">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="margin-start">11</property>
+                        <property name="margin-end">11</property>
+                        <property name="max-length">35</property>
+                        <property name="primary-icon-name">user-info</property>
+                        <property name="placeholder-text" translatable="yes">Ingrese su nombre</property>
+                        <property name="input-purpose">name</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-start">11</property>
+                        <property name="label" translatable="yes">Correo:</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="RegCorreo">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="margin-start">11</property>
+                        <property name="margin-end">11</property>
+                        <property name="max-length">50</property>
+                        <property name="primary-icon-name">emblem-mail</property>
+                        <property name="placeholder-text" translatable="yes">Correo electronico</property>
+                        <property name="input-purpose">email</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-start">11</property>
+                        <property name="label" translatable="yes">Contraseña:</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">5</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="RegCLave">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="margin-start">11</property>
+                        <property name="margin-end">11</property>
+                        <property name="max-length">32</property>
+                        <property name="visibility">False</property>
+                        <property name="invisible-char">●</property>
+                        <property name="primary-icon-stock">gtk-dialog-authentication</property>
+                        <property name="placeholder-text" translatable="yes">Contraseña de seguridad</property>
+                        <property name="input-purpose">password</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">6</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-start">11</property>
+                        <property name="label" translatable="yes">Confimar contraseña:</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">7</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="margin-start">11</property>
+                        <property name="margin-end">11</property>
+                        <property name="max-length">32</property>
+                        <property name="visibility">False</property>
+                        <property name="invisible-char">●</property>
+                        <property name="primary-icon-stock">gtk-dialog-authentication</property>
+                        <property name="placeholder-text" translatable="yes">Repetir contraseña de seguridad</property>
+                        <property name="input-purpose">password</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">8</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-start">11</property>
+                        <property name="label" translatable="yes">Dirección:</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">9</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="Reg Dir">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="margin-start">11</property>
+                        <property name="margin-end">11</property>
+                        <property name="primary-icon-stock">gtk-home</property>
+                        <property name="placeholder-text" translatable="yes">Ciudad y dirección</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">10</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-start">11</property>
+                        <property name="label" translatable="yes">Telefono:</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">11</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkEntry" id="RegTel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="margin-start">11</property>
+                        <property name="margin-end">11</property>
+                        <property name="margin-bottom">5</property>
+                        <property name="max-length">10</property>
+                        <property name="primary-icon-name">phone</property>
+                        <property name="placeholder-text" translatable="yes">Número telefonico</property>
+                        <property name="input-purpose">phone</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">12</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButtonBox">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="margin-start">11</property>
+                        <property name="margin-end">11</property>
+                        <property name="layout-style">start</property>
+                        <child>
+                          <object class="GtkRadioButton" id="RegComp">
+                            <property name="label" translatable="yes">Comprador</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="active">True</property>
+                            <property name="draw-indicator">True</property>
+                            <property name="group">RegVend</property>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkRadioButton" id="RegVend">
+                            <property name="label" translatable="yes">Vendedor</property>
+                            <property name="visible">True</property>
+                            <property name="can-focus">True</property>
+                            <property name="receives-default">False</property>
+                            <property name="active">True</property>
+                            <property name="draw-indicator">True</property>
+                            <property name="group">RegComp</property>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">13</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkRevealer" id="RegRevel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="transition-type">slide-up</property>
+                        <child>
+                          <object class="GtkLabel" id="RegError">
+                            <property name="visible">True</property>
+                            <property name="can-focus">False</property>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">14</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes">Registrar</property>
+                        <property name="visible">True</property>
+                        <property name="can-focus">True</property>
+                        <property name="receives-default">True</property>
+                        <property name="margin-start">11</property>
+                        <property name="margin-end">11</property>
+                        <property name="margin-top">5</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">15</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
-                    <property name="name">Signup</property>
+                    <property name="name">Registrarse</property>
                     <property name="title" translatable="yes">Registrarse</property>
                     <property name="position">1</property>
                   </packing>
