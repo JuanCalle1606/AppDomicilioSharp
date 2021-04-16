@@ -15,7 +15,7 @@
 				"Comment": "Run the program",
 				"RunIn": "{OutputDir}",
 				"Task": "dotnet",
-				"Args": "{Name}.dll"
+				"Args": "{Name}.dll --gtk"
 			}
 		]
 	}
