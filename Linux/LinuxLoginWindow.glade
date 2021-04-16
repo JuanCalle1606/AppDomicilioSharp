@@ -62,8 +62,10 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="transition-type">slide-down</property>
+                <property name="interpolate-size">True</property>
                 <child>
-                  <object class="GtkBox">
+                  <object class="GtkBox" id="LogPage">
+                    <property name="name">LogPage</property>
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="margin-top">5</property>
@@ -125,6 +127,9 @@
                             <property name="can-focus">False</property>
                             <property name="margin-top">3</property>
                             <property name="label" translatable="yes">No se encuentra un usuario con este correo</property>
+                            <attributes>
+                              <attribute name="foreground" value="#f6f661615151"/>
+                            </attributes>
                           </object>
                         </child>
                       </object>
@@ -192,6 +197,9 @@
                             <property name="can-focus">False</property>
                             <property name="margin-top">3</property>
                             <property name="label" translatable="yes">La contraseña no es correcta</property>
+                            <attributes>
+                              <attribute name="foreground" value="#f6f661615151"/>
+                            </attributes>
                           </object>
                         </child>
                       </object>
@@ -267,6 +275,7 @@
                         <property name="primary-icon-name">user-info</property>
                         <property name="placeholder-text" translatable="yes">Ingrese su nombre</property>
                         <property name="input-purpose">name</property>
+                        <signal name="changed" handler="on_Login_changed" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -298,6 +307,7 @@
                         <property name="primary-icon-name">emblem-mail</property>
                         <property name="placeholder-text" translatable="yes">Correo electronico</property>
                         <property name="input-purpose">email</property>
+                        <signal name="changed" handler="on_Login_changed" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -331,6 +341,7 @@
                         <property name="primary-icon-stock">gtk-dialog-authentication</property>
                         <property name="placeholder-text" translatable="yes">Contraseña de seguridad</property>
                         <property name="input-purpose">password</property>
+                        <signal name="changed" handler="on_Login_changed" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -353,7 +364,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry">
+                      <object class="GtkEntry" id="RegClaveRep">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="margin-start">11</property>
@@ -364,6 +375,7 @@
                         <property name="primary-icon-stock">gtk-dialog-authentication</property>
                         <property name="placeholder-text" translatable="yes">Repetir contraseña de seguridad</property>
                         <property name="input-purpose">password</property>
+                        <signal name="changed" handler="on_Login_changed" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -386,13 +398,14 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry" id="Reg Dir">
+                      <object class="GtkEntry" id="RegDir">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="margin-start">11</property>
                         <property name="margin-end">11</property>
                         <property name="primary-icon-stock">gtk-home</property>
                         <property name="placeholder-text" translatable="yes">Ciudad y dirección</property>
+                        <signal name="changed" handler="on_Login_changed" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -425,6 +438,7 @@
                         <property name="primary-icon-name">phone</property>
                         <property name="placeholder-text" translatable="yes">Número telefonico</property>
                         <property name="input-purpose">phone</property>
+                        <signal name="changed" handler="on_Login_changed" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -487,6 +501,9 @@
                           <object class="GtkLabel" id="RegError">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <attributes>
+                              <attribute name="foreground" value="#f6f661615151"/>
+                            </attributes>
                           </object>
                         </child>
                       </object>
@@ -497,7 +514,7 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton">
+                      <object class="GtkButton" id="RegBtn">
                         <property name="label" translatable="yes">Registrar</property>
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
@@ -505,6 +522,7 @@
                         <property name="margin-start">11</property>
                         <property name="margin-end">11</property>
                         <property name="margin-top">5</property>
+                        <signal name="clicked" handler="on_RegBtn_clicked" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -538,5 +556,39 @@
     <action-widgets>
       <action-widget response="-7">CancelBtn</action-widget>
     </action-widgets>
+  </object>
+  <object class="GtkMessageDialog" id="RegMsg">
+    <property name="can-focus">False</property>
+    <property name="title" translatable="yes">Cuenta creada</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <property name="destroy-with-parent">True</property>
+    <property name="icon-name">logo</property>
+    <property name="type-hint">dialog</property>
+    <property name="urgency-hint">True</property>
+    <property name="transient-for">LinuxLoginWindow</property>
+    <property name="attached-to">LinuxLoginWindow</property>
+    <property name="buttons">ok</property>
+    <property name="text" translatable="yes">La cuenta ha sido creada con exito</property>
+    <property name="secondary-text" translatable="yes">Ya puedes iniciar sesión</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can-focus">False</property>
+            <property name="homogeneous">True</property>
+            <property name="layout-style">end</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
   </object>
 </interface>
