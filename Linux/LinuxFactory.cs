@@ -44,6 +44,7 @@ namespace Linux
 				{
 					dev.Dispose();
 					onUserLogin?.Invoke();
+					Application.Quit();
 				};
 				return dev;
 			}

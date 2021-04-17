@@ -70,6 +70,17 @@ namespace Linux
 				RegRevel.RevealChild = true;
 				return;
 			}
+			else
+			{
+				Usuario user = DomiciliosApp.Instance.Compradores.Find(C => C.Correo == correo);
+				user ??= DomiciliosApp.Instance.Vendedores.Find(V => V.Correo == correo);
+				if (user != null)
+				{
+					RegError.Text = "El correo ingresado ya esta registrado.";
+					RegRevel.RevealChild = true;
+					return;
+				}
+			}
 			#endregion
 
 			#region Clave
@@ -120,11 +131,43 @@ namespace Linux
 			}
 			#endregion
 
-			//aqui se debe crear el usuario
-			var iscomp = RegComp.Active;
+			CreateUser(nombre, correo, clave, direccion, telefono, RegComp.Active);
 
 			RegMsg.Run();
 			RegMsg.Visible = false;
+		}
+
+		private static void CreateUser(string nombre, string correo, string clave, string direccion, string telefono, bool iscomp)
+		{
+			if (iscomp)
+			{
+				Comprador user = new Comprador
+				{
+					Id = DomiciliosApp.Instance.NextUserId++,
+					Name = nombre,
+					Correo = correo,
+					Clave = clave,
+					Direccion = direccion,
+					Telefono = telefono,
+					Creacion = DateTime.Now
+				};
+				DomiciliosApp.Instance.Compradores.Add(user);
+			}
+			else
+			{
+				Vendedor user = new Vendedor
+				{
+					Id = DomiciliosApp.Instance.NextUserId++,
+					Name = nombre,
+					Correo = correo,
+					Clave = clave,
+					Direccion = direccion,
+					Telefono = telefono,
+					Creacion = DateTime.Now
+				};
+				DomiciliosApp.Instance.Vendedores.Add(user);
+			}
+
 		}
 	}
 }
