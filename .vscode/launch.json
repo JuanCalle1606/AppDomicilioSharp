@@ -27,7 +27,7 @@
 			"type": "coreclr",
 			"request": "launch",
 			// If you have changed target frameworks, make sure to update the program path.
-			"program": "${workspaceFolder}/bin/Debug/net5.0/AppDomicilioSharp.dll",
+			"program": "${workspaceFolder}/bin/Debug/net5.0/DomicilioSharp.dll",
 			"args": [
 				"--gtk"
 			],

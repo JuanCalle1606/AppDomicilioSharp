@@ -2,11 +2,21 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkImage" id="UserMenuAppIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">logo</property>
+  </object>
   <object class="GtkImage" id="UserMenuCloseIcon">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="stock">gtk-home</property>
+    <property name="icon-name">go-home</property>
     <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="UserMenuUserIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">user-info</property>
   </object>
   <object class="GtkMenu" id="UserMenu">
     <property name="visible">True</property>
@@ -18,6 +28,30 @@
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
         <property name="use-stock">True</property>
+        <child type="submenu">
+          <object class="GtkMenu">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkImageMenuItem" id="UserMenuUser">
+                <property name="label" translatable="yes">Usuario</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="image">UserMenuUserIcon</property>
+                <property name="use-stock">False</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="UserMenuApp">
+                <property name="label" translatable="yes">Aplicación</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="image">UserMenuAppIcon</property>
+                <property name="use-stock">False</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
     <child>
@@ -49,14 +83,9 @@
         <property name="label">gtk-quit</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
+        <property name="use-underline">True</property>
         <property name="use-stock">True</property>
         <signal name="activate" handler="Window_DeleteEvent" swapped="no"/>
-      </object>
-    </child>
-    <child>
-      <object class="GtkSeparatorMenuItem" id="UserMenuSalirBtn">
-        <property name="visible">True</property>
-        <property name="can-focus">False</property>
       </object>
     </child>
   </object>
@@ -72,8 +101,9 @@
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="title" translatable="yes">Domicilios Sharp</property>
+        <property name="spacing">0</property>
         <child>
-          <object class="GtkImage">
+          <object class="GtkImage" id="AppIcon">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="pixel-size">25</property>
@@ -89,7 +119,7 @@
             <property name="receives-default">True</property>
             <property name="popup">UserMenu</property>
             <child>
-              <object class="GtkImage">
+              <object class="GtkImage" id="UserAvatar">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="pixel-size">20</property>
