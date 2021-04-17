@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using ICommon;
+using ICommon.Bases;
 using KYLib.ConsoleUtils;
 using KYLib.Data;
 using KYLib.Data.DataFiles;
@@ -89,6 +90,22 @@ namespace DomicilioSharp
 		public static void OnUserLogin()
 		{
 			Cons.Line = "Usuario logeado!";
+			IWindow win = null;
+			if (DomiciliosApp.ClienteActual is Comprador)
+			{
+				win = Factory.CreateCompWindow();
+			}
+			else if (DomiciliosApp.ClienteActual is Vendedor)
+			{
+				win = Factory.CreateVendWindow();
+			}
+			else
+			{
+				// WTF?
+				Environment.Exit(1);
+			}
+			App.AddWindow(win);
+			win.Show();
 		}
 
 		private static Int CreateFactory()

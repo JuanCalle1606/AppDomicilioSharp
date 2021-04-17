@@ -1,4 +1,5 @@
 using System;
+using ICommon.Bases;
 using KYLib.MathFn;
 using UmlBased;
 
@@ -21,6 +22,14 @@ namespace ICommon
 		/// <param name="onUserLogin">Action que deberia ser ejecutada cuando se inicie sesión</param>
 		ILoginWindow CreateLoginWindow(Usuario DefaultUser, Action onUserLogin);
 
+		/// <summary>
+		/// Crea la ventana que generalmente usa el comprador.
+		/// </summary>
+		IWindow CreateCompWindow();
 
+		/// <summary>
+		/// Crea la ventana que generalmente usa el vendedor.
+		/// </summary>
+		IWindow CreateVendWindow();
 	}
 }

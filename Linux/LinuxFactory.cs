@@ -2,6 +2,7 @@
 using Gdk;
 using Gtk;
 using ICommon;
+using ICommon.Bases;
 using KYLib.System;
 using KYLib.Utils;
 using UmlBased;
@@ -59,6 +60,18 @@ namespace Linux
 				return dev;
 			}
 			return null;
+		}
+
+		/// <inheritdoc/>
+		public IWindow CreateCompWindow()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		/// <inheritdoc/>
+		public IWindow CreateVendWindow()
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }

@@ -3,7 +3,7 @@ using KYLib.ConsoleUtils;
 
 namespace Terminal
 {
-	public class TerminalPage : ConsoleItem, IPage
+	public class TerminalPage : ConsoleItem
 	{
 		public TerminalPage(string title)
 		{

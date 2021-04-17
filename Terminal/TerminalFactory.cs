@@ -1,6 +1,7 @@
 
 using System;
 using ICommon;
+using ICommon.Bases;
 using UmlBased;
 
 namespace Terminal
@@ -23,6 +24,18 @@ namespace Terminal
 				return dev;
 			}
 			return null;
+		}
+
+		/// <inheritdoc/>
+		public IWindow CreateCompWindow()
+		{
+			throw new System.NotImplementedException();
+		}
+
+		/// <inheritdoc/>
+		public IWindow CreateVendWindow()
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }

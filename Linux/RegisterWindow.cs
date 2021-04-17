@@ -79,9 +79,6 @@ namespace Linux
 		/// </summary>
 		Regex ValidTelefono = new Regex(@"^\d+$");
 
-		/// <inheritdoc/>
-		public IPage RegisterPage { get; set; }
-
 		/// <summary>
 		/// Se eejcuta cada que se le da click al boton de registrarse y hace todas las validaciones
 		/// </summary>

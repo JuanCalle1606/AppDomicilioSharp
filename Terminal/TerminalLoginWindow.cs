@@ -64,9 +64,9 @@ namespace Terminal
 			}
 		}
 
-		public IPage LoginPage { get; private set; }
+		public TerminalPage LoginPage { get; private set; }
 
-		public IPage RegisterPage { get; private set; }
+		public TerminalPage RegisterPage { get; private set; }
 
 		public string Name => Title;
 

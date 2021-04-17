@@ -60,8 +60,5 @@ namespace Linux
 				}
 			}
 		}
-
-		/// <inheritdoc/>
-		public IPage LoginPage { get; set; }
 	}
 }
