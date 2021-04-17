@@ -26,7 +26,70 @@ namespace Terminal
 
 		private void onregister()
 		{
-			throw new NotImplementedException();
+            int tipo_cuenta = 0;
+			Console.WriteLine("Por favor indica el tipo de cuenta que deseas crear");
+			Console.WriteLine("Ingresa '1' para crear una cuenta de tipo Comprador y '2' para crear una cuenta de tipo Vendedor");
+            
+			while( tipo_cuenta == 0)
+			{ 
+               try
+			   {
+                  tipo_cuenta = int.Parse(Console.ReadLine());
+			   }
+			   catch
+			   {
+				   tipo_cuenta = 0;
+				   Console.WriteLine("Recuerda que debes ingresar '1' para crear una cuenta de tipo Comprador y '2' para crear una cuenta de tipo Vendedor");
+			   }
+			}
+
+            bool cuenta_creada = false;
+
+			while(cuenta_creada == false)
+			{
+				string nombre = "vacio";
+				string direccion = "vacio";
+				string clave = "vacio";
+				string foto = "vacio";
+				string telefono = "vacio";
+				string correo = "vacio";
+
+				try
+				{
+					Console.WriteLine("Por favor ingresa un nombre para tu cuenta");
+					nombre = Console.ReadLine();
+					Console.WriteLine("Por favor ingresa tu direccion de residencia o puesto de venta");
+					direccion = Console.ReadLine();
+					Console.WriteLine("Por favor ingresa una clave para tu cuenta");
+					clave = Console.ReadLine();
+					Console.WriteLine("Por favor ingresa una URL que contenga tu foto de perfil");
+					foto = Console.ReadLine();
+					Console.WriteLine("Por favor ingresa tu numero celular");
+					telefono = Console.ReadLine();
+					Console.WriteLine("Por favor ingresa tu correo electronico");
+					correo = Console.ReadLine();
+				}catch
+				{
+					Console.WriteLine("Uno o mas datos se han ingresado de forma incorrecta, por favor intenta de nuevo");
+				}
+
+				if(tipo_cuenta == 1)
+				{
+					try
+					{
+						Random rnd = new Random();
+                        int id = rnd.Next(100000,999999);
+                        Usuario nueva_cuenta = new Comprador();
+						nueva_cuenta.Name = nombre;
+						// nueva_cuenta.Direccion = direccion;
+						
+					} catch
+					{
+						Console.WriteLine("Ha ocurrido un error inesperado, por favor revisa los datos ingresados");
+					}
+				}
+			}
+		
 		}
 
 		private void onlogin()
