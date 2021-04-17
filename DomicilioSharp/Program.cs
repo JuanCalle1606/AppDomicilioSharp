@@ -69,8 +69,21 @@ namespace DomicilioSharp
 				if (ec != 0)
 					return ec;
 			}
-			//creamos la aplicacion;
-			App = Factory.CreateApp();
+
+			try
+			{
+				//creamos la aplicacion;
+				App = Factory.CreateApp();
+			}
+			catch (Exception)
+			{
+				// En Gtk puede ocurrir un error si no se encuentra gtk+ instalado en el sistema en cuyo caso terminamos la ejecución del programa con codigo de error.
+				if (Factory is LinuxFactory)
+					Cons.Error = "No ha sido posible crear la aplicación debido a que GTK+ no se encuentra instalado en el sistema";
+				else// esto no deberia ocurrir jamas?
+					Cons.Error = "Ha ocurrido un error inesperado en la ejecución del programa";
+				return 0x1;
+			}
 
 			//creamos la ventana/dialogo de inicio de sesion;
 			var login = Factory.CreateLoginWindow(DomiciliosApp.ClienteActual, OnUserLogin);
@@ -89,7 +102,6 @@ namespace DomicilioSharp
 		/// </summary>
 		public static void OnUserLogin()
 		{
-			Cons.Line = "Usuario logeado!";
 			IWindow win = null;
 			if (DomiciliosApp.ClienteActual is Comprador)
 			{
