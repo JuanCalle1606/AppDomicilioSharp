@@ -55,18 +55,16 @@ namespace Linux
 				{
 					dev.Dispose();
 					onUserLogin?.Invoke();
-					Application.Quit();
 				};
 				return dev;
 			}
+			DomiciliosApp.ClienteActual = DefaultUser;
+			onUserLogin?.Invoke();
 			return null;
 		}
 
 		/// <inheritdoc/>
-		public IWindow CreateCompWindow()
-		{
-			throw new System.NotImplementedException();
-		}
+		public IWindow CreateCompWindow() => new LinuxCompWindow();
 
 		/// <inheritdoc/>
 		public IWindow CreateVendWindow()

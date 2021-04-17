@@ -86,9 +86,9 @@ namespace DomicilioSharp
 			}
 
 			//creamos la ventana/dialogo de inicio de sesion;
-			var login = Factory.CreateLoginWindow(DomiciliosApp.ClienteActual, OnUserLogin);
+			var login = Factory.CreateLoginWindow(DomiciliosApp.ObtenerComprador(0), OnUserLogin);
 			App.AddWindow(login);
-			login.Show();
+			login?.Show();
 
 			//corremos la app
 			var exitcode = (App?.StartApp()).GetValueOrDefault(1);
@@ -188,6 +188,7 @@ namespace DomicilioSharp
 		/// </summary>
 		public static void SavePreferences()
 		{
+			Cons.Trace("Guardando datos de usuario", ForegroundColor.Green);
 			//guardamos los datos, aqui no es necesario crear la carpeta ya que ha sido creada al cargar los datos.
 			Files.Save(DomiciliosApp.Instance, SavesPath, JsonFile.Default);
 		}
