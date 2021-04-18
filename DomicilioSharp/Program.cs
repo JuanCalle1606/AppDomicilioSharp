@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using ICommon;
 using ICommon.Bases;
 using KYLib.ConsoleUtils;
@@ -24,7 +26,7 @@ namespace DomicilioSharp
 		/// </summary>
 		public static readonly string SavesPath = Path.Combine(
 			Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-			"DomicilioShrap/saves.json"
+			"DomicilioSharp/saves.json"
 		);
 
 		/// <summary>
@@ -130,6 +132,15 @@ namespace DomicilioSharp
 			}
 			else if (Info.CurrentSystem.IsLinux() || ArgsList.Contains("--gtk"))
 			{
+				// solo windows
+				if (Info.CurrentSystem.IsWindows())
+				{
+					var GtkPath = Path.Combine(
+						Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+						@"Gtk\3.24.24-win\bin"
+					);
+					SetDllDirectory(GtkPath);
+				}
 				//creamos la aplicacion con Gtk;
 				Factory = LinuxFactory.Default;
 				return 0;
@@ -192,5 +203,8 @@ namespace DomicilioSharp
 			//guardamos los datos, aqui no es necesario crear la carpeta ya que ha sido creada al cargar los datos.
 			Files.Save(DomiciliosApp.Instance, SavesPath, JsonFile.Default);
 		}
+
+		[DllImport("kernel32.dll", SetLastError = true)]
+		private static extern bool SetDllDirectory(string lpPathName);
 	}
 }

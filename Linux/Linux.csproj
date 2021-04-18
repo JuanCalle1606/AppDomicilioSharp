@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+	<GtkUrl>https://github.com/JuanCalle1606/Dependencies/raw/main/gtk-3.24.24-win.zip</GtkUrl>
+    <GtkDir>$(LOCALAPPDATA)\Gtk\3.24.24-win</GtkDir>
   </PropertyGroup>
 
   <ItemGroup>
