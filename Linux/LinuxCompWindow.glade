@@ -8,6 +8,11 @@
     <property name="can-focus">False</property>
     <property name="icon-name">logo</property>
   </object>
+  <object class="GtkImage" id="UserMenuCarIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">user-trash</property>
+  </object>
   <object class="GtkImage" id="UserMenuCloseIcon">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -22,6 +27,21 @@
   <object class="GtkMenu" id="UserMenu">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
+    <child>
+      <object class="GtkImageMenuItem">
+        <property name="label" translatable="yes">Carrito</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="image">UserMenuCarIcon</property>
+        <property name="use-stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+      </object>
+    </child>
     <child>
       <object class="GtkImageMenuItem" id="UserMenuPrefs">
         <property name="label">gtk-preferences</property>
@@ -227,10 +247,49 @@
           </packing>
         </child>
         <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkRevealer">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="transition-type">none</property>
+                <property name="reveal-child">True</property>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="label" translatable="yes">aqui se mostraran
+opciones de buscar
+avanzadas</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="label" translatable="yes">Aqui se listaran los productos a vender</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
         </child>
       </object>
     </child>
