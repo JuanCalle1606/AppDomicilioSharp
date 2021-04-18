@@ -3,6 +3,7 @@ using System.IO;
 using GLib;
 using Gtk;
 using ICommon.Bases;
+using Linux.Widgets;
 using UmlBased;
 using Pix = Gdk.Pixbuf;
 using UI = Gtk.Builder.ObjectAttribute;
@@ -12,6 +13,8 @@ namespace Linux
 	partial class LinuxCompWindow : Window, IWindow
 	{
 		[UI] Image UserAvatar = null;
+
+		[UI] ListBox ListaProductos = null;
 
 		public LinuxCompWindow() : this(new Builder("LinuxCompWindow.glade")) { }
 
@@ -30,6 +33,10 @@ namespace Linux
 						UserAvatar.Pixbuf = temp.ScaleSimple(20, 20, Gdk.InterpType.Tiles);
 					}
 				}
+			}
+			for (int i = 0; i < 10; i++)
+			{
+				ListaProductos.Add(new ProductoWidget());
 			}
 		}
 
