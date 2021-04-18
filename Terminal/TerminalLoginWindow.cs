@@ -77,11 +77,39 @@ namespace Terminal
 				{
 					try
 					{
-						Random rnd = new Random();
-                        int id = rnd.Next(100000,999999);
-                        Usuario nueva_cuenta = new Comprador();
-						nueva_cuenta.Name = nombre;
-						// nueva_cuenta.Direccion = direccion;
+                        Usuario nueva_cuenta = new Comprador()
+						{
+							Id = DomiciliosApp.Instance.NextUserId++,
+							Name = nombre,
+				            Correo = correo,
+							Direccion = direccion,
+							Telefono = telefono,
+							Creacion = DateTime.Now,
+						};
+
+						cuenta_creada = true;	
+						
+					} catch
+					{
+						Console.WriteLine("Ha ocurrido un error inesperado, por favor revisa los datos ingresados");
+					}
+				}
+
+				else if (tipo_cuenta == 2)
+				{
+					try
+					{
+                        Usuario nueva_cuenta = new Vendedor()
+						{
+							Id = DomiciliosApp.Instance.NextUserId++,
+							Name = nombre,
+				            Correo = correo,
+							Direccion = direccion,
+							Telefono = telefono,
+							Creacion = DateTime.Now,
+						};
+
+						cuenta_creada = true;	
 						
 					} catch
 					{
