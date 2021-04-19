@@ -50,7 +50,7 @@ namespace Linux.Widgets
 		/// <param name="producto">Producto a mostrar.</param>
 		public ProductoWidget(Producto producto) : this(new Builder("ProductoWidget.glade"), producto) { }
 
-		private ProductoWidget(Builder builder, Producto producto) : base(builder.GetObject("ProductoWidget").Handle)
+		private ProductoWidget(Builder builder, Producto producto) : base(builder.GetRawOwnedObject("ProductoWidget"))
 		{
 			builder.Autoconnect(this);
 			Producto = producto;
