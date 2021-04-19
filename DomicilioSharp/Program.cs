@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -81,7 +80,7 @@ namespace DomicilioSharp
 			{
 				// En Gtk puede ocurrir un error si no se encuentra gtk+ instalado en el sistema en cuyo caso terminamos la ejecución del programa con codigo de error.
 				if (Factory is LinuxFactory)
-					Cons.Error = "No ha sido posible crear la aplicación debido a que GTK+ no se encuentra instalado en el sistema";
+					Cons.Error = "No ha sido posible crear la aplicación debido a que GTK+ no se encuentra instalado en el sistema. Use -c para usar la app en modo consola.";
 				else// esto no deberia ocurrir jamas?
 					Cons.Error = "Ha ocurrido un error inesperado en la ejecución del programa";
 				return 0x1;
@@ -130,11 +129,14 @@ namespace DomicilioSharp
 				Factory = TerminalFactory.Default;
 				return 0;
 			}
-			else if (Info.CurrentSystem.IsLinux() || ArgsList.Contains("--gtk"))
+			else if (Info.CurrentSystem.IsLinux() ||
+					ArgsList.Contains("--gtk") ||
+					Info.CurrentSystem.IsWindows())
 			{
-				// solo windows
+				// solo window: cargamos las dll de la carpeta de auto instalación
 				if (Info.CurrentSystem.IsWindows())
 				{
+					//3.24.24-win es un bundle personalizado que cree combiando dlls de msys2 y gtk3 runtime para permitir el uso correcto de temas y que por defecto tiene el tema window-10 de iconos en lugar de adwaita.
 					var GtkPath = Path.Combine(
 						Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
 						@"Gtk\3.24.24-win\bin"
@@ -143,13 +145,6 @@ namespace DomicilioSharp
 				}
 				//creamos la aplicacion con Gtk;
 				Factory = LinuxFactory.Default;
-				return 0;
-			}
-			//esto deberia entrar unicamente cuando se buildea en windows y el usuario abre la aplicación con DomicilioSharp.exe en lugar de con Windows.exe, esto es valido pero no recomendable ya que lo que haremos es invocar el proceso por consola lo que ocacionara que se consuma la memoria de 2 procesos.
-			else if (Info.CurrentSystem.IsWindows())
-			{
-				//invocar Windows.exe
-				Environment.Exit(0);
 				return 0;
 			}
 
