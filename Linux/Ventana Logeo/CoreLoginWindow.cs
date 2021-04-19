@@ -30,6 +30,7 @@ namespace Linux
 			//decimos las respuestas por defecto de los dialogos.
 			DefaultResponse = ResponseType.Close;
 			RegMsg.DefaultResponse = ResponseType.Accept;
+			builder.Dispose();
 		}
 
 		/// <summary>

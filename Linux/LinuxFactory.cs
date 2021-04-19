@@ -43,6 +43,8 @@ namespace Linux
 			StyleContext.AddProviderForScreen(screen, prov, StyleProviderPriority.Application);
 			//anexamos al tema de iconos actual el icono de nuestra app.
 			IconTheme.AddBuiltinIcon("logo", (int)IconSize.Menu, new Pixbuf(Assets.GetPath("logo.svg")));
+			//advertimos al finarlizar objetos
+			GLib.Object.WarnOnFinalize = true;
 		}
 
 		/// <inheritdoc/>

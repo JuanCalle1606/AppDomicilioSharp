@@ -37,9 +37,9 @@
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="label" translatable="yes">Precio:
-{0}
+${0}
 Domicilio:
-{1}</property>
+${1}</property>
           </object>
           <packing>
             <property name="expand">False</property>
