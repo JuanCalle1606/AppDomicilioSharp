@@ -47,7 +47,7 @@ namespace UmlBased
 		/// Promedio de las calificaciones.
 		/// </summary>
 		/*TODO: Cambiar el tipo de Real a Float*/
-		public Real Calificacion => Mathf.MeanOf<Small, Real>(calificacion);
+		public Real Calificacion => Math.Round(Mathf.MeanOf<Small, Real>(calificacion), 1);
 
 		/// <summary>
 		/// URL a una foto de internet que se usa como imagen del producto.
