@@ -39,7 +39,7 @@ namespace UmlBased
 		public bool Agregar(Pedido pedido)
 		{
 			//vemos si ya existe un pedido cone se producto
-			var ped = Pedidos.Find(P => P.producto.Equals(pedido.producto));
+			var ped = Pedidos.Find(P => P.Producto.Equals(pedido.Producto));
 			//si no existe entonces se agrega.
 			if (ped != null)
 				Pedidos.Add(pedido);
@@ -60,7 +60,7 @@ namespace UmlBased
 			if (DomiciliosApp.ClienteActual.SaldoDelta(-CostoCuota))
 			{
 				//agrupamos los pedidos por vendedores.
-				var groups = Pedidos.GroupBy(P => P.producto.ObtenerVendedor());
+				var groups = Pedidos.GroupBy(P => P.Producto.ObtenerVendedor());
 
 				foreach (var P in Pedidos)
 				{
@@ -112,10 +112,10 @@ namespace UmlBased
 				//se actualizan todos por defecto como si contoran su domicilio.
 				P.Actualizar(false);
 				//se valida si su domicilio es mayor.
-				if (P.producto.ValorDomicilio > maxdomicilio)
+				if (P.Producto.ValorDomicilio > maxdomicilio)
 				{
 					domicilio = P;
-					maxdomicilio = P.producto.ValorDomicilio;
+					maxdomicilio = P.Producto.ValorDomicilio;
 				}
 			});
 

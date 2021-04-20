@@ -22,7 +22,7 @@ namespace UmlBased
 		[DP] public Small Cuotas { get; private set; } = 1;
 
 		/// <summary>
-		/// Cantidad de <see cref="producto"/> que contiene este pedido.
+		/// Cantidad de <see cref="Producto"/> que contiene este pedido.
 		/// </summary>
 		[DP] public Small Cantidad = 1;
 
@@ -34,7 +34,7 @@ namespace UmlBased
 		/// <summary>
 		/// Producto que esta en este pedido.
 		/// </summary>
-		[DP] public Producto producto { get; init; }
+		[DP] public Producto Producto { get; init; }
 
 		/// <summary>
 		/// Guarda el precio base del producto el dia que se compro.
@@ -44,7 +44,7 @@ namespace UmlBased
 		/// <summary>
 		/// Guarda el descuento que se hizo al momento de comprar el producto.
 		/// </summary>
-		[DP] public Real ValorDescuento { get; init; }
+		[DP] public Real PorcentajeDescuento { get; init; }
 
 		/// <summary>
 		/// Guarda cuanto se pago de domicilio por este producto.
@@ -91,7 +91,7 @@ namespace UmlBased
 			if (Estado == EstadoPedido.Pagado)
 			{
 				//removemos el pedido de la lista del vendedor
-				var rev = producto.ObtenerVendedor().Pedidos.Remove(this);
+				var rev = Producto.ObtenerVendedor().Pedidos.Remove(this);
 				//si no se puedo remover retornamos.
 				if (!rev) return false;
 				//actualizamos el estado del pedido.
@@ -107,7 +107,18 @@ namespace UmlBased
 		/// </summary>
 		private void CalcularTotal()
 		{
+			var total = ValorBase * Cantidad;
 
+			//Calculamos todo
+			ValorAditivo = total * (Cuotas - 1) * 0.01;
+			total *= PorcentajeDescuento;
+			total += ValorDomicilio;
+			total += ValorAditivo;
+			total *= PorcentajeIVA;
+			//
+
+			ValorTotal = total;
+			ValorCuota = ValorTotal / Cuotas;
 		}
 
 		/// <summary>
@@ -117,7 +128,9 @@ namespace UmlBased
 		/// <param name="cuotas">Nueva cantidad de cuotas.</param>
 		public void Actualizar(Small cantidad, Small cuotas)
 		{
-
+			Cantidad = cantidad;
+			Cuotas = cuotas;
+			CalcularTotal();
 		}
 
 		/// <summary>
@@ -126,7 +139,11 @@ namespace UmlBased
 		/// <param name="domicilio">Indica si el producto de este pedido es el que tiene domicilio mas caro.</param>
 		public void Actualizar(bool domicilio)
 		{
-
+			if (domicilio || Cuotas > 1)
+				ValorDomicilio = Producto.ValorDomicilio;
+			else
+				ValorDomicilio = 0;
+			CalcularTotal();
 		}
 	}
 }

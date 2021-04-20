@@ -54,7 +54,7 @@ namespace UmlBased
 				if (pedido.Pago.Finalizado)
 					pedido.Estado = EstadoPedido.Finalizado;
 				//le damos el dinero al vendedor.
-				pedido.producto.ObtenerVendedor().SaldoDelta(pedido.ValorCuota);
+				pedido.Producto.ObtenerVendedor().SaldoDelta(pedido.ValorCuota);
 			}
 		}
 
