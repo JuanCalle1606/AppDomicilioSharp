@@ -102,6 +102,7 @@
         <property name="use-underline">True</property>
         <property name="use-stock">True</property>
         <property name="always-show-image">True</property>
+        <signal name="activate" handler="on_UserMenuAbout_activate" swapped="no"/>
       </object>
     </child>
     <child>
@@ -215,7 +216,6 @@
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="transition-type">slide-right</property>
-                    <property name="reveal-child">True</property>
                     <child>
                       <object class="GtkComboBoxText">
                         <property name="visible">True</property>
@@ -279,7 +279,6 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="transition-type">none</property>
-                <property name="reveal-child">True</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
