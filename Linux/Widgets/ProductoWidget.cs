@@ -55,7 +55,7 @@ namespace Linux.Widgets
 			builder.Autoconnect(this);
 			Producto = producto;
 			//cargamos la imagen.
-			Imagen.Load(producto.Foto, 50, 50);
+			Imagen.Load("https://media4.giphy.com/media/xUPGcAep2BZhomS0HC/giphy.gif", 50, 50);
 			//actualizamos todos los campos
 			Precios.Text = Precios.Text.Format(producto.Precio, producto.ValorDomicilio);
 			Nombre.Text = producto.Name;
