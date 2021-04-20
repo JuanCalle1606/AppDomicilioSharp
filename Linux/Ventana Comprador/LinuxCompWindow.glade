@@ -24,6 +24,11 @@
     <property name="can-focus">False</property>
     <property name="icon-name">document-open-recent</property>
   </object>
+  <object class="GtkImage" id="UserMenuPrefsIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">preferences-system</property>
+  </object>
   <object class="GtkImage" id="UserMenuUserIcon">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -60,11 +65,11 @@
     </child>
     <child>
       <object class="GtkImageMenuItem" id="UserMenuPrefs">
-        <property name="label">gtk-preferences</property>
+        <property name="label">Preferencias</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="use-underline">True</property>
-        <property name="use-stock">True</property>
+        <property name="image">UserMenuPrefsIcon</property>
+        <property name="use-stock">False</property>
         <property name="always-show-image">True</property>
         <child type="submenu">
           <object class="GtkMenu">
