@@ -16,8 +16,13 @@
   <object class="GtkImage" id="UserMenuCloseIcon">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
-    <property name="icon-name">go-home</property>
+    <property name="icon-name">system-log-out-symbolic</property>
     <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="UserMenuHistIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">document-open-recent</property>
   </object>
   <object class="GtkImage" id="UserMenuUserIcon">
     <property name="visible">True</property>
@@ -28,12 +33,23 @@
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <child>
-      <object class="GtkImageMenuItem">
+      <object class="GtkImageMenuItem" id="UserMenuCar">
         <property name="label" translatable="yes">Carrito</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="image">UserMenuCarIcon</property>
         <property name="use-stock">False</property>
+        <property name="always-show-image">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="UserMenuHist">
+        <property name="label" translatable="yes">Historial</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="image">UserMenuHistIcon</property>
+        <property name="use-stock">False</property>
+        <property name="always-show-image">True</property>
       </object>
     </child>
     <child>
@@ -49,6 +65,7 @@
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
         <property name="use-stock">True</property>
+        <property name="always-show-image">True</property>
         <child type="submenu">
           <object class="GtkMenu">
             <property name="visible">True</property>
@@ -60,6 +77,7 @@
                 <property name="can-focus">False</property>
                 <property name="image">UserMenuUserIcon</property>
                 <property name="use-stock">False</property>
+                <property name="always-show-image">True</property>
               </object>
             </child>
             <child>
@@ -69,6 +87,7 @@
                 <property name="can-focus">False</property>
                 <property name="image">UserMenuAppIcon</property>
                 <property name="use-stock">False</property>
+                <property name="always-show-image">True</property>
               </object>
             </child>
           </object>
@@ -82,6 +101,7 @@
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
         <property name="use-stock">True</property>
+        <property name="always-show-image">True</property>
       </object>
     </child>
     <child>
@@ -97,6 +117,7 @@
         <property name="can-focus">False</property>
         <property name="image">UserMenuCloseIcon</property>
         <property name="use-stock">False</property>
+        <property name="always-show-image">True</property>
       </object>
     </child>
     <child>
@@ -106,6 +127,7 @@
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
         <property name="use-stock">True</property>
+        <property name="always-show-image">True</property>
         <signal name="activate" handler="Window_DeleteEvent" swapped="no"/>
       </object>
     </child>

@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
 using ICommon;
 using ICommon.Bases;
 using KYLib.ConsoleUtils;
-using KYLib.Data;
-using KYLib.Data.DataFiles;
 using KYLib.Extensions;
-using KYLib.Helpers;
 using KYLib.MathFn;
 using KYLib.System;
 using Linux;
-using Newtonsoft.Json;
 using Terminal;
 using UmlBased;
 
 namespace DomicilioSharp
 {
-	class Program
+	static partial class Program
 	{
 		/// <summary>
 		/// Guarda la ruta en la que se guardan los datos de aplicación
@@ -76,14 +71,21 @@ namespace DomicilioSharp
 				//creamos la aplicacion;
 				App = Factory.CreateApp();
 			}
-			catch (Exception e)
+			catch (Exception
+#if DEBUG
+			e
+#endif
+			)
 			{
-				Cons.Trace(e.Message);
+#if DEBUG
+				Cons.TraceError(e.Message);
+#else
 				// En Gtk puede ocurrir un error si no se encuentra gtk+ instalado en el sistema en cuyo caso terminamos la ejecución del programa con codigo de error.
 				if (Factory is LinuxFactory)
 					Cons.Error = "No ha sido posible crear la aplicación debido a que GTK+ no se encuentra instalado en el sistema. Use -c para usar la app en modo consola.";
 				else// esto no deberia ocurrir jamas?
 					Cons.Error = "Ha ocurrido un error inesperado en la ejecución del programa";
+#endif
 				return 0x1;
 			}
 
@@ -134,7 +136,7 @@ namespace DomicilioSharp
 					ArgsList.Contains("--gtk") ||
 					Info.CurrentSystem.IsWindows())
 			{
-				// solo window: cargamos las dll de la carpeta de auto instalación
+				// solo windows: cargamos las dll de la carpeta de auto instalación
 				if (Info.CurrentSystem.IsWindows())
 				{
 					//3.24.24-win es un bundle personalizado que cree combiando dlls de msys2 y gtk3 runtime para permitir el uso correcto de temas y que por defecto tiene el tema window-10 de iconos en lugar de adwaita.
@@ -148,59 +150,9 @@ namespace DomicilioSharp
 				Factory = LinuxFactory.Default;
 				return 0;
 			}
-
+			// aqui se llega si estamos corriendo por ejemplo en mac, la aplicación funciona en mac pero entonces es necesario pasar el --gtk y por supuesto haber instalado primero gtk.
 			Cons.Error = "El sistema operativo actual no esta soportado, si este sistema tiene instalado gtk ejecute este programa con el parametro \"--gtk\" para usar ese motor grafico o utilize \"-c\" para usar la aplicación por consola.";
 			return 1;
 		}
-
-		/// <summary>
-		/// Carga los datos desde los archivos.
-		/// </summary>
-		private static void RestorePreferences()
-		{
-			//ignoramos los errores numericos que ocurran
-			ConvertHelper.IgnoreErrors = true;
-			//obtenemos informacion del directorio en el que se guardaran los datos.
-			var dir = new FileInfo(SavesPath).Directory;
-			//si el directorio no existe lo creamos, esto unicamente deberia de ocurrir la primera vez que se ejecute la app pero tambien es posible que ocurra si el usuario ha borrado el directorio de guardado.
-			if (!dir.Exists)
-				dir.Create();
-			// queremos guardar las referencias en el archivo de guardado, esto se hace para que no se generen objetos duplicados al cargar los datos.
-			JsonFile.Default.Settings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
-
-			try
-			{
-				//intentamos cargar los datos guardados.
-				//aqui puede generarse un error porque el archivo no existe o porque los datos estan malos.
-				Files.Load<DomiciliosApp>(SavesPath, JsonFile.Default);
-			}
-			catch (Exception)
-			{
-				//valdiamos si el archivo esixte o no para saber cual fue el tipo de error.
-				if (File.Exists(SavesPath))
-					Cons.Error = "El archivo de guardado esta corrupto o no se puede leer.";
-				else
-					Cons.Error = "No se ha encontrado un archivo de guardado por lo que se creara uno.";
-
-				//esta linea es por prevencio de errores aunque podria ser quitada ?
-				DomiciliosApp.Instance = null;
-
-				//si ocurre un error cargando los datos simplemente creamos unos datos nuevos, esto significa que toda la informacion esta perdida.
-				new DomiciliosApp();
-			}
-		}
-
-		/// <summary>
-		/// se llama a este metodo antes de cerrar el programa para guardar las preferencias.
-		/// </summary>
-		public static void SavePreferences()
-		{
-			Cons.Trace("Guardando datos de usuario", ForegroundColor.Green);
-			//guardamos los datos, aqui no es necesario crear la carpeta ya que ha sido creada al cargar los datos.
-			Files.Save(DomiciliosApp.Instance, SavesPath, JsonFile.Default);
-		}
-
-		[DllImport("kernel32.dll", SetLastError = true)]
-		private static extern bool SetDllDirectory(string lpPathName);
 	}
 }
