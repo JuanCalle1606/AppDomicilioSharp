@@ -76,8 +76,9 @@ namespace DomicilioSharp
 				//creamos la aplicacion;
 				App = Factory.CreateApp();
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
+				Cons.Trace(e.Message);
 				// En Gtk puede ocurrir un error si no se encuentra gtk+ instalado en el sistema en cuyo caso terminamos la ejecución del programa con codigo de error.
 				if (Factory is LinuxFactory)
 					Cons.Error = "No ha sido posible crear la aplicación debido a que GTK+ no se encuentra instalado en el sistema. Use -c para usar la app en modo consola.";
