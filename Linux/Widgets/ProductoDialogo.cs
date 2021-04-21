@@ -9,19 +9,19 @@ namespace Linux.Widgets
 {
 	public partial class ProductoWidget
 	{
-		[UI] Window Dialogo = null;
+		[UI] Dialog Dialogo = null;
 		[UI] Label Titulo = null;
 		[UI] Label Precio = null;
 		[UI] Label Domicilio = null;
-		[UI] SpinButton Calificar = null;
-		[UI] Button CalificarBtn = null;
+		//[UI] SpinButton Calificar = null;
+		//[UI] Button CalificarBtn = null;
 		[UI] Image Foto = null;
 		[UI] Label DescripcionDialogo = null;
-		[UI] SpinButton CuotasDialogo = null;
-		[UI] Label NombreVendedor = null;
-		[UI] Label CalificacionVendedor = null;
-		[UI] Button CarritoBtnDialogo = null;
-		[UI] Button CerrarBtn = null;
+		//[UI] SpinButton CuotasDialogo = null;
+		//[UI] Label NombreVendedor = null;
+		//[UI] Label CalificacionVendedor = null;
+		//[UI] Button CarritoBtnDialogo = null;
+		//[UI] Button CerrarBtn = null;
 
 
 		void on_VerBtn_clicked(object o, EventArgs args)
@@ -32,13 +32,22 @@ namespace Linux.Widgets
 		void ConfigurarDialogo()
 		{
 			Dialogo.DeleteEvent += OnDialogDeleted;
+			Dialogo.DefaultResponse = ResponseType.Close;
+			Dialogo.Response += OnDialogResponse;
 			Titulo.Text = Producto.Name;
 			DescripcionDialogo.Text = DescripcionDialogo.Text.Format(Producto.Descripcion);
 			Precio.Text = Precio.Text.Format(Producto.Precio);
+			Domicilio.Text = Domicilio.Text.Format(Producto.ValorDomicilio);
 			//var vendedor = Producto.ObtenerVendedor();
 			//NombreVendedor.Text = vendedor.Name;
 			Foto.Load("https://media4.giphy.com/media/xUPGcAep2BZhomS0HC/giphy.gif", 250, 250);
 
+		}
+
+		private void OnDialogResponse(object o, ResponseArgs args)
+		{
+			//ocultamos el dialogo
+			Dialogo.Hide();
 		}
 
 		private void OnDialogDeleted(object o, DeleteEventArgs args)

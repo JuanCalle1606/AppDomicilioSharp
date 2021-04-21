@@ -27,6 +27,7 @@
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <property name="use-stock">True</property>
+                <property name="can-default">True</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -554,7 +555,7 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-7">CancelBtn</action-widget>
+      <action-widget response="-7" default="true">CancelBtn</action-widget>
     </action-widgets>
   </object>
   <object class="GtkMessageDialog" id="RegMsg">
