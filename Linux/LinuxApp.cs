@@ -1,3 +1,4 @@
+using System;
 using Gtk;
 using ICommon;
 using ICommon.Bases;
@@ -10,6 +11,13 @@ namespace Linux
 		public LinuxApp(string application_id, GLib.ApplicationFlags flags) : base(application_id, flags)
 		{
 			Register(GLib.Cancellable.Current);
+			Utils.App = this;
+			Activated += AppActivated;
+		}
+
+		private void AppActivated(object sender, EventArgs e)
+		{
+			//este metodo lo implementamos para evitar errores pero no hace nada
 		}
 
 		public bool AddWindow(IWindow window)

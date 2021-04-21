@@ -50,6 +50,12 @@ namespace Linux.Widgets
 
 		private void OnDialogResponse(object o, ResponseArgs args)
 		{
+			if (args.ResponseId == ResponseType.Apply)
+			{
+				// debemos agregar el producto al carrito.
+
+				Utils.SendNotification("Producto agregado al carro");
+			}
 			//ocultamos el dialogo
 			Dialogo.Hide();
 		}
