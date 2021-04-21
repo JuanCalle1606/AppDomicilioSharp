@@ -3,6 +3,7 @@ using Gdk;
 using Gtk;
 using ICommon;
 using ICommon.Bases;
+using KYLib.Extensions;
 using KYLib.System;
 using KYLib.Utils;
 using UmlBased;
@@ -34,17 +35,23 @@ namespace Linux
 		{
 			//nuestros archivos de recursos dse encuentran en {InstallDir}/Recursos
 			Assets.UpdateRelPath("Recursos");
-			//creamos un nuevo proveedor de estilos.
-			var prov = new CssProvider();
-			//cargamos el thema de windows dark
-			prov.LoadFromPath(Assets.GetPath("wind.css"));
-			//obtenemos la pantalla y le aplicamos el tema.
-			var screen = Gdk.Display.Default.DefaultScreen;
-			StyleContext.AddProviderForScreen(screen, prov, StyleProviderPriority.Application);
+			//el tema sera solo para windows
+			if (Info.CurrentSystem.IsWindows())
+			{
+				//creamos un nuevo proveedor de estilos.
+				var prov = new CssProvider();
+				//cargamos el thema de windows dark
+				prov.LoadFromPath(Assets.GetPath("wind.css"));
+				//obtenemos la pantalla y le aplicamos el tema.
+				var screen = Gdk.Display.Default.DefaultScreen;
+				StyleContext.AddProviderForScreen(screen, prov, StyleProviderPriority.Application);
+			}
 			//anexamos al tema de iconos actual el icono de nuestra app.
 			IconTheme.AddBuiltinIcon("logo", (int)IconSize.Menu, new Pixbuf(Assets.GetPath("logo.svg")));
-			//advertimos al finarlizar objetos
+#if DEBUG
+			//advertimos al finalizar objetos
 			GLib.Object.WarnOnFinalize = true;
+#endif
 		}
 
 		/// <inheritdoc/>

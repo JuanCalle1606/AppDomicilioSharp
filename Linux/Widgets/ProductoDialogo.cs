@@ -22,22 +22,26 @@ namespace Linux.Widgets
 		//[UI] Label CalificacionVendedor = null;
 		//[UI] Button CarritoBtnDialogo = null;
 		//[UI] Button CerrarBtn = null;
+		[UI] Box AdmiteCuotas = null;
 
+		bool ShowDialog = false;
 
 		void on_VerBtn_clicked(object o, EventArgs args)
 		{
+			if (!ShowDialog) ConfigurarDialogo();
+			ShowDialog = true;
 			Dialogo.Show();
 		}
 
 		void ConfigurarDialogo()
 		{
 			Dialogo.DeleteEvent += OnDialogDeleted;
-			Dialogo.DefaultResponse = ResponseType.Close;
 			Dialogo.Response += OnDialogResponse;
 			Titulo.Text = Producto.Name;
 			DescripcionDialogo.Text = DescripcionDialogo.Text.Format(Producto.Descripcion);
 			Precio.Text = Precio.Text.Format(Producto.Precio);
 			Domicilio.Text = Domicilio.Text.Format(Producto.ValorDomicilio);
+			AdmiteCuotas.Visible = Producto.PermiteCuotas;
 			//var vendedor = Producto.ObtenerVendedor();
 			//NombreVendedor.Text = vendedor.Name;
 			Foto.Load("https://media4.giphy.com/media/xUPGcAep2BZhomS0HC/giphy.gif", 250, 250);
