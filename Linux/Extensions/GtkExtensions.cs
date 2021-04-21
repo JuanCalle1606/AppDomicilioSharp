@@ -18,7 +18,7 @@ namespace Linux.Extensions
 		/// <summary>
 		/// Pares de Path-Pixbuf que actuan como cache.
 		/// </summary>
-		private static Dictionary<string, Pixbuf> cache = new();
+		private static Dictionary<GtkPixInfo, Pixbuf> cache = new();
 
 		/// <summary>
 		/// Lista de imagenes a ser cargadas.
@@ -42,33 +42,28 @@ namespace Linux.Extensions
 			// Ubicación vacia?
 			if (string.IsNullOrWhiteSpace(path)) return;
 
-			// tenemos la imagen ya en cache?
-			if (cache.ContainsKey(path))
+			var info = new GtkPixInfo()
 			{
-				// la imagen del cache concide con lo que solicitamos?
-				if (cache[path].Width == width &&
-					cache[path].Height == height)
-				{
+				Path = path,
+				Width = width,
+				Height = height
+			};
+
+			// tenemos la imagen ya en cache?
+			if (cache.ContainsKey(info))
+			{
 #if DEBUG
-					Console.WriteLine($"\"{path}\" loaded from cache");
+				Console.WriteLine($"\"{path}\" cargado de cache a {width}x{height}");
 #endif
-					// si todo esta ok, la imagen la ponemos.
-					image.Pixbuf = cache[path];
-					return;
-				}
-				else
-				{// removemos la iamgen del cache para recargarla
-					cache.Remove(path);
-					// notemos que no llamamos al metodo Dispose de la imagen ya que podria estar referenciada en otro lugar?
-				}
+				// si todo esta ok, la imagen la ponemos.
+				image.Pixbuf = cache[info];
+				return;
 			}
 			// guardamos la información de lo que queremos cargar.
 			var load = new ImageLoad()
 			{
 				Image = image,
-				Path = path,
-				Width = width,
-				Height = height
+				Info = info
 			};
 			// agregamos a la lista de carga.
 			Queue.Add(load);
@@ -86,36 +81,28 @@ namespace Linux.Extensions
 			var cload = Queue[0];
 			Queue.RemoveAt(0);
 			// validamos el cache, igual que en el metodo superior.
-			if (cache.ContainsKey(cload.Path))
+			if (cache.ContainsKey(cload.Info))
 			{
-				if (cache[cload.Path].Width == cload.Width &&
-					cache[cload.Path].Height == cload.Height)
-				{
 #if DEBUG
-					Console.WriteLine($"\"{cload.Path}\" loaded from cache");
+				Console.WriteLine($"\"{cload.Info.Path}\" cargado de cache a {cload.Info.Width}x{cload.Info.Height}");
 #endif
-					cload.Image.Pixbuf = cache[cload.Path];
-					loading = false;
-					ProcessNextLoad();
-					return;
-				}
-				else
-				{
-					cache.Remove(cload.Path);
-				}
+				cload.Image.Pixbuf = cache[cload.Info];
+				loading = false;
+				ProcessNextLoad();
+				return;
 			}
 #if DEBUG
-			Console.WriteLine($"Cargando desde \"{cload.Path}\"");
+			Console.WriteLine($"Cargando desde \"{cload.Info.Path}\" a {cload.Info.Width}x{cload.Info.Height}");
 #endif
 			// obtenemos la ubicacion del recurso
-			var location = new Uri(cload.Path);
+			var location = new Uri(cload.Info.Path);
 			Stream st;
 			// es un archivo? en caso de no serlo entonces es una url
 			if (location.IsFile)
 			{
 				// validemos que sea un formato correcto de archivo.
-				if (Pixbuf.GetFileInfo(cload.Path, out _, out _) != null)
-					st = File.OpenRead(cload.Path);
+				if (Pixbuf.GetFileInfo(cload.Info.Path, out _, out _) != null)
+					st = File.OpenRead(cload.Info.Path);
 				else
 				{
 					loading = false;
@@ -134,7 +121,7 @@ namespace Linux.Extensions
 			// loader usados para almacenar la información.
 			var loader = new PixbufLoader();
 			// establecemos el tamaño del "lienzo" en memoria
-			loader.SetSize(cload.Width, cload.Height);
+			loader.SetSize(cload.Info.Width, cload.Info.Height);
 			// cuando este lsito el espacio en memoria asignamos el pixbuf
 			loader.AreaPrepared += (_, _) => cload.Image.Pixbuf = loader.Pixbuf;
 
@@ -146,7 +133,7 @@ namespace Linux.Extensions
 			}
 
 #if DEBUG
-			Console.WriteLine($"\"{cload.Path}\" se ha cargado");
+			Console.WriteLine($"\"{cload.Info.Path}\" se ha cargado a {cload.Info.Width}x{cload.Info.Height}");
 #endif
 			// cerramos todo.
 			st.Close();
@@ -154,18 +141,10 @@ namespace Linux.Extensions
 			loader.Close();
 			loader.Dispose();
 			// añadimos al cache
-			cache.TryAdd(cload.Path, cload.Image.Pixbuf);
+			cache.TryAdd(cload.Info, cload.Image.Pixbuf);
 			// procesamos la siguiente imagen en la cola
 			loading = false;
 			ProcessNextLoad();
 		}
-	}
-
-	internal class ImageLoad
-	{
-		public Image Image;
-		public string Path;
-		public int Width;
-		public int Height;
 	}
 }
