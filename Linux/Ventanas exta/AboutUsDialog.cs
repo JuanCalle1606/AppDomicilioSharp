@@ -1,6 +1,5 @@
-using System;
+using GLib;
 using Gtk;
-using UI = Gtk.Builder.ObjectAttribute;
 
 namespace Linux
 {
@@ -15,12 +14,12 @@ namespace Linux
 			DeleteEvent += Window_DeleteEvent;
 			Response += Window_DeleteEvent;
 			builder.Dispose();
-			Show();
 		}
 
-		private void Window_DeleteEvent(object o, EventArgs args)
+		private void Window_DeleteEvent(object o, SignalArgs args)
 		{
-			using (this) Hide();
+			args.RetVal = true;
+			Hide();
 		}
 	}
 }
