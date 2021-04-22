@@ -37,6 +37,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <signal name="clicked" handler="on_CarritoBtn_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -516,6 +517,7 @@ ${1}</property>
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
             <property name="margin-top">5</property>
+            <signal name="clicked" handler="on_CarritoBtn_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>

@@ -34,19 +34,19 @@ namespace UmlBased
 		/// <summary>
 		/// Agrega un pedido al carrito.
 		/// </summary>
-		/// <param name="pedido">Pedido que se desea aregar al carrito.</param>
+		/// <param name="pedido">Pedido que se desea agregar al carrito.</param>
 		/// <returns>Devuelve un booleano que indica si se pudo agregar el pedido.</returns>
 		public bool Agregar(Pedido pedido)
 		{
-			//vemos si ya existe un pedido cone se producto
+			//vemos si ya existe un pedido con ese producto
 			var ped = Pedidos.Find(P => P.Producto.Equals(pedido.Producto));
 			//si no existe entonces se agrega.
-			if (ped != null)
+			if (ped == null)
+			{
 				Pedidos.Add(pedido);
-			//si ya existe entonces
-			else
-				ped.Actualizar(ped.Cantidad + pedido.Cantidad, ped.Cuotas);
-			ActualizarDomicilio();
+				//esto solo ocurre cuando se agrega un nuevo pedido, no cuando se actualiza uno existente.
+				ActualizarDomicilio();
+			}
 			return true;
 		}
 
@@ -89,7 +89,7 @@ namespace UmlBased
 		/// <summary>
 		/// Elimina un pedido del carrito.
 		/// </summary>
-		/// <param name="pedido">Pedido que se desea elimiar del carrito.</param>
+		/// <param name="pedido">Pedido que se desea eliminar del carrito.</param>
 		/// <returns>Devuelve un booleano que indica si se pudo eliminar el pedido.</returns>
 		public bool Eliminar(Pedido pedido)
 		{

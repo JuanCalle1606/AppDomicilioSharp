@@ -17,7 +17,7 @@ namespace Linux.Widgets
 		//[UI] Button CalificarBtn = null;
 		[UI] Image Foto = null;
 		[UI] Label DescripcionDialogo = null;
-		//[UI] SpinButton CuotasDialogo = null;
+		[UI] SpinButton CuotasDialogo = null;
 		//[UI] Label NombreVendedor = null;
 		//[UI] Label CalificacionVendedor = null;
 		//[UI] Button CarritoBtnDialogo = null;
@@ -50,12 +50,6 @@ namespace Linux.Widgets
 
 		private void OnDialogResponse(object o, ResponseArgs args)
 		{
-			if (args.ResponseId == ResponseType.Apply)
-			{
-				// debemos agregar el producto al carrito.
-
-				Utils.SendNotification("Producto agregado al carro");
-			}
 			//ocultamos el dialogo
 			Dialogo.Hide();
 		}

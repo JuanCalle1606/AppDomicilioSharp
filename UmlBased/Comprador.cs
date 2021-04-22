@@ -23,6 +23,18 @@ namespace UmlBased
 		[DP("Historial")] public List<Pedido> HistorialPedidos { get; } = new();
 
 		/// <summary>
+		/// Guarda el descuento que aplica a este usuario.
+		/// </summary>
+		public Real Descuento
+		{
+			get
+			{
+				//aqui debemos calcular el descuento que se debe aplicar al usaurio.
+				return 1;
+			}
+		}
+
+		/// <summary>
 		/// Guarda el carrito de este usuario, no es necesario ponerle el <see cref="DP"/> ya que el carrito no es algo que se deba guardar solo es temporal.
 		/// </summary>
 		public Carrito Carrito = new();

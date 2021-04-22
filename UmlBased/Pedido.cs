@@ -12,6 +12,11 @@ namespace UmlBased
 	public class Pedido
 	{
 		/// <summary>
+		/// Almacena el IVA actual.
+		/// </summary>
+		public static readonly Real CurrentIVA = 1.19;
+
+		/// <summary>
 		/// Id unico de este pedido.
 		/// </summary>
 		[DP] public Int Id { get; init; }
@@ -24,7 +29,7 @@ namespace UmlBased
 		/// <summary>
 		/// Cantidad de <see cref="Producto"/> que contiene este pedido.
 		/// </summary>
-		[DP] public Small Cantidad = 1;
+		[DP] public Small Cantidad;
 
 		/// <summary>
 		/// Guarda la fecha en que se realizo este pedido. Esta fecha es la fecha del primer pago

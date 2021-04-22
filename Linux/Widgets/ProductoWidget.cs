@@ -1,6 +1,7 @@
 using System;
 using Gtk;
 using KYLib.Extensions;
+using KYLib.MathFn;
 using Linux.Extensions;
 using UmlBased;
 using UI = Gtk.Builder.ObjectAttribute;
@@ -64,6 +65,34 @@ namespace Linux.Widgets
 			Cuotas.Text = producto.PermiteCuotas ? "Por Cuotas*" : string.Empty;
 
 			builder.Dispose();
+		}
+
+		public void on_CarritoBtn_clicked(object o, EventArgs args)
+		{
+			Comprador user = (Comprador)DomiciliosApp.ClienteActual;
+
+			//vemos si algun pedido actual del carro ya tiene el producto.
+			var ped = user.Carrito.Pedidos.Find(P => UmlBased.Producto.
+			ReferenceEquals(Producto, P.Producto));
+			if (ped == null)
+			{
+				//creamos el pedido que vamos a agregar al carrito.
+				ped = new Pedido()
+				{
+					Id = DomiciliosApp.Instance.NextPedId++,
+					Fecha = DateTime.Now,
+					Producto = Producto,
+					ValorBase = Producto.Precio,
+					PorcentajeDescuento = user.Descuento,
+					PorcentajeIVA = Pedido.CurrentIVA,
+				};
+			}
+			ped.Actualizar(++ped.Cantidad, (Small)CuotasDialogo.Value);
+
+			if (user.Carrito.Agregar(ped))
+			{
+				Utils.SendNotification("Producto agregado al carrito");
+			}
 		}
 	}
 }
