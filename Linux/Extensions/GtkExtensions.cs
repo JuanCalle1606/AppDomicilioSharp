@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Gdk;
 using Gtk;
 
@@ -101,20 +100,40 @@ namespace Linux.Extensions
 			if (location.IsFile)
 			{
 				// validemos que sea un formato correcto de archivo.
-				if (Pixbuf.GetFileInfo(cload.Info.Path, out _, out _) != null)
+				if (File.Exists(cload.Info.Path) &&
+					Pixbuf.GetFileInfo(cload.Info.Path, out _, out _) != null)
 					st = File.OpenRead(cload.Info.Path);
 				else
 				{
+#if DEBUG
+					Console.WriteLine($"\"{cload.Info.Path}\" no se ha cargado, posiblemente el archivo no existe.");
+#endif
 					loading = false;
+
 					ProcessNextLoad();
 					return;
 				}
 			}
 			else
 			{
-				// obtenemos el stream desde un recurso web
-				st = await client.GetStreamAsync(location);
+				try
+				{
+					// obtenemos el stream desde un recurso web
+					st = await client.GetStreamAsync(location);
+				}
+				catch (Exception)
+				{
+#if DEBUG
+					Console.WriteLine($"\"{cload.Info.Path}\" no se ha cargado por error de red.");
+#endif
+					loading = false;
+
+					ProcessNextLoad();
+					return;
+				}
 			}
+			// una vez llegamos aqui el buffer de la imagen a sido creado correctamente.
+
 			// iremos cargando de a 16384 bytes.
 			byte[] buf = new byte[16384];
 			int i;
@@ -122,14 +141,30 @@ namespace Linux.Extensions
 			var loader = new PixbufLoader();
 			// establecemos el tamaño del "lienzo" en memoria
 			loader.SetSize(cload.Info.Width, cload.Info.Height);
-			// cuando este lsito el espacio en memoria asignamos el pixbuf
+			// cuando este listo el espacio en memoria asignamos el pixbuf
 			loader.AreaPrepared += (_, _) => cload.Image.Pixbuf = loader.Pixbuf;
 
-			// leemos el stream
-			while ((i = await st.ReadAsync(buf, 0, 16384)) != 0)
+			try
 			{
-				// escribimos todos los datos en memoria
-				loader.Write(buf, (ulong)i);
+				// leemos el stream
+				while ((i = await st.ReadAsync(buf, 0, 16384)) != 0)
+				{
+					// escribimos todos los datos en memoria
+					loader.Write(buf, (ulong)i);
+				}
+			}
+			catch (GLib.GException
+#if DEBUG
+			e
+#endif
+			)
+			{
+#if DEBUG
+				Console.WriteLine($"\"{cload.Info.Path}\" no se ha cargado porque {e.Message}.");
+#endif
+				loading = false;
+				ProcessNextLoad();
+				return;
 			}
 
 #if DEBUG

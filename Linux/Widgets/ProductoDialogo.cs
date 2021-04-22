@@ -44,7 +44,7 @@ namespace Linux.Widgets
 			AdmiteCuotas.Visible = Producto.PermiteCuotas;
 			//var vendedor = Producto.ObtenerVendedor();
 			//NombreVendedor.Text = vendedor.Name;
-			Foto.Load("https://media4.giphy.com/media/xUPGcAep2BZhomS0HC/giphy.gif", 250, 250);
+			Foto.Load(Producto.Foto, 250, 250);
 
 		}
 
