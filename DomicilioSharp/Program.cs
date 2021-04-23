@@ -44,6 +44,7 @@ namespace DomicilioSharp
 		/// </summary>
 		static int Main(string[] args)
 		{
+			Mod.Init();
 			ArgsList = new(args);
 			return RunApp(true);
 		}
@@ -93,6 +94,9 @@ namespace DomicilioSharp
 			var login = Factory.CreateLoginWindow(DomiciliosApp.ObtenerComprador(0), OnUserLogin);
 			App.AddWindow(login);
 			login?.Show();
+
+			// cargamos permisos de administrador
+			LoadAdmin();
 
 			//corremos la app
 			var exitcode = (App?.StartApp()).GetValueOrDefault(1);
