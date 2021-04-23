@@ -34,6 +34,8 @@ namespace UmlBased
 		/// </summary>
 		[DP] public Int NextUserId = 0;
 
+		[DP] public DateTime UltimoPago = DateTime.Now;
+
 		/// <summary>
 		/// Guarda la siguiente id que sera usada para crear un pedido.
 		/// </summary>
@@ -91,6 +93,10 @@ namespace UmlBased
 		/// <param name="name">Nombre de la categoria a buscar.</param>
 		public static Categoria ObtenerCategoria(string name) =>
 			Instance.Categorias.FindByName(name.ToLower());
+
+		public static void ProcesarDia() =>
+			Instance.Compradores.ForEach(p => p.PagoCuotas());
+
 
 	}
 }

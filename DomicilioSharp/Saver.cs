@@ -7,6 +7,8 @@ using KYLib.Data.DataFiles;
 using KYLib.Helpers;
 using Newtonsoft.Json;
 using UmlBased;
+using KYLib.Utils;
+using System.Threading;
 
 namespace DomicilioSharp
 {
@@ -54,6 +56,17 @@ namespace DomicilioSharp
 
 				//si ocurre un error cargando los datos simplemente creamos unos datos nuevos, esto significa que toda la informacion esta perdida.
 				new DomiciliosApp();
+			}
+			Runner.Every(ValidarPagos, TimeSpan.FromHours(6), CancellationToken.None);
+		}
+
+		private static void ValidarPagos()
+		{
+			DateTime fecha = DateTime.Now;
+			if (fecha.Day != DomiciliosApp.Instance.UltimoPago.Day)
+			{
+				DomiciliosApp.Instance.UltimoPago = fecha;
+				DomiciliosApp.ProcesarDia();
 			}
 		}
 

@@ -85,9 +85,21 @@ namespace UmlBased
 		/// <param name="pedido">Factura en la cual se quiere abonar.</param>
 		/// <param name="saldo">Saldo a abonar.</param>
 		/// <returns>Devuelve un valor indicando si ha sido posible o no abonar en esa factura.</returns>
-		public bool Abonar(Pedido pedido, Real saldo)
+		public bool Abonar(Pedido pedido, Small cuotas)
 		{
-			return true;
+			Real pago = pedido.ValorCuota * cuotas;
+			if (SaldoDelta(-pago))
+			{
+				for (byte i = 0; i < cuotas; i++)
+				{
+					pedido.Pago.ProcesarCuota();
+
+				}
+
+				return true;
+			}
+
+			return false;
 		}
 	}
 }
