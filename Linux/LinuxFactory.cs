@@ -33,21 +33,21 @@ namespace Linux
 		/// </summary>
 		private static void LoadTheme()
 		{
-			//nuestros archivos de recursos dse encuentran en {InstallDir}/Recursos
-			Assets.UpdateRelPath("Recursos");
+			// nuestros archivos de recursos se encuentran en {InstallDir}/Recursos
+			var resources = Assets.InstallDir.GetAssets("Recursos");
 			//el tema sera solo para windows
 			if (Info.CurrentSystem.IsWindows())
 			{
 				//creamos un nuevo proveedor de estilos.
 				var prov = new CssProvider();
 				//cargamos el thema de windows dark
-				prov.LoadFromPath(Assets.GetPath("wind.css"));
+				prov.LoadFromPath(resources.GetPath("wind.css"));
 				//obtenemos la pantalla y le aplicamos el tema.
 				var screen = Gdk.Display.Default.DefaultScreen;
 				StyleContext.AddProviderForScreen(screen, prov, StyleProviderPriority.Application);
 			}
 			//anexamos al tema de iconos actual el icono de nuestra app.
-			IconTheme.AddBuiltinIcon("logo", (int)IconSize.Menu, new Pixbuf(Assets.GetPath("logo.svg")));
+			IconTheme.AddBuiltinIcon("logo", (int)IconSize.Menu, new Pixbuf(resources.GetPath("logo.svg")));
 #if DEBUG
 			//advertimos al finalizar objetos
 			GLib.Object.WarnOnFinalize = true;
