@@ -94,5 +94,12 @@ namespace Linux.Widgets
 				Utils.SendNotification("Producto agregado al carrito");
 			}
 		}
+
+		protected override void Dispose(bool disposing)
+		{
+			Dialogo.Dispose();
+			Imagen.Dispose();
+			base.Dispose(disposing);
+		}
 	}
 }

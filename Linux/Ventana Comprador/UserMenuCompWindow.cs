@@ -1,5 +1,6 @@
 using System;
 using Gtk;
+using UmlBased;
 using UI = Gtk.Builder.ObjectAttribute;
 
 namespace Linux
@@ -18,7 +19,8 @@ namespace Linux
 
 		void on_ViewCarrito_clicked(object o, EventArgs args)
 		{
-			Carrito ??= new CarritoDialog();
+			var user = (Comprador)DomiciliosApp.ClienteActual;
+			Carrito ??= new CarritoDialog(user.Carrito);
 			Carrito.Actualizar();
 			Carrito.Show();
 		}

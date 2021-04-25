@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using KYLib.MathFn;
 
@@ -9,7 +10,10 @@ namespace UmlBased
 	/// </summary>
 	public sealed class Carrito
 	{
-
+		/// <summary>
+		/// Evento que se llama cuando se agrega o elimina un pedido del carrito.
+		/// </summary>
+		public event Action<bool, Pedido> Changed;
 
 		/// <summary>
 		/// Representa el costo de los pedidos almacenados en el carrito.
@@ -46,8 +50,10 @@ namespace UmlBased
 				Pedidos.Add(pedido);
 				//esto solo ocurre cuando se agrega un nuevo pedido, no cuando se actualiza uno existente.
 				ActualizarDomicilio();
+				Changed?.Invoke(true, pedido);
+				return true;
 			}
-			return true;
+			return false;
 		}
 
 		public bool Pagar()
@@ -94,7 +100,11 @@ namespace UmlBased
 		public bool Eliminar(Pedido pedido)
 		{
 			var dev = Pedidos.Remove(pedido);
-			if (dev) ActualizarDomicilio();
+			if (dev)
+			{
+				ActualizarDomicilio();
+				Changed?.Invoke(false, pedido);
+			}
 			return dev;
 		}
 
