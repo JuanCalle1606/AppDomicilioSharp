@@ -126,10 +126,10 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="CalificacionVendedor">
+                      <object class="GtkLabel" id="HroVendedor">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Calificación: {0}</property>
+                        <property name="label" translatable="yes">Horario de atención {0}</property>
                         <property name="wrap">True</property>
                         <property name="wrap-mode">word-char</property>
                         <property name="ellipsize">end</property>
@@ -143,10 +143,10 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="HroAtencion">
+                      <object class="GtkLabel" id="CalificacionVendedor">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">Horario de atención: {0}</property>
+                        <property name="label" translatable="yes">Calificación: {0}</property>
                         <property name="wrap">True</property>
                         <property name="ellipsize">end</property>
                         <property name="lines">1</property>
