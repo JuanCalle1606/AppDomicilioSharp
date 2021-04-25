@@ -32,8 +32,11 @@ namespace UmlBased
 		[DP] public Small Cantidad;
 
 		/// <summary>
-		/// Guarda la fecha en que se realizo este pedido. Esta fecha es la fecha del primer pago
+		/// Guarda la fecha en que se realizo este pedido.
 		/// </summary>
+		/// <remarks>
+		/// Cuando el pedido esta en carrito indica la fecha en la que se agrego pero cuando cuando se paga el pedido esta fecha guarda el momento en que se paga.
+		/// </remarks>
 		[DP] public DateTime Fecha { get; init; }
 
 		/// <summary>

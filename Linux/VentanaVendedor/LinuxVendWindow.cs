@@ -4,13 +4,14 @@ using UI = Gtk.Builder.ObjectAttribute;
 
 namespace Linux
 {
-    class LinuxVendWindow : Window
-    {
-        public LinuxVendWindow() : this(new Builder("LinuxVendWindow.glade")) { }
+	class LinuxVendWindow : Window
+	{
+		public LinuxVendWindow() : this(new Builder("LinuxVendWindow.glade")) { }
 
-        private LinuxVendWindow(Builder builder) : base(builder.GetRawOwnedObject("LinuxVendWindow"))
-        {
-            builder.Autoconnect(this);
-        }
-    }
+		private LinuxVendWindow(Builder builder) : base(builder.GetRawOwnedObject("LinuxVendWindow"))
+		{
+			builder.Autoconnect(this);
+			builder.Dispose();
+		}
+	}
 }
