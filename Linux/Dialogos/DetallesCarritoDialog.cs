@@ -23,6 +23,13 @@ namespace Linux
 
 		void on_ListaPedidos_row_selected(object o, RowSelectedArgs args)
 		{
+			if (args.Row == null)
+			{
+				SeleccionarAlert.Visible = true;
+				Detalles.Visible = false;
+				return;
+			}
+
 			var widget = (ProductoWidget)args.Row.Child;
 			var pedido = Carrito.Pedidos.Find(P => P.Producto.Equals(widget.Producto));
 

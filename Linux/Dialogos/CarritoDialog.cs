@@ -22,19 +22,18 @@ namespace Linux
 			builder.Autoconnect(this);
 			Carrito = carrito;
 			DefaultResponse = ResponseType.Close;
-			Response += Dialog_Response;
+			Response += Dialog_Deleted;
 			DeleteEvent += Dialog_Deleted;
 
 			builder.Dispose();
 		}
 
-		private void Dialog_Deleted(object o, DeleteEventArgs args)
+		private void Dialog_Deleted(object o, GLib.SignalArgs args)
 		{
 			args.RetVal = true;
 			Hide();
+			ListaPedidos.UnselectAll();
 		}
-
-		void Dialog_Response(object o, ResponseArgs args) => Hide();
 
 		public void Actualizar()
 		{
