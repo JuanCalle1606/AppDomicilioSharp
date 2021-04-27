@@ -110,10 +110,10 @@
                             <property name="can-focus">False</property>
                             <property name="orientation">vertical</property>
                             <child>
-                              <object class="GtkLabel">
+                              <object class="GtkLabel" id="TimeAgo">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="label" translatable="yes">Añadido hace {0}</property>
+                                <property name="label" translatable="yes">Añadido hace: {0}</property>
                                 <property name="wrap">True</property>
                                 <property name="xalign">0</property>
                               </object>
@@ -124,7 +124,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkButton">
+                              <object class="GtkButton" id="RemoveBtn">
                                 <property name="label" translatable="yes">Remover</property>
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
@@ -165,7 +165,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkSpinButton">
+                                  <object class="GtkSpinButton" id="NoCantidad">
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="adjustment">CantidadAdjust</property>
@@ -177,7 +177,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkSpinButton">
+                                  <object class="GtkSpinButton" id="NoCuotas">
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="adjustment">CuotasAdjust</property>
@@ -202,7 +202,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkButton">
+                                  <object class="GtkButton" id="ApplyBtn">
                                     <property name="label">gtk-apply</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
@@ -223,15 +223,15 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel">
+                              <object class="GtkLabel" id="Precios">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="label" translatable="yes">Precio base:
-{0}
+{0:C2}
 Precio cuota:
-{0}
+{1:C2}
 Precio total:
-{0}</property>
+{2:C2}</property>
                                 <property name="xalign">0</property>
                               </object>
                               <packing>
@@ -285,6 +285,7 @@ Precio total:
                           <object class="GtkListBox" id="ListaPedidos">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <signal name="row-selected" handler="on_ListaPedidos_row_selected" swapped="no"/>
                             <child type="placeholder">
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
@@ -315,10 +316,10 @@ Precio total:
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="PrecioTotal">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Precio total: ${0}</property>
+                    <property name="label" translatable="yes">Precio total: {0:C2}</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -327,10 +328,10 @@ Precio total:
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="PrecioCuota">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="label" translatable="yes">Precio a pagar: ${0}</property>
+                    <property name="label" translatable="yes">Precio a pagar: {0:C2}</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -356,7 +357,6 @@ Precio total:
       </object>
     </child>
     <action-widgets>
-      <action-widget response="-10">PagarBtn</action-widget>
       <action-widget response="-7">CerrarBtn</action-widget>
     </action-widgets>
   </object>

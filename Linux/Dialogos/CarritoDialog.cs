@@ -7,7 +7,7 @@ using UI = Gtk.Builder.ObjectAttribute;
 
 namespace Linux
 {
-	class CarritoDialog : Dialog
+	partial class CarritoDialog : Dialog
 	{
 		public Carrito Carrito { get; private set; }
 

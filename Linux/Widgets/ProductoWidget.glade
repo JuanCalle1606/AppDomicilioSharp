@@ -143,7 +143,7 @@
                     <property name="margin-right">5</property>
                     <property name="margin-start">5</property>
                     <property name="margin-end">5</property>
-                    <property name="label" translatable="yes">Precio: $ {0}</property>
+                    <property name="label" translatable="yes">Precio: {0:C2}</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -159,7 +159,7 @@
                     <property name="margin-right">5</property>
                     <property name="margin-start">2</property>
                     <property name="margin-end">5</property>
-                    <property name="label" translatable="yes">Domicilio: $ {0}</property>
+                    <property name="label" translatable="yes">Domicilio: {0:C2}</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -426,9 +426,9 @@
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="label" translatable="yes">Precio:
-${0}
+{0:C0}
 Domicilio:
-${1}</property>
+{1:C0}</property>
           </object>
           <packing>
             <property name="expand">False</property>
