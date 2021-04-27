@@ -1,5 +1,6 @@
 using GLib;
-using Gtk;
+using KYLib.Extensions;
+using KYLib.System;
 
 namespace Linux
 {
@@ -11,8 +12,11 @@ namespace Linux
 
 		public static void SendNotification(string text)
 		{
-			Noti.Body = text;
-			App.SendNotification("Domicilio-Notification", Noti);
+			if (Info.CurrentSystem.IsLinux())
+			{
+				Noti.Body = text;
+				App.SendNotification("Domicilio-Notification", Noti);
+			}
 		}
 	}
 }
