@@ -36,6 +36,14 @@ namespace UmlBased
 		public void Vaciar() => Pedidos.Clear();
 
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="producto"></param>
+		/// <returns></returns>
+		public Pedido Contiene(Producto producto) =>
+			Pedidos.Find(P => P.Producto.Equals(producto));
+
+		/// <summary>
 		/// Agrega un pedido al carrito.
 		/// </summary>
 		/// <param name="pedido">Pedido que se desea agregar al carrito.</param>
@@ -53,6 +61,7 @@ namespace UmlBased
 				Changed?.Invoke(true, pedido);
 				return true;
 			}
+			Changed?.Invoke(true, null);
 			return false;
 		}
 

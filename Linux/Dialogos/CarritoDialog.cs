@@ -28,6 +28,11 @@ namespace Linux
 			builder.Dispose();
 		}
 
+		void on_PagarBtn_clicked(object o, EventArgs args)
+		{
+
+		}
+
 		private void Dialog_Deleted(object o, GLib.SignalArgs args)
 		{
 			args.RetVal = true;
@@ -45,8 +50,10 @@ namespace Linux
 
 		private void OnCarritoChanged(bool added, Pedido content)
 		{
+			CalcularSuma();
 			if (added)
 			{
+				if (content == null) return;
 				ListaPedidos.Add(new ProductoWidget(content.Producto));
 			}
 			else
@@ -79,6 +86,7 @@ namespace Linux
 					ListaPedidos.Add(new ProductoWidget(item));
 				}
 			}
+			CalcularSuma();
 		}
 	}
 }

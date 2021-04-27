@@ -1,6 +1,7 @@
 using System;
 using Gtk;
 using KYLib.Extensions;
+using KYLib.MathFn;
 using Linux.Widgets;
 using UmlBased;
 using UI = Gtk.Builder.ObjectAttribute;
@@ -12,6 +13,10 @@ namespace Linux
 		[UI] Label SeleccionarAlert = null;
 
 		[UI] Label TimeAgo = null;
+
+		[UI] Label PrecioCuota = null;
+
+		[UI] Label PrecioTotal = null;
 
 		[UI] Label Precios = null;
 
@@ -30,14 +35,33 @@ namespace Linux
 				return;
 			}
 
-			var widget = (ProductoWidget)args.Row.Child;
-			var pedido = Carrito.Pedidos.Find(P => P.Producto.Equals(widget.Producto));
+			var widget = args.Row.Child as ProductoWidget;
+			var pedido = Carrito.Contiene(widget.Producto);
 
 			//actualizamos propiedades
 			ActualizarDetalles(pedido);
 
 			SeleccionarAlert.Visible = false;
 			Detalles.Visible = true;
+		}
+
+		void on_ApplyBtn_clicked(object o, EventArgs args)
+		{
+			Small cantidad = (Small)NoCantidad.ValueAsInt;
+			Small cuotas = (Small)NoCuotas.ValueAsInt;
+			var widget = ListaPedidos.SelectedRow.Child as ProductoWidget;
+			var pedido = Carrito.Contiene(widget.Producto);
+			if (pedido.Cantidad != cantidad || pedido.Cuotas != cuotas)
+			{
+				pedido.Actualizar(cantidad, cuotas);
+				Carrito.Agregar(pedido);
+				ActualizarDetalles(pedido);
+			}
+		}
+
+		void on_RemoveBtn_clicked(object o, EventArgs args)
+		{
+
 		}
 
 		private void ActualizarDetalles(Pedido pedido)
@@ -51,10 +75,17 @@ namespace Linux
 Precio cuota:
 {1:C2}
 Precio total:
-{2:C2}".Format(pedido.ValorBase, pedido.ValorCuota, pedido.ValorTotal);
+{2:C2}".
+			Format(pedido.ValorBase, pedido.ValorCuota, pedido.ValorTotal);
 			TimeAgo.Text = "Añadido hace: {0}".Format(elapsed);
 			NoCantidad.Value = pedido.Cantidad;
 			NoCuotas.Value = pedido.Cuotas;
+		}
+
+		void CalcularSuma()
+		{
+			PrecioCuota.Text = "Precio a pagar: {0:C2}".Format(Carrito.CostoCuota);
+			PrecioTotal.Text = "Precio total: {0:C2}".Format(Carrito.Total);
 		}
 	}
 }
