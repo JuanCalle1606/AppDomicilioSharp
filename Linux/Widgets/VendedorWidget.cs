@@ -61,6 +61,7 @@ namespace Linux
 			Vendedor = vendedor;
 			Imagen.Load(Vendedor.Foto, 250, 250);
 			Nombre.Text = Nombre.Text.Format(vendedor.Name);
+			Correo.Text = Correo.Text.Format(vendedor.Correo);
 			Telefono.Text = Telefono.Text.Format(vendedor.Telefono);
 			Direccion.Text = Direccion.Text.Format(vendedor.Direccion);
 			HroAtencion.Text = HroAtencion.Text.Format(vendedor.AtencionCliente);

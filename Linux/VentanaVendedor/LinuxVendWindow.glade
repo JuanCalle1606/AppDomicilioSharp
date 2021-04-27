@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.22"/>
+  <object class="GtkMenu" id="UserMenu">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkImageMenuItem" id="UserMenuMenu">
+        <property name="label" translatable="yes">Menú</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="image">UserMenuCarIcon</property>
+        <property name="use-stock">False</property>
+        <property name="always-show-image">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="UserMenuOrd">
+        <property name="label" translatable="yes">Órdenes</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="image">UserMenuHistIcon</property>
+        <property name="use-stock">False</property>
+        <property name="always-show-image">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="UserMenuPrefs">
+        <property name="label">Preferencias</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="image">UserMenuPrefsIcon</property>
+        <property name="use-stock">False</property>
+        <property name="always-show-image">True</property>
+        <child type="submenu">
+          <object class="GtkMenu">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <child>
+              <object class="GtkImageMenuItem" id="UserMenuUser">
+                <property name="label" translatable="yes">Usuario</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="image">UserMenuUserIcon</property>
+                <property name="use-stock">False</property>
+                <property name="always-show-image">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImageMenuItem" id="UserMenuApp">
+                <property name="label" translatable="yes">Aplicación</property>
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="image">UserMenuAppIcon</property>
+                <property name="use-stock">False</property>
+                <property name="always-show-image">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="UserMenuAbout">
+        <property name="label">gtk-about</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="use-underline">True</property>
+        <property name="use-stock">True</property>
+        <property name="always-show-image">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="UserMenuClose">
+        <property name="label" translatable="yes">Cerrar sesión</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="image">UserMenuCloseIcon</property>
+        <property name="use-stock">False</property>
+        <property name="always-show-image">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="UserMenuExit">
+        <property name="label">gtk-quit</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="use-underline">True</property>
+        <property name="use-stock">True</property>
+        <property name="always-show-image">True</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="LinuxVendWindow">
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkButtonBox">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">spread</property>
+            <child>
+              <object class="GtkButton">
+                <property name="label" translatable="yes">Editar menú</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="label" translatable="yes">Ver órdenes</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <child type="titlebar">
+      <object class="GtkHeaderBar">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="title" translatable="yes">Domicilios Sharp</property>
+        <property name="spacing">0</property>
+        <property name="show-close-button">True</property>
+        <child>
+          <object class="GtkImage" id="AppIcon">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="pixel-size">25</property>
+            <property name="icon-name">logo</property>
+            <property name="icon_size">1</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkMenuButton">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="focus-on-click">False</property>
+            <property name="receives-default">True</property>
+            <property name="popup">UserMenu</property>
+            <child>
+              <object class="GtkImage" id="UserAvatar">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="pixel-size">20</property>
+                <property name="icon-name">user-info</property>
+                <property name="icon_size">1</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="pack-type">end</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkImage" id="UserMenuAppIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">logo</property>
+  </object>
+  <object class="GtkImage" id="UserMenuCarIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">user-trash</property>
+  </object>
+  <object class="GtkImage" id="UserMenuCloseIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">system-log-out-symbolic</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="UserMenuHistIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">document-open-recent</property>
+  </object>
+  <object class="GtkImage" id="UserMenuPrefsIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">preferences-system</property>
+  </object>
+  <object class="GtkImage" id="UserMenuUserIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">user-info</property>
+  </object>
+</interface>
