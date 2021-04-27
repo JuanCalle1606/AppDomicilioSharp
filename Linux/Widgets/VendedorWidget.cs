@@ -1,15 +1,15 @@
 using System;
 using Gtk;
-using Linux.Widgets;
 using KYLib.Extensions;
 using KYLib.MathFn;
 using Linux.Extensions;
+using Linux.Widgets;
 using UmlBased;
 using UI = Gtk.Builder.ObjectAttribute;
 
 namespace Linux
 {
-	class LinuxVendWindow : Window
+	class VendedorWidget : Window
 	{
 		/// <summary>
 		/// Vendedor que esta siendo mostrado aqui.
@@ -52,10 +52,10 @@ namespace Linux
 		[UI] Label Calificacion = null;
 
 		[UI] ListBox ListaProductos = null;
-		public LinuxVendWindow(Vendedor vendedor) : this(new Builder("LinuxVendWindow.glade"), vendedor) { }
+		public VendedorWidget(Vendedor vendedor) : this(new Builder("VendedorWidget.glade"), vendedor) { }
 
 
-		private LinuxVendWindow(Builder builder, Vendedor vendedor) : base(builder.GetRawOwnedObject("LinuxVendWindow"))
+		private VendedorWidget(Builder builder, Vendedor vendedor) : base(builder.GetRawOwnedObject("VendedorWidget"))
 		{
 			builder.Autoconnect(this);
 			Vendedor = vendedor;
