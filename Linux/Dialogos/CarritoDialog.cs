@@ -16,7 +16,7 @@ namespace Linux
 	{
 		/// <summary>
 		/// Carrito vinculado a ese dialogo.
-		/// </summary>
+		/// </summary> 
 		public Carrito Carrito { get; private set; }
 
 		/// <summary>
