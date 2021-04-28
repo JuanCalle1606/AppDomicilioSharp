@@ -65,6 +65,10 @@ namespace UmlBased
 			return false;
 		}
 
+		/// <summary>
+		/// Realiza el pago del carrito.
+		/// </summary>
+		/// <returns>Un valor que indica si se pudo pagar el carrito.</returns>
 		public bool Pagar()
 		{
 			var saldo = DomiciliosApp.ClienteActual.Saldo;
@@ -76,6 +80,7 @@ namespace UmlBased
 			{
 				//agrupamos los pedidos por vendedores.
 				var groups = Pedidos.GroupBy(P => P.Producto.ObtenerVendedor());
+				var user = (Comprador)DomiciliosApp.ClienteActual;
 
 				foreach (var P in Pedidos)
 				{
@@ -89,10 +94,17 @@ namespace UmlBased
 					};
 					// indicamos al metodo de pago que ya se procesado el primer pago
 					P.Pago.ProcesarCuota();
+					// Acualizamos la fecha a este momento
+					P.Fecha.Add(DateTime.Now - P.Fecha);
+					// agregamos el pedido al historial
+					user.HistorialPedidos.Add(P);
 				}
 
 				//una vez que tenemos todos los pedidos actualizados y pagados debemos enviarlos a los vendedores
-				foreach (var item in groups) item.Key.AgregarPedidos(item);
+				//foreach (var item in groups) item.Key.AgregarPedidos(item);
+
+				// evento de que ha ocurrido un cambio.
+				Changed?.Invoke(false, null);
 
 				//si pudimos pagar todo devolvemos true
 				return true;

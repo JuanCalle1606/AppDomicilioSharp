@@ -60,7 +60,18 @@ namespace Linux
 		/// </summary>
 		void on_PagarBtn_clicked(object o, EventArgs args)
 		{
-
+			if (Carrito.Pagar())
+			{
+				Hide();
+				Utils.SendNotification("El carrito ha sido pagado!");
+			}
+			else
+			{
+				ErrorMsg.Text = "No ha sido posible realizar el pago";
+				ErrorMsg.SecondaryText = "Tu saldo no es suficiente, primero recarga";
+				ErrorMsg.Run();
+				ErrorMsg.Hide();
+			}
 		}
 
 		/// <summary>
@@ -107,7 +118,8 @@ namespace Linux
 			else
 			{
 				var current = from list in ListaPedidos.Children
-							  where (((ListBoxRow)list).Child as ProductoWidget).Producto == content.Producto
+							  where content == null ||
+							  (((ListBoxRow)list).Child as ProductoWidget).Producto == content.Producto
 							  select list;
 				foreach (ListBoxRow item in current)
 				{

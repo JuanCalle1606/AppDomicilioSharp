@@ -107,9 +107,9 @@ namespace UmlBased
 				else if (saldo < 0)
 				{
 					// Se valida que hacer el cambio no de un resultado negativo.
-					if (Saldo - saldo >= 0)
+					if (Saldo + saldo >= 0)
 					{
-						Saldo -= saldo;
+						Saldo += saldo;
 						return true;
 					}
 				}
