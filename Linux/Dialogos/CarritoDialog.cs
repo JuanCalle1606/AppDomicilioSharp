@@ -13,6 +13,8 @@ namespace Linux
 
 		[UI] ListBox ListaPedidos = null;
 
+		[UI] MessageDialog ErrorMsg = null;
+
 		bool updated = false;
 
 		public CarritoDialog(Carrito carrito) : this(new Builder("CarritoDialog.glade"), carrito) { }
@@ -24,6 +26,11 @@ namespace Linux
 			DefaultResponse = ResponseType.Close;
 			Response += Dialog_Deleted;
 			DeleteEvent += Dialog_Deleted;
+			ErrorMsg.DeleteEvent += (o, a) =>
+			{
+				a.RetVal = true;
+				ErrorMsg.Hide();
+			};
 
 			builder.Dispose();
 		}

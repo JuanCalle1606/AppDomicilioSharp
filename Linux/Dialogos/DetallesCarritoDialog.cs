@@ -61,7 +61,16 @@ namespace Linux
 
 		void on_RemoveBtn_clicked(object o, EventArgs args)
 		{
+			var widget = ListaPedidos.SelectedRow.Child as ProductoWidget;
+			var pedido = Carrito.Contiene(widget.Producto);
 
+			if (!Carrito.Eliminar(pedido))
+			{
+				ErrorMsg.Text = "No ha sido posible eliminar el pedido";
+				ErrorMsg.SecondaryText = "Seguramente ya ha sido eliminado. Si el problema persiste reinicia la app";
+				ErrorMsg.Run();
+				ErrorMsg.Hide();
+			}
 		}
 
 		private void ActualizarDetalles(Pedido pedido)
@@ -72,11 +81,13 @@ namespace Linux
 			Precios.Text =
 @"Precio base:
 {0:C2}
+Percio domicilio:
+{3:C2}
 Precio cuota:
 {1:C2}
 Precio total:
 {2:C2}".
-			Format(pedido.ValorBase, pedido.ValorCuota, pedido.ValorTotal);
+			Format(pedido.ValorBase, pedido.ValorCuota, pedido.ValorTotal, pedido.ValorDomicilio);
 			TimeAgo.Text = "Añadido hace: {0}".Format(elapsed);
 			NoCantidad.Value = pedido.Cantidad;
 			NoCuotas.Value = pedido.Cuotas;

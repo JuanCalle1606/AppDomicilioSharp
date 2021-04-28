@@ -89,6 +89,8 @@ namespace UmlBased
 		/// </summary>
 		[DP] public MetodoPago Pago;
 
+		bool preserve = true;
+
 		/// <summary>
 		/// Cancela un pedido, para cancelar un pedido debe ser de unica cuota o puede ser de multiples cuotas pero que solo se haya pagado una, de lo contrario no podra ser reembolsado.
 		/// </summary>
@@ -115,6 +117,11 @@ namespace UmlBased
 		/// </summary>
 		private void CalcularTotal()
 		{
+			if (preserve || Cuotas > 1)
+				ValorDomicilio = Producto.ValorDomicilio;
+			else
+				ValorDomicilio = 0;
+
 			var total = ValorBase * Cantidad;
 
 			//Calculamos todo
@@ -147,10 +154,7 @@ namespace UmlBased
 		/// <param name="domicilio">Indica si el producto de este pedido es el que tiene domicilio mas caro.</param>
 		public void Actualizar(bool domicilio)
 		{
-			if (domicilio || Cuotas > 1)
-				ValorDomicilio = Producto.ValorDomicilio;
-			else
-				ValorDomicilio = 0;
+			preserve = domicilio;
 			CalcularTotal();
 		}
 	}
