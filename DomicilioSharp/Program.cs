@@ -17,14 +17,6 @@ namespace DomicilioSharp
 	static partial class Program
 	{
 		/// <summary>
-		/// Guarda la ruta en la que se guardan los datos de aplicación
-		/// </summary>
-		public static readonly string SavesPath = Path.Combine(
-			Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-			"DomicilioSharp/saves.json"
-		);
-
-		/// <summary>
 		/// Lista de argumentos pasados por consola.
 		/// </summary>
 		public static List<string> ArgsList;

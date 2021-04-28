@@ -16,6 +16,24 @@ namespace DomicilioSharp
 	partial class Program
 	{
 		/// <summary>
+		/// Guarda la ruta en la que se guardan los datos de aplicación
+		/// </summary>
+		public static readonly Assets SavesPath = new Assets(Path.Combine(
+			Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+			"DomicilioSharp"
+		));
+
+		/// <summary>
+		/// Archivo en el que se guardan los datos.
+		/// </summary>
+		public const string SaveFile = "saves.json";
+
+		/// <summary>
+		/// Archivo de respaldo, en caso de error. Guarda la información como estaba cuando se abrio la app en caso de un error.
+		/// </summary>
+		public const string BackFile = "saves.json.bck";
+
+		/// <summary>
 		/// Carga los datos desde los archivos.
 		/// </summary>
 		private static void RestorePreferences()
@@ -23,7 +41,7 @@ namespace DomicilioSharp
 			//ignoramos los errores numericos que ocurran
 			ConvertHelper.IgnoreErrors = true;
 			//obtenemos informacion del directorio en el que se guardaran los datos.
-			var dir = new FileInfo(SavesPath).Directory;
+			var dir = new DirectoryInfo(SavesPath.Directory);
 			//si el directorio no existe lo creamos, esto unicamente deberia de ocurrir la primera vez que se ejecute la app pero tambien es posible que ocurra si el usuario ha borrado el directorio de guardado.
 			if (!dir.Exists)
 				dir.Create();
@@ -34,7 +52,7 @@ namespace DomicilioSharp
 			{
 				//intentamos cargar los datos guardados.
 				//aqui puede generarse un error porque el archivo no existe o porque los datos estan malos.
-				Files.Load<DomiciliosApp>(SavesPath, JsonFile.Default);
+				Files.Load<DomiciliosApp>(SavesPath[SaveFile], JsonFile.Default);
 				Cons.Trace("Datos de usuario cargados", ForegroundColor.Green);
 			}
 			catch (Exception
@@ -46,9 +64,13 @@ namespace DomicilioSharp
 #if DEBUG
 				Cons.TraceError(e.Message);
 #else
-				//valdiamos si el archivo esixte o no para saber cual fue el tipo de error.
-				if (File.Exists(SavesPath))
+				//validamos si el archivo existe o no para saber cual fue el tipo de error.
+				if (File.Exists(SavesPath[SaveFile]))
+				{
 					Cons.Error = "El archivo de guardado esta corrupto o no se puede leer.";
+					//creamos una copia de seguridad solo en caso de error.
+					File.Copy(SavesPath[SaveFile], SavesPath[BackFile], true);
+				}
 				else
 					Cons.Error = "No se ha encontrado un archivo de guardado por lo que se creara uno.";
 #endif
@@ -83,7 +105,7 @@ namespace DomicilioSharp
 		{
 			Cons.Trace("Guardando datos de usuario", ForegroundColor.Green);
 			//guardamos los datos, aqui no es necesario crear la carpeta ya que ha sido creada al cargar los datos.
-			Files.Save(DomiciliosApp.Instance, SavesPath, JsonFile.Default);
+			Files.Save(DomiciliosApp.Instance, SavesPath[SaveFile], JsonFile.Default);
 		}
 
 		[DllImport("kernel32.dll", SetLastError = true)]
