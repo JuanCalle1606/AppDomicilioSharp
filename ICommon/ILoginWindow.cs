@@ -3,6 +3,7 @@ using ICommon.Bases;
 
 namespace ICommon
 {
+	[Author("Juan Pablo Calle")]
 	/// <summary>
 	/// Ventana de inicio de sesión.
 	/// </summary>

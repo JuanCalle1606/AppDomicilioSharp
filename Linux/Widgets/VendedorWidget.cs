@@ -1,5 +1,6 @@
 using System;
 using Gtk;
+using ICommon;
 using KYLib.Extensions;
 using KYLib.MathFn;
 using Linux.Extensions;
@@ -9,6 +10,10 @@ using UI = Gtk.Builder.ObjectAttribute;
 
 namespace Linux
 {
+	[Author("Juan Carlos Arbelaez")]
+	/// <summary>
+	/// Widget que muestra información sobre un vendedor.
+	/// </summary>
 	class VendedorWidget : Window
 	{
 		/// <summary>
@@ -51,14 +56,21 @@ namespace Linux
 		/// </summary>
 		[UI] Label Calificacion = null;
 
+		/// <summary>
+		/// Lista de productos que ofrece este vendedor.
+		/// </summary>
 		[UI] ListBox ListaProductos = null;
-		public VendedorWidget(Vendedor vendedor) : this(new Builder("VendedorWidget.glade"), vendedor) { }
 
+		/// <summary>
+		/// Crea un nuevo widget enlazado a un vendedor.
+		/// </summary>
+		public VendedorWidget(Vendedor vendedor) : this(new Builder("VendedorWidget.glade"), vendedor) { }
 
 		private VendedorWidget(Builder builder, Vendedor vendedor) : base(builder.GetRawOwnedObject("VendedorWidget"))
 		{
 			builder.Autoconnect(this);
 			Vendedor = vendedor;
+			//actualizamos todos las propiedades
 			Imagen.Load(Vendedor.Foto, 250, 250);
 			Nombre.Text = Nombre.Text.Format(vendedor.Name);
 			Correo.Text = Correo.Text.Format(vendedor.Correo);
@@ -70,6 +82,9 @@ namespace Linux
 			builder.Dispose();
 		}
 
+		/// <summary>
+		/// Agrega los productos a <see cref="ListaProductos"/>.
+		/// </summary>
 		private void ConfigurarMenu()
 		{
 			foreach (var item in Vendedor.Menu)

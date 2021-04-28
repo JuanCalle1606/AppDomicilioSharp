@@ -1,14 +1,15 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
+using ICommon;
 using KYLib.ConsoleUtils;
 using KYLib.Data;
 using KYLib.Data.DataFiles;
 using KYLib.Helpers;
+using KYLib.Utils;
 using Newtonsoft.Json;
 using UmlBased;
-using KYLib.Utils;
-using System.Threading;
 
 namespace DomicilioSharp
 {
@@ -57,9 +58,14 @@ namespace DomicilioSharp
 				//si ocurre un error cargando los datos simplemente creamos unos datos nuevos, esto significa que toda la informacion esta perdida.
 				new DomiciliosApp();
 			}
+			//creamos una rutina de cada 6 horas usando mi libreria KYLib.
 			Runner.Every(ValidarPagos, TimeSpan.FromHours(6), CancellationToken.None);
 		}
 
+		[Author("Juan Carlos Arbelaez")]
+		/// <summary>
+		/// Valida si se ha hecho el descuento de pagos cada dia.
+		/// </summary>
 		private static void ValidarPagos()
 		{
 			DateTime fecha = DateTime.Now;

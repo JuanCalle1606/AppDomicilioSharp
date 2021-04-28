@@ -8,6 +8,9 @@ using UI = Gtk.Builder.ObjectAttribute;
 
 namespace Linux.Widgets
 {
+	/// <summary>
+	/// Widget que muestra información sobre un producto.
+	/// </summary>
 	public partial class ProductoWidget : Box
 	{
 		/// <summary>
@@ -67,6 +70,9 @@ namespace Linux.Widgets
 			builder.Dispose();
 		}
 
+		/// <summary>
+		/// Agrega el producto de este widget como un pedido al carrito del usuario o aumenta en 1 su cantidad si ya existe.
+		/// </summary>
 		public void on_CarritoBtn_clicked(object o, EventArgs args)
 		{
 			Comprador user = (Comprador)DomiciliosApp.ClienteActual;
@@ -87,14 +93,17 @@ namespace Linux.Widgets
 					PorcentajeIVA = Pedido.CurrentIVA,
 				};
 			}
+			//aumentamos la cantidad del pedido en 1.
 			ped.Actualizar(++ped.Cantidad, (Small)CuotasDialogo.Value);
 
+			//agregamos el pedido al carrito.
 			if (user.Carrito.Agregar(ped))
 			{
 				Utils.SendNotification("Producto agregado al carrito");
 			}
 		}
 
+		/// <inheritdoc/>
 		protected override void Dispose(bool disposing)
 		{
 			Dialogo.Dispose();

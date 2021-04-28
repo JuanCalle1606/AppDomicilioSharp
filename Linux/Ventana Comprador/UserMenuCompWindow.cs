@@ -1,14 +1,18 @@
 using System;
-using Gtk;
 using UmlBased;
-using UI = Gtk.Builder.ObjectAttribute;
 
 namespace Linux
 {
 	partial class LinuxCompWindow
 	{
+		/// <summary>
+		/// Dialogo de acerca de.
+		/// </summary>
 		AboutUsDialog AboutUs = new();
 
+		/// <summary>
+		/// Dialogo del carrito.
+		/// </summary>
 		CarritoDialog Carrito;
 
 		/// <summary>
@@ -17,6 +21,9 @@ namespace Linux
 		void on_UserMenuAbout_activate(object o, EventArgs args) =>
 			AboutUs.Show();
 
+		/// <summary>
+		/// Abre el dialogo del carrito para que el usuario lo vea.
+		/// </summary>
 		void on_ViewCarrito_clicked(object o, EventArgs args)
 		{
 			var user = (Comprador)DomiciliosApp.ClienteActual;

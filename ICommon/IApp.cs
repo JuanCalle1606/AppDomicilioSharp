@@ -4,6 +4,7 @@ using KYLib.MathFn;
 
 namespace ICommon
 {
+	[Author("Juan Pablo Calle")]
 	/// <summary>
 	/// Representa un administrados de aplicación que guarda ventanas dentro de si.
 	/// </summary>

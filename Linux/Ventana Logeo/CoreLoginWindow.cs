@@ -2,11 +2,10 @@ using System;
 using GLib;
 using Gtk;
 using ICommon;
-using ICommon.Bases;
-using UI = Gtk.Builder.ObjectAttribute;
 
 namespace Linux
 {
+	[Author("Juan Pablo Calle")]
 	/// <summary>
 	/// Ventana que se usa para iniciar sesíon usando gtk
 	/// </summary>

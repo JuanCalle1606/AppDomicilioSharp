@@ -13,8 +13,14 @@ namespace Linux
 {
 	partial class LinuxCompWindow
 	{
+		/// <summary>
+		/// Indica si la ventana ya fue configurada.
+		/// </summary>
 		private bool configuredshow = false;
 
+		/// <summary>
+		/// Configura la ventana.
+		/// </summary>
 		private void ConfigureFistShow()
 		{
 			if (configuredshow) return;

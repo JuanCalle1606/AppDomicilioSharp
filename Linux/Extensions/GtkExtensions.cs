@@ -4,9 +4,16 @@ using System.IO;
 using System.Net.Http;
 using Gdk;
 using Gtk;
+using ICommon;
 
 namespace Linux.Extensions
 {
+	[Author("Juan Pablo Calle")]
+	/// <summary>
+	/// Extencion de gtk creada para cargar imagenes desde internet y no solo desde archivos locales como permite gtk.
+	/// Las imagenes cargadas con esta extensión deben tener una dimensión dada y no mantienen la relación de aspecto.
+	/// Las imagenes son cargadas por cola, esto quiere decir que se carga una despues de otra con el objetivo de no sobrecargar el programa ni la red.
+	/// </summary>
 	public static class GtkExtensions
 	{
 		/// <summary>
@@ -41,6 +48,7 @@ namespace Linux.Extensions
 			// Ubicación vacia?
 			if (string.IsNullOrWhiteSpace(path)) return;
 
+			// informacion de cargado
 			var info = new GtkPixInfo()
 			{
 				Path = path,
@@ -70,11 +78,14 @@ namespace Linux.Extensions
 			ProcessNextLoad();
 		}
 
+		/// <summary>
+		/// Procesa un elemento de la cola, lo carga y lo guarda en cache para futuras cargas.
+		/// </summary>
 		private static async void ProcessNextLoad()
 		{
-			// lista vacia o ya se esta cragando algo retornamos.
+			// lista vacia o ya se esta cargando algo retornamos.
 			if (loading || Queue.Count < 1) return;
-			// indicamos quee stamos cargando algo.
+			// indicamos que estamos cargando algo.
 			loading = true;
 			// obtenemos el elemento a cargar y lo removemos de la lista.
 			var cload = Queue[0];

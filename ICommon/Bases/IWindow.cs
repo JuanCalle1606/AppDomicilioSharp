@@ -1,9 +1,8 @@
-using System;
 using KYLib.Interfaces;
-using KYLib.MathFn;
 
 namespace ICommon.Bases
 {
+	[Author("Juan Pablo Calle")]
 	/// <summary>
 	/// Una ventana del sistema.
 	/// </summary>

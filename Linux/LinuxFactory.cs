@@ -10,6 +10,10 @@ using UmlBased;
 
 namespace Linux
 {
+	[Author("Juan Pablo Calle")]
+	/// <summary>
+	/// Factory que genera los elementos principales de la app con gtk.
+	/// </summary>
 	public class LinuxFactory : IFactory
 	{
 		/// <summary>
@@ -76,9 +80,6 @@ namespace Linux
 		public IWindow CreateCompWindow() => new LinuxCompWindow();
 
 		/// <inheritdoc/>
-		public IWindow CreateVendWindow()
-		{
-			throw new System.NotImplementedException();
-		}
+		public IWindow CreateVendWindow() => new LinuxVendWindow();
 	}
 }

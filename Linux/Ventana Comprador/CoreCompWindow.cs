@@ -1,14 +1,15 @@
 using System;
-using System.IO;
-using GLib;
 using Gtk;
+using ICommon;
 using ICommon.Bases;
-using Linux.Widgets;
-using UmlBased;
 using UI = Gtk.Builder.ObjectAttribute;
 
 namespace Linux
 {
+	[Author("Juan Pablo Calle")]
+	/// <summary>
+	/// Ventana que principal de un usuario de tipo comprador.
+	/// </summary>
 	partial class LinuxCompWindow : Window, IWindow
 	{
 		[UI] Image UserAvatar = null;

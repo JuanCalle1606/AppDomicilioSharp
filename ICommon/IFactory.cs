@@ -5,6 +5,7 @@ using UmlBased;
 
 namespace ICommon
 {
+	[Author("Juan Pablo Calle")]
 	/// <summary>
 	/// Representa una instancia que se usa para crear aplicaciones y ventanas.
 	/// </summary>

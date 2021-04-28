@@ -10,22 +10,49 @@ namespace Linux
 {
 	partial class CarritoDialog
 	{
+		/// <summary>
+		/// Muestra un mensaje cuando .
+		/// </summary>
 		[UI] Label SeleccionarAlert = null;
 
+		/// <summary>
+		/// Muestra información de hace cuanto se agrego ese pedido al carro.
+		/// </summary>
 		[UI] Label TimeAgo = null;
 
+		/// <summary>
+		/// Muestra el precio del primer pago.
+		/// </summary>
 		[UI] Label PrecioCuota = null;
 
+		/// <summary>
+		/// Muestra el precio total del carrito.
+		/// </summary>
 		[UI] Label PrecioTotal = null;
 
+		/// <summary>
+		/// Muestra toda la información de precios.
+		/// </summary>
 		[UI] Label Precios = null;
 
+		/// <summary>
+		/// Contiene todo el contenido principal del panel de detalles.
+		/// </summary>
 		[UI] Box Detalles = null;
 
+		/// <summary>
+		/// Selector de la cantidad de productos del pedido.
+		/// </summary>
 		[UI] SpinButton NoCantidad = null;
 
+		/// <summary>
+		/// Selector del de cuotas del pedido.
+		/// </summary>
 		[UI] SpinButton NoCuotas = null;
 
+		/// <summary>
+		/// Muestra el panel de detalles y actualiza la información
+		/// </summary>
 		void on_ListaPedidos_row_selected(object o, RowSelectedArgs args)
 		{
 			if (args.Row == null)
@@ -45,6 +72,9 @@ namespace Linux
 			Detalles.Visible = true;
 		}
 
+		/// <summary>
+		/// Aplica los cambios hechos en la cantidad o numero de cuotas del pedido.
+		/// </summary>
 		void on_ApplyBtn_clicked(object o, EventArgs args)
 		{
 			Small cantidad = (Small)NoCantidad.ValueAsInt;
@@ -59,6 +89,9 @@ namespace Linux
 			}
 		}
 
+		/// <summary>
+		/// Remueve un pedido del carrito.
+		/// </summary>
 		void on_RemoveBtn_clicked(object o, EventArgs args)
 		{
 			var widget = ListaPedidos.SelectedRow.Child as ProductoWidget;
@@ -73,6 +106,10 @@ namespace Linux
 			}
 		}
 
+		/// <summary>
+		/// Actualiza el panel de dettales con información de un pedido
+		/// </summary>
+		/// <param name="pedido"></param>
 		private void ActualizarDetalles(Pedido pedido)
 		{
 			var diff = DateTime.Now - pedido.Fecha;
@@ -81,7 +118,7 @@ namespace Linux
 			Precios.Text =
 @"Precio base:
 {0:C2}
-Percio domicilio:
+Precio domicilio:
 {3:C2}
 Precio cuota:
 {1:C2}
@@ -93,6 +130,9 @@ Precio total:
 			NoCuotas.Value = pedido.Cuotas;
 		}
 
+		/// <summary>
+		/// Azctualiza los precios finales en la parte inferior.
+		/// </summary>
 		void CalcularSuma()
 		{
 			PrecioCuota.Text = "Precio a pagar: {0:C2}".Format(Carrito.CostoCuota);

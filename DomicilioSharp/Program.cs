@@ -13,6 +13,7 @@ using UmlBased;
 
 namespace DomicilioSharp
 {
+	[Author("Juan Pablo Calle")]
 	static partial class Program
 	{
 		/// <summary>
@@ -128,6 +129,9 @@ namespace DomicilioSharp
 			win.Show();
 		}
 
+		/// <summary>
+		/// Crea el factory usado en el programa.
+		/// </summary>
 		private static Int CreateFactory()
 		{
 			//lo primero que validamos es si sera una aplicación de consola.

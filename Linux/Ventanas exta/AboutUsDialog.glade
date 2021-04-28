@@ -17,6 +17,7 @@
     <property name="website-label" translatable="yes">Repositorio</property>
     <property name="authors">Juan Pablo Calle
 Juan Carlos Arbelaez</property>
+    <property name="documenters">Juan Pablo Calle</property>
     <property name="logo-icon-name">logo</property>
     <property name="license-type">gpl-3-0</property>
     <child internal-child="vbox">
