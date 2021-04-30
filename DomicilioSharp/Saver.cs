@@ -75,11 +75,9 @@ namespace DomicilioSharp
 				else
 					Cons.Error = "No se ha encontrado un archivo de guardado por lo que se creara uno.";
 #endif
-				//esta linea es por prevencio de errores aunque podria ser quitada ?
-				DomiciliosApp.Instance = null;
 
 				//si ocurre un error cargando los datos simplemente creamos unos datos nuevos, esto significa que toda la informacion esta perdida.
-				new DomiciliosApp();
+				_ = new DomiciliosApp();
 			}
 			//creamos una rutina de cada 6 horas usando mi libreria KYLib.
 			Runner.Every(ValidarPagos, TimeSpan.FromHours(6), CancellationToken.None);
