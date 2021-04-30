@@ -41,7 +41,7 @@ namespace DomicilioSharp
 			//ignoramos los errores numericos que ocurran
 			ConvertHelper.IgnoreErrors = true;
 			//obtenemos informacion del directorio en el que se guardaran los datos.
-			var dir = new DirectoryInfo(SavesPath.Directory);
+			var dir = new DirectoryInfo(SavesPath.SearchPath);
 			//si el directorio no existe lo creamos, esto unicamente deberia de ocurrir la primera vez que se ejecute la app pero tambien es posible que ocurra si el usuario ha borrado el directorio de guardado.
 			if (!dir.Exists)
 				dir.Create();
@@ -63,6 +63,7 @@ namespace DomicilioSharp
 			{
 #if DEBUG
 				Cons.TraceError(e.Message);
+				Cons.TraceError(e.StackTrace);
 #else
 				//validamos si el archivo existe o no para saber cual fue el tipo de error.
 				if (File.Exists(SavesPath[SaveFile]))
