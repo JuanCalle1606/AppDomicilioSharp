@@ -58,7 +58,7 @@ namespace Linux
 		/// <summary>
 		/// Realiza el pago del carrito.
 		/// </summary>
-		void on_PagarBtn_clicked(object o, EventArgs args)
+		void On_PagarBtn_clicked(object o, EventArgs args)
 		{
 			if (Carrito.Pagar())
 			{

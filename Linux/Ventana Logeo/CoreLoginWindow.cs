@@ -35,11 +35,10 @@ namespace Linux
 		/// <summary>
 		/// Se ejecuta cuando el usuario cambie la el texto de cualquiere entrada.
 		/// </summary>
-		private void on_Login_changed(object o, EventArgs args)
+		private void On_Login_changed(object o, EventArgs args)
 		{
 			//obtenemos la entrada.
-			var obj = o as Entry;
-			if (obj == null) return;
+			if (o is not Entry obj) return;
 
 			// vemos cual es el revealer asociado a esa entrada.
 			var Exp = RegRevel;

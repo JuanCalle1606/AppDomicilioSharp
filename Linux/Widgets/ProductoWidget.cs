@@ -73,7 +73,7 @@ namespace Linux.Widgets
 		/// <summary>
 		/// Agrega el producto de este widget como un pedido al carrito del usuario o aumenta en 1 su cantidad si ya existe.
 		/// </summary>
-		public void on_CarritoBtn_clicked(object o, EventArgs args)
+		public void On_CarritoBtn_clicked(object o, EventArgs args)
 		{
 			Comprador user = (Comprador)DomiciliosApp.ClienteActual;
 

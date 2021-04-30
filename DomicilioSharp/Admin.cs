@@ -13,10 +13,7 @@ namespace DomicilioSharp
 		static void LoadAdmin()
 		{
 			if (!(Factory is Linux.LinuxFactory)) return;
-			Mod Admin;
-			if (!Mod.TryImport("Admin.dll", out Admin)) return;
-
-			var types = new List<Type>(Admin.DLL.GetTypes());
+			if (!Mod.TryImport("Admin.dll", out Mod Admin)) return;
 
 			var WindowType = Admin.DLL.GetType("Admin.AdminWindow");
 

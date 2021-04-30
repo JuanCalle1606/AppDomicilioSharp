@@ -18,9 +18,9 @@ namespace Linux.Extensions
 		public bool Equals(GtkPixInfo other)
 		{
 			return
-			(Path.Equals(other.Path)) &&
-			(Width.Equals(other.Width)) &&
-			(Height.Equals(other.Height));
+			Path.Equals(other.Path) &&
+			Width.Equals(other.Width) &&
+			Height.Equals(other.Height);
 		}
 
 		/// <summary>
@@ -29,6 +29,11 @@ namespace Linux.Extensions
 		public override int GetHashCode()
 		{
 			return HashCode.Combine(Path, Width, Height);
+		}
+
+		public override bool Equals(object obj)
+		{
+			return Equals(obj as GtkPixInfo);
 		}
 	}
 	[Author("Juan Pablo Calle")]

@@ -62,27 +62,27 @@ namespace Linux
 		/// <summary>
 		/// Regex que valida que el nombre ingresado sea valido.
 		/// </summary>
-		Regex ValidNombre = new Regex(@"^\w+( \w+)+$");
+		Regex ValidNombre = new(@"^\w+( \w+)+$");
 
 		/// <summary>
 		/// Regex que valida que el correo ingresado sea valido.
 		/// </summary>
-		Regex ValidCorreo = new Regex(@"^\w+(\.\w+)*@\w+(\.\w+)+$");
+		Regex ValidCorreo = new(@"^\w+(\.\w+)*@\w+(\.\w+)+$");
 
 		/// <summary>
 		/// Regex que valida que la dirección ingresada sea valida.
 		/// </summary>
-		Regex ValidDireccion = new Regex(@"^[\w ]+#\w+-\d+$");
+		Regex ValidDireccion = new(@"^[\w ]+#\w+-\d+$");
 
 		/// <summary>
 		/// Regex que valida que el telefono ingresado sea valido.
 		/// </summary>
-		Regex ValidTelefono = new Regex(@"^\d+$");
+		Regex ValidTelefono = new(@"^\d+$");
 
 		/// <summary>
 		/// Se eejcuta cada que se le da click al boton de registrarse y hace todas las validaciones
 		/// </summary>
-		private void on_RegBtn_clicked(object sender, EventArgs args)
+		private void On_RegBtn_clicked(object sender, EventArgs args)
 		{
 			// primero hacemos las validaciones para cada campo, en cada campo se valida que no sea una cadena vacia y luego si cumple con su regex, si tiene
 
@@ -193,7 +193,7 @@ namespace Linux
 			//creamos dependiendo de sie s comprador o vendedor.
 			if (iscomp)
 			{
-				Comprador user = new Comprador
+				Comprador user = new()
 				{
 					Id = DomiciliosApp.Instance.NextUserId++,
 					Name = nombre,
@@ -207,7 +207,7 @@ namespace Linux
 			}
 			else
 			{
-				Vendedor user = new Vendedor
+				Vendedor user = new()
 				{
 					Id = DomiciliosApp.Instance.NextUserId++,
 					Name = nombre,

@@ -16,7 +16,7 @@ namespace UmlBased
 		/// <summary>
 		/// Intancia global de una aplicación de domicilio.
 		/// </summary>
-		public static DomiciliosApp Instance;
+		public static DomiciliosApp Instance { get; private set; }
 
 		/// <summary>
 		/// Constructor singleton
@@ -64,7 +64,7 @@ namespace UmlBased
 		/// <summary>
 		/// Aqui se guarda el usuario que esta logeado actualmente.
 		/// </summary>
-		public static Usuario ClienteActual;
+		public static Usuario ClienteActual { get; set; }
 
 		/// <summary>
 		/// Busca entre todas las cuentas una que tenga ese id.

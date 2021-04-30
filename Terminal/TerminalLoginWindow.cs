@@ -13,8 +13,8 @@ namespace Terminal
 			Title = "Domicilios Sharp";
 			var loginpage = new TerminalPage("Iniciar sesión");
 			var registerpage = new TerminalPage("Registrarse");
-			loginpage.Task = onlogin;
-			registerpage.Task = onregister;
+			loginpage.Task = Onlogin;
+			registerpage.Task = Onregister;
 
 			AddItem("Cancelar y salir", Stop, true);
 			AddItem(loginpage);
@@ -24,33 +24,31 @@ namespace Terminal
 			RegisterPage = registerpage;
 		}
 
-		private void onregister()
+		private void Onregister()
 		{
-            int tipo_cuenta = 0;
+			int tipo_cuenta = 0;
 			Console.WriteLine("Por favor indica el tipo de cuenta que deseas crear");
 			Console.WriteLine("Ingresa '1' para crear una cuenta de tipo Comprador y '2' para crear una cuenta de tipo Vendedor");
-            
-			while( tipo_cuenta == 0)
-			{ 
-               try
-			   {
-                  tipo_cuenta = int.Parse(Console.ReadLine());
-			   }
-			   catch
-			   {
-				   tipo_cuenta = 0;
-				   Console.WriteLine("Recuerda que debes ingresar '1' para crear una cuenta de tipo Comprador y '2' para crear una cuenta de tipo Vendedor");
-			   }
+
+			while (tipo_cuenta == 0)
+			{
+				try
+				{
+					tipo_cuenta = int.Parse(Console.ReadLine());
+				}
+				catch
+				{
+					tipo_cuenta = 0;
+					Console.WriteLine("Recuerda que debes ingresar '1' para crear una cuenta de tipo Comprador y '2' para crear una cuenta de tipo Vendedor");
+				}
 			}
 
-            bool cuenta_creada = false;
+			bool cuenta_creada = false;
 
-			while(cuenta_creada == false)
+			while (cuenta_creada == false)
 			{
 				string nombre = "vacio";
 				string direccion = "vacio";
-				string clave = "vacio";
-				string foto = "vacio";
 				string telefono = "vacio";
 				string correo = "vacio";
 
@@ -61,35 +59,37 @@ namespace Terminal
 					Console.WriteLine("Por favor ingresa tu direccion de residencia o puesto de venta");
 					direccion = Console.ReadLine();
 					Console.WriteLine("Por favor ingresa una clave para tu cuenta");
-					clave = Console.ReadLine();
+					string clave = Console.ReadLine();
 					Console.WriteLine("Por favor ingresa una URL que contenga tu foto de perfil");
-					foto = Console.ReadLine();
+					string foto = Console.ReadLine();
 					Console.WriteLine("Por favor ingresa tu numero celular");
 					telefono = Console.ReadLine();
 					Console.WriteLine("Por favor ingresa tu correo electronico");
 					correo = Console.ReadLine();
-				}catch
+				}
+				catch
 				{
 					Console.WriteLine("Uno o mas datos se han ingresado de forma incorrecta, por favor intenta de nuevo");
 				}
 
-				if(tipo_cuenta == 1)
+				if (tipo_cuenta == 1)
 				{
 					try
 					{
-                        Usuario nueva_cuenta = new Comprador()
+						Usuario nueva_cuenta = new Comprador()
 						{
 							Id = DomiciliosApp.Instance.NextUserId++,
 							Name = nombre,
-				            Correo = correo,
+							Correo = correo,
 							Direccion = direccion,
 							Telefono = telefono,
 							Creacion = DateTime.Now,
 						};
 
-						cuenta_creada = true;	
-						
-					} catch
+						cuenta_creada = true;
+
+					}
+					catch
 					{
 						Console.WriteLine("Ha ocurrido un error inesperado, por favor revisa los datos ingresados");
 					}
@@ -99,28 +99,29 @@ namespace Terminal
 				{
 					try
 					{
-                        Usuario nueva_cuenta = new Vendedor()
+						Usuario nueva_cuenta = new Vendedor()
 						{
 							Id = DomiciliosApp.Instance.NextUserId++,
 							Name = nombre,
-				            Correo = correo,
+							Correo = correo,
 							Direccion = direccion,
 							Telefono = telefono,
 							Creacion = DateTime.Now,
 						};
 
-						cuenta_creada = true;	
-						
-					} catch
+						cuenta_creada = true;
+
+					}
+					catch
 					{
 						Console.WriteLine("Ha ocurrido un error inesperado, por favor revisa los datos ingresados");
 					}
 				}
 			}
-		
+
 		}
 
-		private void onlogin()
+		private void Onlogin()
 		{
 			Cons.Trace("Ingrese el correo para iniciar sesión:", ForegroundColor.Cyan);
 			var correo = Cons.Line;

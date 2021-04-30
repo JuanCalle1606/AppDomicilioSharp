@@ -19,7 +19,7 @@ namespace Linux
 		/// <summary>
 		/// Notificación que se usa.
 		/// </summary>
-		private static Notification Noti = new Notification("Domicilio Sharp");
+		private static readonly Notification Noti = new("Domicilio Sharp");
 
 		/// <summary>
 		/// Envia una notificación al usuario.

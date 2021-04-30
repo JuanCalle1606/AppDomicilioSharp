@@ -37,8 +37,7 @@ namespace Linux
 		public bool AddWindow(IWindow window)
 		{
 			// la ventana solo se agrea si es distinta de null.
-			Window win = window as Window;
-			if (win == null) return false;
+			if (window is not Window win) return false;
 			AddWindow(win);
 			return true;
 		}

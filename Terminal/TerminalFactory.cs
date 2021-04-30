@@ -19,8 +19,10 @@ namespace Terminal
 		{
 			if (DefaultUser == null)
 			{
-				var dev = new TerminalLoginWindow();
-				dev.OnLogin = onUserLogin;
+				var dev = new TerminalLoginWindow
+				{
+					OnLogin = onUserLogin
+				};
 				return dev;
 			}
 			return null;

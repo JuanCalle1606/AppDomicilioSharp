@@ -18,7 +18,7 @@ namespace DomicilioSharp
 		/// <summary>
 		/// Guarda la ruta en la que se guardan los datos de aplicación
 		/// </summary>
-		public static readonly Assets SavesPath = new Assets(Path.Combine(
+		public static readonly Assets SavesPath = new(Path.Combine(
 			Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
 			"DomicilioSharp"
 		));

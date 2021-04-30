@@ -18,13 +18,13 @@ namespace Linux
 		/// <summary>
 		/// Muesta el dialogo de acerca de.
 		/// </summary>
-		void on_UserMenuAbout_activate(object o, EventArgs args) =>
+		void On_UserMenuAbout_activate(object o, EventArgs args) =>
 			AboutUs.Show();
 
 		/// <summary>
 		/// Abre el dialogo del carrito para que el usuario lo vea.
 		/// </summary>
-		void on_ViewCarrito_clicked(object o, EventArgs args)
+		void On_ViewCarrito_clicked(object o, EventArgs args)
 		{
 			var user = (Comprador)DomiciliosApp.ClienteActual;
 			Carrito ??= new CarritoDialog(user.Carrito);

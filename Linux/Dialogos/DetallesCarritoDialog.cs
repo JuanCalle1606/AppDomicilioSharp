@@ -53,7 +53,7 @@ namespace Linux
 		/// <summary>
 		/// Muestra el panel de detalles y actualiza la información
 		/// </summary>
-		void on_ListaPedidos_row_selected(object o, RowSelectedArgs args)
+		void On_ListaPedidos_row_selected(object o, RowSelectedArgs args)
 		{
 			if (args.Row == null)
 			{
@@ -75,7 +75,7 @@ namespace Linux
 		/// <summary>
 		/// Aplica los cambios hechos en la cantidad o numero de cuotas del pedido.
 		/// </summary>
-		void on_ApplyBtn_clicked(object o, EventArgs args)
+		void On_ApplyBtn_clicked(object o, EventArgs args)
 		{
 			Small cantidad = (Small)NoCantidad.ValueAsInt;
 			Small cuotas = (Small)NoCuotas.ValueAsInt;
@@ -92,7 +92,7 @@ namespace Linux
 		/// <summary>
 		/// Remueve un pedido del carrito.
 		/// </summary>
-		void on_RemoveBtn_clicked(object o, EventArgs args)
+		void On_RemoveBtn_clicked(object o, EventArgs args)
 		{
 			var widget = ListaPedidos.SelectedRow.Child as ProductoWidget;
 			var pedido = Carrito.Contiene(widget.Producto);

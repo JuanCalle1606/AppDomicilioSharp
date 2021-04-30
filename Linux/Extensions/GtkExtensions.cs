@@ -19,17 +19,17 @@ namespace Linux.Extensions
 		/// <summary>
 		/// Cliente que usamos para descargar imagenes de internet.
 		/// </summary>
-		private static HttpClient client = new();
+		private static readonly HttpClient client = new();
 
 		/// <summary>
 		/// Pares de Path-Pixbuf que actuan como cache.
 		/// </summary>
-		private static Dictionary<GtkPixInfo, Pixbuf> cache = new();
+		private static readonly Dictionary<GtkPixInfo, Pixbuf> cache = new();
 
 		/// <summary>
 		/// Lista de imagenes a ser cargadas.
 		/// </summary>
-		private static List<ImageLoad> Queue = new();
+		private static readonly List<ImageLoad> Queue = new();
 
 		/// <summary>
 		/// Indica si en el momento se esta cargando una iamgen.
@@ -158,7 +158,7 @@ namespace Linux.Extensions
 			try
 			{
 				// leemos el stream
-				while ((i = await st.ReadAsync(buf, 0, 16384)) != 0)
+				while ((i = await st.ReadAsync(buf.AsMemory(0, 16384))) != 0)
 				{
 					// escribimos todos los datos en memoria
 					loader.Write(buf, (ulong)i);

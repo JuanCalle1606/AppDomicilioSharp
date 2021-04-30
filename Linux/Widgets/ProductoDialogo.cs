@@ -90,7 +90,7 @@ namespace Linux.Widgets
 		/// <summary>
 		/// Muestra el dialogo con información del producto.
 		/// </summary>
-		void on_VerBtn_clicked(object o, EventArgs args)
+		void On_VerBtn_clicked(object o, EventArgs args)
 		{
 			if (!ShowDialog) ConfigurarDialogo();
 			ShowDialog = true;
@@ -100,7 +100,7 @@ namespace Linux.Widgets
 		/// <summary>
 		/// Añade una calificiación al producto.
 		/// </summary>
-		void on_CalificarBtn_clicked(object o, EventArgs args)
+		void On_CalificarBtn_clicked(object o, EventArgs args)
 		{
 			if (!calificable) return;
 			calificable = false;

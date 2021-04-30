@@ -31,7 +31,7 @@ namespace Linux
 		/// <summary>
 		/// Se ejecuta cuando el usuario le da click al boton de iniciar sesión
 		/// </summary>
-		private void on_LoginBtn_clicked(object o, EventArgs args)
+		private void On_LoginBtn_clicked(object o, EventArgs args)
 		{
 			//obtenemos las entradas
 			var correo = LoginCorreo.Text;

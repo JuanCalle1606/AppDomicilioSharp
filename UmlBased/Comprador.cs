@@ -29,8 +29,13 @@ namespace UmlBased
 		{
 			get
 			{
-				//aqui debemos calcular el descuento que se debe aplicar al usaurio.
-				return 1;
+				//aqui debemos calcular el descuento que se debe aplicar al usuario.
+				if (Tipo == TipoComprador.Normal)
+					return 1;
+				else if (Tipo == TipoComprador.VIP)
+					return 0.88;
+				else
+					return 1;
 			}
 		}
 

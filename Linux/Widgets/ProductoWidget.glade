@@ -37,7 +37,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                <signal name="clicked" handler="on_CarritoBtn_clicked" swapped="no"/>
+                <signal name="clicked" handler="On_CarritoBtn_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -175,7 +175,7 @@
                     <property name="receives-default">True</property>
                     <property name="margin-left">5</property>
                     <property name="margin-start">5</property>
-                    <signal name="clicked" handler="on_CalificarBtn_clicked" swapped="no"/>
+                    <signal name="clicked" handler="On_CalificarBtn_clicked" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -544,7 +544,7 @@ Domicilio:
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
             <property name="margin-bottom">5</property>
-            <signal name="clicked" handler="on_VerBtn_clicked" swapped="no"/>
+            <signal name="clicked" handler="On_VerBtn_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -559,7 +559,7 @@ Domicilio:
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
             <property name="margin-top">5</property>
-            <signal name="clicked" handler="on_CarritoBtn_clicked" swapped="no"/>
+            <signal name="clicked" handler="On_CarritoBtn_clicked" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
