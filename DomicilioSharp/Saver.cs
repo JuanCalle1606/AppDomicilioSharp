@@ -53,7 +53,7 @@ namespace DomicilioSharp
 				//intentamos cargar los datos guardados.
 				//aqui puede generarse un error porque el archivo no existe o porque los datos estan malos.
 				Files.Load<DomiciliosApp>(SavesPath[SaveFile], JsonFile.Default);
-				Cons.Trace("Datos de usuario cargados", ForegroundColor.Green);
+				Cons.Trace("Datos de usuario cargados");
 			}
 			catch (Exception
 #if DEBUG

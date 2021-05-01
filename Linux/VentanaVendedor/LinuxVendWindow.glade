@@ -2,6 +2,37 @@
 <!-- Generated with glade 3.38.2 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
+  <object class="GtkImage" id="UserMenuAppIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">logo</property>
+  </object>
+  <object class="GtkImage" id="UserMenuCarIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">user-trash</property>
+  </object>
+  <object class="GtkImage" id="UserMenuCloseIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">system-log-out-symbolic</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="UserMenuHistIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">document-open-recent</property>
+  </object>
+  <object class="GtkImage" id="UserMenuPrefsIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">preferences-system</property>
+  </object>
+  <object class="GtkImage" id="UserMenuUserIcon">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">user-info</property>
+  </object>
   <object class="GtkMenu" id="UserMenu">
     <property name="visible">True</property>
     <property name="can-focus">False</property>
@@ -125,6 +156,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <signal name="clicked" handler="On_EditarMenuBtn_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -138,6 +170,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
+                <signal name="clicked" handler="On_VerOrdenesBtn_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -156,14 +189,53 @@
           <object class="GtkLabel">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="xpad">5</property>
             <property name="label" translatable="yes">Pedidos recientes:</property>
-            <property name="xalign">0</property>
+            <property name="xalign">0.019999999552965164</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="margin-left">5</property>
+            <property name="margin-right">7</property>
+            <property name="margin-start">5</property>
+            <property name="margin-end">7</property>
+            <property name="margin-top">2</property>
+            <property name="margin-bottom">7</property>
+            <property name="shadow-type">in</property>
+            <property name="min-content-width">450</property>
+            <property name="min-content-height">300</property>
+            <child>
+              <object class="GtkViewport">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <child>
+                  <object class="GtkListBox" id="ListaPedidos">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="selection-mode">none</property>
+                    <child type="placeholder">
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can-focus">False</property>
+                        <property name="label" translatable="yes">No te han hechos pedidos recientemente</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
           </packing>
         </child>
         <child>
@@ -174,11 +246,12 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">2</property>
+            <property name="position">3</property>
           </packing>
         </child>
         <child>
           <object class="GtkButtonBox">
+            <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="layout-style">end</property>
             <child>
@@ -202,7 +275,7 @@
             <property name="expand">False</property>
             <property name="fill">False</property>
             <property name="pack-type">end</property>
-            <property name="position">3</property>
+            <property name="position">4</property>
           </packing>
         </child>
       </object>
@@ -246,36 +319,5 @@
         </child>
       </object>
     </child>
-  </object>
-  <object class="GtkImage" id="UserMenuAppIcon">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="icon-name">logo</property>
-  </object>
-  <object class="GtkImage" id="UserMenuCarIcon">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="icon-name">user-trash</property>
-  </object>
-  <object class="GtkImage" id="UserMenuCloseIcon">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="icon-name">system-log-out-symbolic</property>
-    <property name="icon_size">1</property>
-  </object>
-  <object class="GtkImage" id="UserMenuHistIcon">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="icon-name">document-open-recent</property>
-  </object>
-  <object class="GtkImage" id="UserMenuPrefsIcon">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="icon-name">preferences-system</property>
-  </object>
-  <object class="GtkImage" id="UserMenuUserIcon">
-    <property name="visible">True</property>
-    <property name="can-focus">False</property>
-    <property name="icon-name">user-info</property>
   </object>
 </interface>

@@ -84,7 +84,7 @@ namespace DomicilioSharp
 			}
 
 			//creamos la ventana/dialogo de inicio de sesion;
-			var login = Factory.CreateLoginWindow(DomiciliosApp.ObtenerComprador(0), OnUserLogin);
+			var login = Factory.CreateLoginWindow(DomiciliosApp.ObtenerVendedor(0), OnUserLogin);
 			App.AddWindow(login);
 			login?.Show();
 

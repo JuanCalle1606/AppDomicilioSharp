@@ -13,11 +13,25 @@ namespace Linux
 	/// </summary>
 	class LinuxVendWindow : Window, IWindow
 	{
+		MenuDialogo Menu = null;
+
+
 		public LinuxVendWindow() : this(new Builder("LinuxVendWindow.glade")) { }
 
 		private LinuxVendWindow(Builder builder) : base(builder.GetRawOwnedObject("LinuxVendWindow"))
 		{
 			builder.Autoconnect(this);
+		}
+
+		void On_VerOrdenesBtn_clicked(object o, EventArgs args)
+		{
+
+		}
+
+		void On_EditarMenuBtn_clicked(object o, EventArgs args)
+		{
+			Menu ??= new();
+			Menu.Show();
 		}
 	}
 }
