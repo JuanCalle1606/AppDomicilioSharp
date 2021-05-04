@@ -8,7 +8,7 @@ namespace Linux
 		/// <summary>
 		/// Dialogo de acerca de.
 		/// </summary>
-		AboutUsDialog AboutUs = new();
+		readonly AboutUsDialog AboutUs = new();
 
 		/// <summary>
 		/// Dialogo del carrito.
@@ -20,6 +20,19 @@ namespace Linux
 		/// </summary>
 		void On_UserMenuAbout_activate(object o, EventArgs args) =>
 			AboutUs.Show();
+
+		void On_UserMenuClose_activate(object o, EventArgs args)
+		{
+			Hide();
+			Gtk.Application app = Application;
+			app.RemoveWindow(this);
+			Carrito?.Dispose();
+			AboutUs?.Dispose();
+			Dispose();
+			var window = LinuxFactory.Default.CreateLoginWindow(null, LinuxFactory.loginaction) as LinuxLoginWindow;
+			app.AddWindow(window);
+			window.Show();
+		}
 
 		/// <summary>
 		/// Abre el dialogo del carrito para que el usuario lo vea.

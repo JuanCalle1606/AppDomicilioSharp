@@ -58,9 +58,12 @@ namespace Linux
 #endif
 		}
 
+		internal static System.Action loginaction;
+
 		/// <inheritdoc/>
 		public ILoginWindow CreateLoginWindow(Usuario DefaultUser, System.Action onUserLogin)
 		{
+			loginaction ??= onUserLogin;
 			if (DefaultUser == null)
 			{
 				var dev = new LinuxLoginWindow();

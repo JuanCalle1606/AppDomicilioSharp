@@ -31,7 +31,7 @@ namespace Linux
 		/// Se ejecuta cuando el usuario la ventana.
 		/// </summary>
 		private void Window_DeleteEvent(object o, EventArgs args) =>
-			Gtk.Application.Quit();
+			Application.Quit();
 
 		/// <inheritdoc/>
 		void IWindow.Show()

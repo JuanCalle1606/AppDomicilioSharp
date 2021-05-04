@@ -125,6 +125,7 @@
         <property name="image">UserMenuCloseIcon</property>
         <property name="use-stock">False</property>
         <property name="always-show-image">True</property>
+        <signal name="activate" handler="On_UserMenuClose_activate" swapped="no"/>
       </object>
     </child>
     <child>
