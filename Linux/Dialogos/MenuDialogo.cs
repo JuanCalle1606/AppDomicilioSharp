@@ -1,9 +1,9 @@
 using System;
 using Gtk;
+using KYLib.Extensions;
 using Linux.Widgets;
 using UmlBased;
 using UI = Gtk.Builder.ObjectAttribute;
-using KYLib.Extensions;
 
 namespace Linux
 {
@@ -24,8 +24,9 @@ namespace Linux
 			DefaultResponse = ResponseType.Cancel;
 
 			Response += Dialog_Response;
-			DestroyEvent += Dialog_Response;
+			DeleteEvent += Dialog_Response;
 			ActualizarMenu();
+			builder.Dispose();
 		}
 
 		private void Dialog_Response(object o, GLib.SignalArgs args)

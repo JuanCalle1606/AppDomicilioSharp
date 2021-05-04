@@ -21,11 +21,13 @@ namespace Linux
 		private LinuxVendWindow(Builder builder) : base(builder.GetRawOwnedObject("LinuxVendWindow"))
 		{
 			builder.Autoconnect(this);
-			DestroyEvent += OnWindowDestroy;
+			DeleteEvent += OnWindowDestroy;
+			builder.Dispose();
 		}
 
 		[Author("Juan Pablo Calle")]
-		private void OnWindowDestroy(object o, DestroyEventArgs args) => Application.Quit();
+		private void OnWindowDestroy(object o, EventArgs args) =>
+			Application.Quit();
 
 		void On_VerOrdenesBtn_clicked(object o, EventArgs args)
 		{
