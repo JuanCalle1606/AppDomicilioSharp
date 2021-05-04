@@ -31,5 +31,18 @@ namespace Linux
 			Carrito.Actualizar();
 			Carrito.Show();
 		}
+
+		void On_SearchBtn_clicked(object o, EventArgs args)
+		{
+			ClearProductos();
+			var input = SearchInput.Text.ToLower();
+
+			if (string.IsNullOrWhiteSpace(input))
+			{
+				ShowProductos();
+				return;
+			}
+			ShowProductos(DomiciliosApp.Instance.Productos, input);
+		}
 	}
 }

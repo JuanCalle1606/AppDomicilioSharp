@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Gtk;
 using KYLib.Extensions;
@@ -41,6 +42,19 @@ namespace Linux
 			{
 				ListaProductos.Add(new ProductoWidget(item));
 				if (i++ >= 10) break;
+			}
+		}
+
+		void ShowProductos(IEnumerable<Producto> list, string input)
+		{
+			var i = 0;
+			foreach (var item in list)
+			{
+				if (item.Name.ToLower().Contains(input))
+				{
+					ListaProductos.Add(new ProductoWidget(item));
+					if (i++ >= 10) break;
+				}
 			}
 		}
 

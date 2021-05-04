@@ -16,6 +16,8 @@ namespace Linux
 
 		[UI] ListBox ListaProductos = null;
 
+		[UI] SearchEntry SearchInput = null;
+
 		public LinuxCompWindow() : this(new Builder("LinuxCompWindow.glade")) { }
 
 		private LinuxCompWindow(Builder builder) : base(builder.GetRawOwnedObject("LinuxCompWindow"))
