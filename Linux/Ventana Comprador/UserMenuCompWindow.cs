@@ -16,10 +16,22 @@ namespace Linux
 		CarritoDialog Carrito;
 
 		/// <summary>
+		/// Dialogo del historial
+		/// </summary>
+		HistoryDialog Historial;
+
+		/// <summary>
 		/// Muesta el dialogo de acerca de.
 		/// </summary>
 		void On_UserMenuAbout_activate(object o, EventArgs args) =>
 			AboutUs.Show();
+
+		void On_UserMenuHist_activate(object o, EventArgs args)
+		{
+			Historial ??= new();
+			Historial.Actualizar();
+			Historial.Show();
+		}
 
 		void On_UserMenuClose_activate(object o, EventArgs args)
 		{
