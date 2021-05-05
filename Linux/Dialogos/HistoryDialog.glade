@@ -14,7 +14,8 @@
     <property name="default-width">320</property>
     <property name="default-height">260</property>
     <property name="icon-name">logo</property>
-    <property name="type-hint">dialog</property>
+    <property name="type-hint">normal</property>
+    <property name="skip-taskbar-hint">True</property>
     <child internal-child="vbox">
       <object class="GtkBox">
         <property name="can-focus">False</property>
@@ -36,6 +37,7 @@
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="can-default">True</property>
+                <property name="has-default">True</property>
                 <property name="receives-default">True</property>
                 <property name="use-stock">True</property>
               </object>
@@ -105,16 +107,16 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkLabel">
+                              <object class="GtkLabel" id="Cantidad">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="label" translatable="yes">Detalles de pago:</property>
+                                <property name="label" translatable="yes">Cantidad: {0}</property>
                                 <property name="xalign">0</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">1</property>
+                                <property name="position">2</property>
                               </packing>
                             </child>
                             <child>
@@ -122,15 +124,41 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="label" translatable="yes">Precio base:
-{0:C2}
-Precio cuota:
-{1:C2}</property>
+{0:C2}</property>
                                 <property name="xalign">0</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">2</property>
+                                <property name="position">3</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkExpander">
+                                <property name="visible">True</property>
+                                <property name="can-focus">True</property>
+                                <property name="resize-toplevel">True</property>
+                                <child>
+                                  <object class="GtkLabel" id="OtrosPrecios">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="label" translatable="yes">Precio Aditivo: 
+{0}</property>
+                                    <property name="xalign">0</property>
+                                  </object>
+                                </child>
+                                <child type="label">
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can-focus">False</property>
+                                    <property name="label" translatable="yes">Mas precios</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">4</property>
                               </packing>
                             </child>
                             <child>
@@ -143,7 +171,7 @@ Precio cuota:
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">3</property>
+                                <property name="position">5</property>
                               </packing>
                             </child>
                             <child>
@@ -157,7 +185,7 @@ Precio cuota:
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
                                 <property name="pack-type">end</property>
-                                <property name="position">4</property>
+                                <property name="position">6</property>
                               </packing>
                             </child>
                             <child>
@@ -209,7 +237,7 @@ Precio cuota:
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">4</property>
+                                <property name="position">6</property>
                               </packing>
                             </child>
                           </object>
@@ -312,26 +340,10 @@ Precio cuota:
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <child>
-                                  <object class="GtkListBox">
+                                  <object class="GtkListBox" id="Fechas">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="selection-mode">none</property>
-                                    <child>
-                                      <object class="GtkListBoxRow">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">True</property>
-                                        <child>
-                                          <object class="GtkLabel">
-                                            <property name="visible">True</property>
-                                            <property name="can-focus">False</property>
-                                            <property name="label" translatable="yes">{0}:
-Pagaste 1 cuotas</property>
-                                            <property name="wrap">True</property>
-                                            <property name="xalign">0</property>
-                                          </object>
-                                        </child>
-                                      </object>
-                                    </child>
                                   </object>
                                 </child>
                               </object>

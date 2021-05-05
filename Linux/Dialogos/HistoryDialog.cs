@@ -28,6 +28,10 @@ namespace Linux
 
 		[UI] Label Estado = null;
 
+		[UI] Label OtrosPrecios = null;
+
+		[UI] Label Cantidad = null;
+
 		public HistoryDialog() : this(new Builder("HistoryDialog.glade")) { }
 
 		private HistoryDialog(Builder builder) : base(builder.GetRawOwnedObject("HistoryDialog"))
@@ -59,22 +63,31 @@ namespace Linux
 			TimeAgo.Text = "Comprado el {0:D2}/{1:D2}/{2}".
 			Format(pedido.Fecha.Day, pedido.Fecha.Month, pedido.Fecha.Year);
 
+			string domstr = pedido.ValorDomicilio == 0 ? "" :
+@"Precio domicilio:
+{0:C2}
+".
+			Format(pedido.ValorDomicilio);
+
 			Precios.Text =
 @"Precio base:
 {0:C2}
-Precio domicilio:
-{3:C2}
-IVA aplicado:
-{4:P0}
-Descuento de usuario:
-{5:P1}
-Aditivo por cuotas:
-{6:C2}
-Precio cuota:
+{3}Precio cuota:
 {1:C2}
 Precio total:
 {2:C2}".
-			Format(pedido.ValorBase, pedido.ValorCuota, pedido.ValorTotal, pedido.ValorDomicilio, pedido.PorcentajeIVA - 1, 1 - pedido.PorcentajeDescuento, pedido.ValorAditivo);
+			Format(pedido.ValorBase, pedido.ValorCuota, pedido.ValorTotal, domstr);
+
+			OtrosPrecios.Text =
+@"IVA aplicado:
+{0:P0}
+Descuento de usuario:
+{1:P1}
+Aditivo por cuotas:
+{2:C2}".
+			Format(pedido.PorcentajeIVA - 1, 1 - pedido.PorcentajeDescuento, pedido.ValorAditivo);
+
+			Cantidad.Text = "Cantidad: {0}".Format(pedido.Cantidad);
 
 			Estado.Text = "Estado: {0}".
 			Format(pedido.Estado);
