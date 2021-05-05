@@ -44,6 +44,7 @@
         <property name="image">UserMenuCarIcon</property>
         <property name="use-stock">False</property>
         <property name="always-show-image">True</property>
+        <signal name="activate" handler="On_EditarMenuBtn_clicked" swapped="no"/>
       </object>
     </child>
     <child>
@@ -106,6 +107,7 @@
         <property name="use-underline">True</property>
         <property name="use-stock">True</property>
         <property name="always-show-image">True</property>
+        <signal name="activate" handler="On_UserMenuAbout_activate" swapped="no"/>
       </object>
     </child>
     <child>
@@ -122,6 +124,7 @@
         <property name="image">UserMenuCloseIcon</property>
         <property name="use-stock">False</property>
         <property name="always-show-image">True</property>
+        <signal name="activate" handler="On_UserMenuClose_activate" swapped="no"/>
       </object>
     </child>
     <child>
@@ -132,6 +135,7 @@
         <property name="use-underline">True</property>
         <property name="use-stock">True</property>
         <property name="always-show-image">True</property>
+        <signal name="activate" handler="Window_DeleteEvent" swapped="no"/>
       </object>
     </child>
   </object>

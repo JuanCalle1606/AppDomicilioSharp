@@ -9,9 +9,9 @@ namespace Linux
 
 	[Author("Juan Carlos Arbelaez")]
 	/// <summary>
-	/// Venatna principal de los usuarios de tipo vendedor.
+	/// Ventana principal de los usuarios de tipo vendedor.
 	/// </summary>
-	class LinuxVendWindow : Window, IWindow
+	partial class LinuxVendWindow : Window, IWindow
 	{
 		MenuDialogo Menu = null;
 
@@ -21,12 +21,12 @@ namespace Linux
 		private LinuxVendWindow(Builder builder) : base(builder.GetRawOwnedObject("LinuxVendWindow"))
 		{
 			builder.Autoconnect(this);
-			DeleteEvent += OnWindowDestroy;
+			DeleteEvent += Window_DeleteEvent;
 			builder.Dispose();
 		}
 
 		[Author("Juan Pablo Calle")]
-		private void OnWindowDestroy(object o, EventArgs args) =>
+		private void Window_DeleteEvent(object o, EventArgs args) =>
 			Application.Quit();
 
 		void On_VerOrdenesBtn_clicked(object o, EventArgs args)
