@@ -94,7 +94,7 @@
                               <object class="GtkLabel" id="TimeAgo">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="label" translatable="yes">Comprado hace: {0}</property>
+                                <property name="label" translatable="yes">Comprado el {0}</property>
                                 <property name="wrap">True</property>
                                 <property name="xalign">0</property>
                               </object>
@@ -134,6 +134,19 @@ Precio cuota:
                               </packing>
                             </child>
                             <child>
+                              <object class="GtkLabel" id="Estado">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="label" translatable="yes">Estado : {0}</property>
+                                <property name="xalign">0</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">True</property>
+                                <property name="position">3</property>
+                              </packing>
+                            </child>
+                            <child>
                               <object class="GtkButton" id="CancelarBtn">
                                 <property name="label" translatable="yes">Cancelar</property>
                                 <property name="visible">True</property>
@@ -144,7 +157,7 @@ Precio cuota:
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
                                 <property name="pack-type">end</property>
-                                <property name="position">3</property>
+                                <property name="position">4</property>
                               </packing>
                             </child>
                             <child>
@@ -153,11 +166,12 @@ Precio cuota:
                                 <property name="can-focus">False</property>
                                 <property name="orientation">vertical</property>
                                 <child>
-                                  <object class="GtkLabel">
+                                  <object class="GtkLabel" id="NoCuotas">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="label" translatable="yes">Has pagado {0} de {1} cuotas</property>
                                     <property name="wrap">True</property>
+                                    <property name="xalign">0</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -195,7 +209,7 @@ Precio cuota:
                               <packing>
                                 <property name="expand">False</property>
                                 <property name="fill">True</property>
-                                <property name="position">3</property>
+                                <property name="position">4</property>
                               </packing>
                             </child>
                           </object>
@@ -243,6 +257,7 @@ Precio cuota:
                           <object class="GtkListBox" id="ListaPedidos">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
+                            <signal name="row-selected" handler="On_ListaPedidos_row_selected" swapped="no"/>
                             <child type="placeholder">
                               <object class="GtkLabel">
                                 <property name="visible">True</property>
