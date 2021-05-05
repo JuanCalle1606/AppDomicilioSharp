@@ -53,6 +53,9 @@ namespace DomicilioSharp
 				//intentamos cargar los datos guardados.
 				//aqui puede generarse un error porque el archivo no existe o porque los datos estan malos.
 				Files.Load<DomiciliosApp>(SavesPath[SaveFile], JsonFile.Default);
+				//en caso de un archivo vacio danos error
+				if (DomiciliosApp.Instance == null)
+					throw new Exception("Ha ocurrido un error al cargar los datos");
 				Cons.Trace("Datos de usuario cargados");
 			}
 			catch (Exception

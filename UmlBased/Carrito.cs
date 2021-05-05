@@ -103,6 +103,9 @@ namespace UmlBased
 				//una vez que tenemos todos los pedidos actualizados y pagados debemos enviarlos a los vendedores
 				//foreach (var item in groups) item.Key.AgregarPedidos(item);
 
+				// limpiamos el carrito actual
+				Pedidos.Clear();
+
 				// evento de que ha ocurrido un cambio.
 				Changed?.Invoke(false, null);
 
