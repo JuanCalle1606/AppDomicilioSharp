@@ -2,7 +2,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ICommon\ICommon.csproj" />
-    <ProjectReference Include="..\..\KYLib-CSharp\KYLib.ConsoleUtils\KYLib.ConsoleUtils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="KYLib.ConsoleUtils" Version="1.5.6" />
   </ItemGroup>
 
   <PropertyGroup>
