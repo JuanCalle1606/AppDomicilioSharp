@@ -57,11 +57,6 @@ namespace UmlBased
 		[DP] public List<Producto> Productos = new();
 
 		/// <summary>
-		/// Lista de Categorias que guarda a todos las categorias que han sido creadas.
-		/// </summary>
-		[DP] public List<Categoria> Categorias = new();
-
-		/// <summary>
 		/// Aqui se guarda el usuario que esta logeado actualmente.
 		/// </summary>
 		public static Usuario ClienteActual { get; set; }
@@ -71,7 +66,7 @@ namespace UmlBased
 		/// </summary>
 		/// <param name="id">Id de la cuenta a buscar.</param>
 		public static Usuario ObtenerCuenta(Int id) =>
-			(Usuario)ObtenerComprador(id) ?? (Usuario)ObtenerVendedor(id);
+			(Usuario)ObtenerComprador(id) ?? ObtenerVendedor(id);
 
 		/// <summary>
 		/// Obtiene una cuenta de comprador que tenga una id dada.
@@ -87,16 +82,7 @@ namespace UmlBased
 		public static Vendedor ObtenerVendedor(Int id) =>
 			Instance.Vendedores.Find(C => C.Id.Equals(id));
 
-		/// <summary>
-		/// Busca una categoria con un nombre especifico.
-		/// </summary>
-		/// <param name="name">Nombre de la categoria a buscar.</param>
-		public static Categoria ObtenerCategoria(string name) =>
-			Instance.Categorias.FindByName(name.ToLower());
-
 		public static void ProcesarDia() =>
 			Instance.Compradores.ForEach(p => p.PagoCuotas());
-
-
 	}
 }

@@ -24,11 +24,6 @@ namespace UmlBased
 		public List<Producto> Menu { get; private set; } = new();
 
 		/// <summary>
-		/// Lista de categorias que este vendedor suele ofrecer.
-		/// </summary>
-		public List<Categoria> Categorias { get; private set; } = new();
-
-		/// <summary>
 		/// Promedio de las calificaciones.
 		/// </summary>
 		/*TODO: Cambiar el tipo de Real a Float*/
