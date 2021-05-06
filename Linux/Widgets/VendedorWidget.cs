@@ -47,11 +47,6 @@ namespace Linux
 		[UI] Label Direccion = null;
 
 		/// <summary>
-		/// Label que muestra el horario de atencion del vendedor.
-		/// </summary>
-		[UI] Label HroAtencion = null;
-
-		/// <summary>
 		/// Label que muestra la calificacion del vendedor.
 		/// </summary>
 		[UI] Label Calificacion = null;
@@ -76,7 +71,6 @@ namespace Linux
 			Correo.Text = Correo.Text.Format(vendedor.Correo);
 			Telefono.Text = Telefono.Text.Format(vendedor.Telefono);
 			Direccion.Text = Direccion.Text.Format(vendedor.Direccion);
-			HroAtencion.Text = HroAtencion.Text.Format(vendedor.AtencionCliente);
 			Calificacion.Text = Calificacion.Text.Format(vendedor.Calificacion);
 			ConfigurarMenu();
 			builder.Dispose();

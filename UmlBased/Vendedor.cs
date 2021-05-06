@@ -16,38 +16,23 @@ namespace UmlBased
 		/// <summary>
 		/// Lista de calificaciones que le han dado a este vendedor.
 		/// </summary>
-		private List<Small> calificacion = new();
+		[DP] private List<Small> calificacion = new();
 
 		/// <summary>
 		/// Menu de productos que ofrece este vendedor.
 		/// </summary>
-		public List<Producto> Menu { get; private set; } = new();
+		[DP] public List<Producto> Menu { get; private set; } = new();
 
 		/// <summary>
 		/// Promedio de las calificaciones.
 		/// </summary>
 		/*TODO: Cambiar el tipo de Real a Float*/
-		public Real Calificacion => Mathf.MeanOf<Small, Real>(calificacion);
-
-		/// <summary>
-		/// Lista de horarios en las que este vendedor ofrece atención al cliente.
-		/// </summary>
-		public List<DateTime> AtencionCliente { get; private set; } = new();
+		public Real Calificacion => calificacion.Count == 0 ? 0 : Mathf.MeanOf<Small, Real>(calificacion);
 
 		/// <summary>
 		/// Lista de pedidos que le han realizado a este vendedor.
 		/// </summary>
-		public List<Pedido> Pedidos { get; private set; } = new();
-
-		/// <summary>
-		/// Agrega un pedido a este vendedor para que lo despache.
-		/// </summary>
-		/// <param name="pedido">Pedido a agregar</param>
-		public bool AgregarPedido(Pedido pedido)
-		{
-			Pedidos.Add(pedido);
-			return true;
-		}
+		[DP] public List<Pedido> Pedidos { get; private set; } = new();
 
 		/// <summary>
 		/// Agrega unos pedidos a este vendedor para que los despache.
@@ -66,16 +51,7 @@ namespace UmlBased
 		public bool AgregarProducto(Producto producto)
 		{
 			Menu.Add(producto);
-			return true;
-		}
-
-		/// <summary>
-		/// Agrega varios productos al menu de este vendedor.
-		/// </summary>
-		/// <param name="producto">Productos a agregar</param>
-		public bool AgregarProductos(List<Producto> productos)
-		{
-			Menu.AddRange(productos);
+			DomiciliosApp.Instance.Productos.Add(producto);
 			return true;
 		}
 
