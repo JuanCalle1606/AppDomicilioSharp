@@ -7,7 +7,7 @@ using UI = Gtk.Builder.ObjectAttribute;
 
 namespace Linux
 {
-	class MenuDialogo : Dialog
+	partial class MenuDialogo : Dialog
 	{
 		[UI] ListBox ListaPedidos = null;
 		[UI] Label SeleccionarAlert = null;
@@ -22,9 +22,10 @@ namespace Linux
 		{
 			builder.Autoconnect(this);
 			DefaultResponse = ResponseType.Cancel;
-
 			Response += Dialog_Response;
 			DeleteEvent += Dialog_Response;
+			CrearProducto.DeleteEvent += ProdDialogClose;
+			CrearProducto.Response += ProdDialogClose;
 			ActualizarMenu();
 			builder.Dispose();
 		}

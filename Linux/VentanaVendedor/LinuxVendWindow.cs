@@ -22,6 +22,7 @@ namespace Linux
 		{
 			builder.Autoconnect(this);
 			DeleteEvent += Window_DeleteEvent;
+
 			builder.Dispose();
 		}
 
