@@ -26,6 +26,9 @@ namespace Linux
 
 		void On_ProdAplicarBtn_clicked(object o, EventArgs args)
 		{
+			if (string.IsNullOrEmpty(ProdNombre.Text)
+				|| string.IsNullOrEmpty(ProdDetalles.Buffer.Text))
+				return;
 			var user = DomiciliosApp.ClienteActual as Vendedor;
 			var prod = new Producto()
 			{
