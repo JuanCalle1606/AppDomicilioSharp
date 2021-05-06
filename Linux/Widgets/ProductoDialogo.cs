@@ -121,17 +121,8 @@ namespace Linux.Widgets
 		{
 			Dialogo.DeleteEvent += OnDialogDeleted;
 			Dialogo.Response += OnDialogResponse;
-			Titulo.Text = Producto.Name;
-			DescripcionDialogo.Text = DescripcionDialogo.Text.Format(Producto.Descripcion);
-			Precio.Text = Precio.Text.Format(Producto.Precio);
-			CalificacionDialogo.Text = CalificacionDialogo.Text.Format(Producto.Calificacion);
-			Domicilio.Text = Domicilio.Text.Format(Producto.ValorDomicilio);
-			AdmiteCuotas.Visible = Producto.PermiteCuotas;
-			var vendedor = Producto.ObtenerVendedor();
-			NombreVendedor.Text = vendedor?.Name;
-			CalificacionVendedor.Text = CalificacionVendedor.Text.Format(vendedor?.Calificacion);
+			Actualizar();
 			Foto.Load(Producto.Foto, 250, 250);
-
 		}
 
 		/// <summary>

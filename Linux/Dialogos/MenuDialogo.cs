@@ -1,5 +1,6 @@
 using System;
 using Gtk;
+using ICommon;
 using KYLib.Extensions;
 using Linux.Widgets;
 using UmlBased;
@@ -7,6 +8,7 @@ using UI = Gtk.Builder.ObjectAttribute;
 
 namespace Linux
 {
+	[Author("Juan Carlos Arbelaez")]
 	partial class MenuDialogo : Dialog
 	{
 		[UI] ListBox ListaPedidos = null;
@@ -30,6 +32,18 @@ namespace Linux
 			builder.Dispose();
 		}
 
+		void On_AplicarBtn_clicked(object o, EventArgs args)
+		{
+			var row = ListaPedidos.SelectedRow;
+			var widget = row.Child as ProductoWidget;
+			var producto = widget.Producto;
+			producto.Precio = Precio.Value;
+			producto.ValorDomicilio = Domicilio.Value;
+			producto.PermiteCuotas = PermiteCuotas.Active;
+			widget.Actualizar();
+			MostrarDetalles(producto);
+		}
+
 		private void Dialog_Response(object o, GLib.SignalArgs args)
 		{
 			args.RetVal = true;
@@ -39,7 +53,7 @@ namespace Linux
 
 		void ActualizarMenu()
 		{
-			var user = (Vendedor)DomiciliosApp.ClienteActual;
+			var user = DomiciliosApp.ClienteActual as Vendedor;
 			foreach (var item in user.Menu)
 			{
 				ListaPedidos.Add(new ProductoWidget(item));

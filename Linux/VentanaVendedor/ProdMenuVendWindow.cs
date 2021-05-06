@@ -54,6 +54,7 @@ namespace Linux
 			ProdDomicilio.Value = 0;
 			ProdUrl.Text = string.Empty;
 			ProdCuotas.Active = true;
+			ListaPedidos.UnselectAll();
 			CrearProducto.Show();
 		}
 

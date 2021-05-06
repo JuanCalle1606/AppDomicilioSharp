@@ -70,16 +70,37 @@ namespace Linux.Widgets
 			builder.Dispose();
 		}
 
+		public void Actualizar()
+		{
+			//actualizamos todos los campos
+			Precios.Text = Precios.Text.Format(Producto.Precio, Producto.ValorDomicilio);
+			Nombre.Text = Producto.Name;
+			Descripcion.Text = Producto.Descripcion;
+			Calificacion.Text = Calificacion.Text.Format(Producto.Calificacion);
+			Cuotas.Text = Producto.PermiteCuotas ? "Por Cuotas*" : string.Empty;
+			Titulo.Text = Producto.Name;
+			DescripcionDialogo.Text = DescripcionDialogo.Text.Format(Producto.Descripcion);
+			Precio.Text = Precio.Text.Format(Producto.Precio);
+			CalificacionDialogo.Text = CalificacionDialogo.Text.Format(Producto.Calificacion);
+			Domicilio.Text = Domicilio.Text.Format(Producto.ValorDomicilio);
+			AdmiteCuotas.Visible = Producto.PermiteCuotas;
+			var vendedor = Producto.ObtenerVendedor();
+			NombreVendedor.Text = vendedor?.Name;
+			CalificacionVendedor.Text = CalificacionVendedor.Text.Format(vendedor?.Calificacion);
+
+		}
+
 		/// <summary>
 		/// Agrega el producto de este widget como un pedido al carrito del usuario o aumenta en 1 su cantidad si ya existe.
 		/// </summary>
 		public void On_CarritoBtn_clicked(object o, EventArgs args)
 		{
-			Comprador user = (Comprador)DomiciliosApp.ClienteActual;
+			//si el usuario es null es porque es un vendedor
+			if (DomiciliosApp.ClienteActual is not Comprador user) return;
 
 			//vemos si algun pedido actual del carro ya tiene el producto.
-			var ped = user.Carrito.Pedidos.Find(P => UmlBased.Producto.
-			ReferenceEquals(Producto, P.Producto));
+			var ped = user.Carrito.Pedidos.Find(P => ReferenceEquals(Producto, P.Producto));
+
 			if (ped == null)
 			{
 				//creamos el pedido que vamos a agregar al carrito.
