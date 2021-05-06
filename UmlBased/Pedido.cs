@@ -104,6 +104,8 @@ namespace UmlBased
 				Estado = EstadoPedido.Cancelado;
 				// le devolvemos el dinero de una cuota (lo que se pago en la primera cuota) al cliente.
 				DomiciliosApp.ClienteActual.SaldoDelta(ValorCuota);
+
+				return true;
 			}
 			return false;
 		}

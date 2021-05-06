@@ -180,6 +180,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <signal name="clicked" handler="On_CancelarBtn_clicked" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -208,7 +209,7 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkSpinButton">
+                                  <object class="GtkSpinButton" id="Cuotas">
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="adjustment">AjusteAbono</property>
@@ -221,11 +222,12 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkButton">
+                                  <object class="GtkButton" id="AbonarBtn">
                                     <property name="label" translatable="yes">Abonar</property>
                                     <property name="visible">True</property>
                                     <property name="can-focus">True</property>
                                     <property name="receives-default">True</property>
+                                    <signal name="clicked" handler="On_AbonarBtn_clicked" swapped="no"/>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>

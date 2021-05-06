@@ -3,6 +3,7 @@ using System.Linq;
 using Gtk;
 using ICommon;
 using KYLib.Extensions;
+using KYLib.MathFn;
 using Linux.Widgets;
 using UmlBased;
 using UI = Gtk.Builder.ObjectAttribute;
@@ -32,6 +33,10 @@ namespace Linux
 
 		[UI] Label Cantidad = null;
 
+		[UI] SpinButton Cuotas = null;
+
+		[UI] Button AbonarBtn = null;
+
 		public HistoryDialog() : this(new Builder("HistoryDialog.glade")) { }
 
 		private HistoryDialog(Builder builder) : base(builder.GetRawOwnedObject("HistoryDialog"))
@@ -56,6 +61,28 @@ namespace Linux
 
 			Detalles.Visible = true;
 			SeleccionarAlert.Visible = false;
+		}
+
+		void On_CancelarBtn_clicked(object o, EventArgs args)
+		{
+			if (DomiciliosApp.ClienteActual is not Comprador user) return;
+			var row = ListaPedidos.SelectedRow;
+			var widget = row.Child as ProductoWidget;
+			var producto = widget.Producto;
+			var pedido = user.HistorialPedidos[row.Index];
+
+			producto.ObtenerVendedor().Cancelar(pedido);
+			MostrarDetalles(pedido);
+		}
+
+		void On_AbonarBtn_clicked(object o, EventArgs args)
+		{
+			if (DomiciliosApp.ClienteActual is not Comprador user) return;
+			var row = ListaPedidos.SelectedRow;
+			var pedido = user.HistorialPedidos[row.Index];
+
+			user.Abonar(pedido, (Small)Cuotas.ValueAsInt);
+			MostrarDetalles(pedido);
 		}
 
 		private void MostrarDetalles(Pedido pedido)
@@ -94,10 +121,13 @@ Aditivo por cuotas:
 
 			NoCuotas.Text = "Has pagado {0} de {1} cuotas".Format(pedido.Pago.CuotasPagadas, pedido.Pago.CuotasTotales);
 
-			CuotasInfo.Visible = pedido.Producto.PermiteCuotas;
-			if (pedido.Producto.PermiteCuotas)
+			CuotasInfo.Visible = pedido.Cuotas > 1;
+			//pedido.Producto.PermiteCuotas && !pedido.Pago.Finalizado;
+			if (pedido.Cuotas > 1)
 			{
-
+				Cuotas.Adjustment.Upper = pedido.Pago.CuotasFaltantes;
+				Cuotas.Visible = !pedido.Pago.Finalizado;
+				AbonarBtn.Visible = !pedido.Pago.Finalizado;
 			}
 		}
 

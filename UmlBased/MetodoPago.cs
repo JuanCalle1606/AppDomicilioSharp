@@ -33,6 +33,8 @@ namespace UmlBased
 		/// </summary>
 		public bool Finalizado => CuotasTotales == CuotasPagadas;
 
+		public double CuotasFaltantes => CuotasTotales - CuotasPagadas;
+
 		/// <summary>
 		/// Indica que una cuota del procuto ha sido pagada.
 		/// </summary>
