@@ -34,6 +34,9 @@ namespace UmlBased
 		/// </summary>
 		[DP] public List<Pedido> Pedidos { get; private set; } = new();
 
+		public bool Cancelar(Pedido pedido) =>
+			pedido.Cancelar() && Pedidos.Remove(pedido);
+
 		/// <summary>
 		/// Agrega unos pedidos a este vendedor para que los despache.
 		/// </summary>
@@ -54,6 +57,9 @@ namespace UmlBased
 			DomiciliosApp.Instance.Productos.Add(producto);
 			return true;
 		}
+
+		public bool RemoverProducto(Producto producto) =>
+			Menu.Remove(producto) && DomiciliosApp.Instance.Productos.Remove(producto);
 
 		/// <summary>
 		/// Agrega una puntuacion a este producto.

@@ -46,6 +46,21 @@ namespace Linux
 			ListaPedidos.Add(new ProductoWidget(prod));
 		}
 
+		void On_RemoverBtn_clicked_cb(object o, EventArgs args)
+		{
+			var user = DomiciliosApp.ClienteActual as Vendedor;
+			var row = ListaPedidos.SelectedRow;
+			var widget = row.Child as ProductoWidget;
+			var producto = widget.Producto;
+
+			user.RemoverProducto(producto);
+			using (row)
+			{
+				ListaPedidos.Remove(row);
+				row.Child.Dispose();
+			}
+		}
+
 		void On_AgregarBtn_clicked(object o, EventArgs args)
 		{
 			ProdNombre.Text = string.Empty;

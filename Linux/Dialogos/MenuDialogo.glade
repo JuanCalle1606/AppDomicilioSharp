@@ -205,6 +205,7 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">True</property>
+                                <signal name="clicked" handler="On_RemoverBtn_clicked_cb" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="expand">False</property>

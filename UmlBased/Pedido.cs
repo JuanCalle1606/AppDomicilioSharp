@@ -100,10 +100,6 @@ namespace UmlBased
 			//solo se puede devolver el item si no ha sido despachado.
 			if (Estado == EstadoPedido.Pagado)
 			{
-				//removemos el pedido de la lista del vendedor
-				var rev = Producto.ObtenerVendedor().Pedidos.Remove(this);
-				//si no se puedo remover retornamos.
-				if (!rev) return false;
 				//actualizamos el estado del pedido.
 				Estado = EstadoPedido.Cancelado;
 				// le devolvemos el dinero de una cuota (lo que se pago en la primera cuota) al cliente.
