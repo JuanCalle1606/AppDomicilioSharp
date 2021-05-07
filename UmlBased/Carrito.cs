@@ -73,7 +73,7 @@ namespace UmlBased
 		{
 			var saldo = DomiciliosApp.ClienteActual.Saldo;
 			//si el saldo es menor que el valor de la primera cuota entonces no es posible pagar.
-			if (saldo < CostoCuota)
+			if (saldo < CostoCuota || Pedidos.Count == 0)
 				return false;
 			//si esta funcion devuelve false es porque no se pudo realizar el pago internamente por lo que no procesamos nada
 			if (DomiciliosApp.ClienteActual.SaldoDelta(-CostoCuota))

@@ -67,8 +67,17 @@ namespace Linux
 			}
 			else
 			{
-				ErrorMsg.Text = "No ha sido posible realizar el pago";
-				ErrorMsg.SecondaryText = "Tu saldo no es suficiente, primero recarga";
+				if (Carrito.Pedidos.Count == 0)
+				{
+					ErrorMsg.Text = "No ha sido posible realizar el pago";
+					ErrorMsg.SecondaryText = "No hay pedidos en el carrito para pagar";
+				}
+				else
+				{
+					ErrorMsg.Text = "No ha sido posible realizar el pago";
+					ErrorMsg.SecondaryText = "Tu saldo no es suficiente, primero recarga";
+				}
+
 				ErrorMsg.Run();
 				ErrorMsg.Hide();
 			}
