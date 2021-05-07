@@ -89,7 +89,13 @@ namespace UmlBased
 		/// </summary>
 		[DP] public MetodoPago Pago;
 
+		[DP] public Int OwnerID { get; init; }
+
 		bool preserve = true;
+
+		public Comprador ObtenerComprador() =>
+			DomiciliosApp.ObtenerComprador(OwnerID);
+
 
 		/// <summary>
 		/// Cancela un pedido, para cancelar un pedido debe ser de unica cuota o puede ser de multiples cuotas pero que solo se haya pagado una, de lo contrario no podra ser reembolsado.

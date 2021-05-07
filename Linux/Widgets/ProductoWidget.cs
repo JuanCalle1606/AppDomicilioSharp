@@ -112,6 +112,7 @@ namespace Linux.Widgets
 					ValorBase = Producto.Precio,
 					PorcentajeDescuento = user.Descuento,
 					PorcentajeIVA = Pedido.CurrentIVA,
+					OwnerID = user.Id
 				};
 			}
 			//aumentamos la cantidad del pedido en 1.
