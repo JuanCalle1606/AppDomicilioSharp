@@ -17,6 +17,8 @@ namespace Linux
 	{
 		MenuDialogo Menu = null;
 
+		OrdenesDialog Ordenes = null;
+
 		[UI] ListBox ListaPedidos = null;
 
 		public LinuxVendWindow() : this(new Builder("LinuxVendWindow.glade")) { }
@@ -49,7 +51,8 @@ namespace Linux
 
 		void On_VerOrdenesBtn_clicked(object o, EventArgs args)
 		{
-
+			Ordenes ??= new();
+			Ordenes.Show();
 		}
 
 		void On_EditarMenuBtn_clicked(object o, EventArgs args)
