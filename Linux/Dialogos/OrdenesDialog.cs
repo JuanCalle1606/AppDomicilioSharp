@@ -30,6 +30,31 @@ namespace Linux
 			MostrarPedidos();
 		}
 
+		void On_EnviarBtn_clicked(object o, EventArgs args)
+		{
+			var user = DomiciliosApp.ClienteActual as Vendedor;
+			if (ListaPedidos.SelectedRow == null) return;
+			var row = ListaPedidos.SelectedRow;
+
+			var pedido = user.Pedidos[row.Index];
+
+			//cuando el vendedor "despacha" un pedido actualizamos su estado unicamente, en un caso real seria que el pedido se envia de verdad
+			if (pedido.Pago.Finalizado)
+				pedido.Estado = EstadoPedido.Finalizado;
+			else
+				pedido.Estado = EstadoPedido.Entregado;
+			//una vez pago lo removemos de la lista de pedidos del vendedor
+			user.Pedidos.Remove(pedido);
+			ListaPedidos.UnselectAll();
+			using (row)
+			{
+				ListaPedidos.Remove(row);
+				row.Child.Dispose();
+			}
+			// le damos el dinero al usuario de la primera cuota cuando entrega el pedido, luego las otras cuotas se le iran pagando cada mes.
+			user.SaldoDelta(pedido.ValorCuota);
+		}
+
 		void On_ListaPedidos_row_selected(object o, RowSelectedArgs args)
 		{
 			if (args.Row == null)

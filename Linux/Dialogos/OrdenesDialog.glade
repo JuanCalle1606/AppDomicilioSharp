@@ -122,6 +122,7 @@ Telefono: {1}</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
+                            <signal name="clicked" handler="On_EnviarBtn_clicked" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
