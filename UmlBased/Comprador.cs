@@ -71,7 +71,7 @@ namespace UmlBased
 				if (pedido.Pago.Finalizado && pedido.Estado == EstadoPedido.Entregado)
 					pedido.Estado = EstadoPedido.Finalizado;
 				//le damos el dinero al vendedor.
-				pedido.Producto.ObtenerVendedor().SaldoDelta(pedido.ValorCuota);
+				pedido.Producto.ObtenerVendedor().CambiarSaldo(pedido.ValorCuota);
 			}
 		}
 
@@ -93,7 +93,7 @@ namespace UmlBased
 		public bool Abonar(Pedido pedido, Small cuotas)
 		{
 			Real pago = pedido.ValorCuota * cuotas;
-			if (SaldoDelta(-pago))
+			if (CambiarSaldo(-pago))
 			{
 				for (byte i = 0; i < cuotas; i++)
 					pedido.Pago.ProcesarCuota();
@@ -101,7 +101,7 @@ namespace UmlBased
 				if (pedido.Pago.Finalizado && pedido.Estado == EstadoPedido.Entregado)
 					pedido.Estado = EstadoPedido.Finalizado;
 				//le damos el dinero al vendedor.
-				pedido.Producto.ObtenerVendedor().SaldoDelta(pedido.ValorCuota);
+				pedido.Producto.ObtenerVendedor().CambiarSaldo(pedido.ValorCuota);
 				return true;
 			}
 			return false;

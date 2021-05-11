@@ -81,7 +81,7 @@ namespace UmlBased
 			//hacemos un bloqueo multihilo para evitar que se hagan multiples manipulaciones de dinero al tiempo.
 			lock (_locker)
 			{
-				//restamos el valor sin validar, esto significa que pued dar un valor negativo lo que quiere decir que el usuario esta endeudado.
+				//restamos el valor sin validar, esto significa que puede dar un valor negativo lo que quiere decir que el usuario esta endeudado.
 				Saldo -= valor;
 			}
 		}
@@ -91,7 +91,7 @@ namespace UmlBased
 		/// </summary>
 		/// <param name="saldo">Saldo a cambiar, si es un valor negativo entonces se resta y si es un valor positivo se suma.</param>
 		/// <returns>Devuelve un booleano que indica si se pudo realizar el cambio.</returns>
-		public bool SaldoDelta(Real saldo)
+		public virtual bool CambiarSaldo(Real saldo)
 		{
 			//hacemos un bloqueo multihilo para evitar que se hagan multiples manipulaciones de dinero al tiempo.
 			lock (_locker)

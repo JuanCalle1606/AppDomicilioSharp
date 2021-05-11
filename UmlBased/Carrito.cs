@@ -76,7 +76,7 @@ namespace UmlBased
 			if (saldo < CostoCuota || Pedidos.Count == 0)
 				return false;
 			//si esta funcion devuelve false es porque no se pudo realizar el pago internamente por lo que no procesamos nada
-			if (DomiciliosApp.ClienteActual.SaldoDelta(-CostoCuota))
+			if (DomiciliosApp.ClienteActual.CambiarSaldo(-CostoCuota))
 			{
 				//agrupamos los pedidos por vendedores.
 				var groups = Pedidos.GroupBy(P => P.Producto.ObtenerVendedor());

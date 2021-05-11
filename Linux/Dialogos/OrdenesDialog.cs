@@ -52,7 +52,7 @@ namespace Linux
 				row.Child.Dispose();
 			}
 			// le damos el dinero al usuario de la primera cuota cuando entrega el pedido, luego las otras cuotas se le iran pagando cada mes.
-			user.SaldoDelta(pedido.ValorCuota);
+			user.CambiarSaldo(pedido.ValorCuota);
 		}
 
 		void On_ListaPedidos_row_selected(object o, RowSelectedArgs args)

@@ -34,6 +34,15 @@ namespace UmlBased
 		/// </summary>
 		[DP] public List<Pedido> Pedidos { get; private set; } = new();
 
+		/// <inheritdoc/>
+		public override bool CambiarSaldo(Real saldo)
+		{
+			if (saldo > 0)
+				return base.CambiarSaldo(saldo * 0.95);
+			else
+				return base.CambiarSaldo(saldo);
+		}
+
 		public bool Cancelar(Pedido pedido) =>
 			pedido.Cancelar() && Pedidos.Remove(pedido);
 

@@ -109,7 +109,7 @@ namespace UmlBased
 				//actualizamos el estado del pedido.
 				Estado = EstadoPedido.Cancelado;
 				// le devolvemos el dinero de una cuota (lo que se pago en la primera cuota) al cliente.
-				DomiciliosApp.ClienteActual.SaldoDelta(ValorCuota);
+				DomiciliosApp.ClienteActual.CambiarSaldo(ValorCuota);
 
 				return true;
 			}
