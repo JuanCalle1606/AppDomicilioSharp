@@ -50,6 +50,8 @@ namespace Linux
 		/// </summary>
 		[UI] SpinButton NoCuotas = null;
 
+		[UI] Label CuotasLabel = null;
+
 		/// <summary>
 		/// Muestra el panel de detalles y actualiza la información
 		/// </summary>
@@ -128,6 +130,10 @@ Precio total:
 			TimeAgo.Text = "Añadido hace: {0}".Format(elapsed);
 			NoCantidad.Value = pedido.Cantidad;
 			NoCuotas.Value = pedido.Cuotas;
+			NoCuotas.Visible = pedido.Producto.PermiteCuotas;
+			CuotasLabel.Visible = pedido.Producto.PermiteCuotas;
+			if (pedido.Producto.PermiteCuotas)
+				NoCuotas.Value = 1;
 		}
 
 		/// <summary>
