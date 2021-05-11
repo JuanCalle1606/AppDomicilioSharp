@@ -26,8 +26,7 @@ namespace Linux
 
 		private void OnSaldoChanged(object sender, EventArgs e)
 		{
-			var label = UserMenuSaldo.Child as AccelLabel;
-			label.Text = "{0:C2}".Format(DomiciliosApp.ClienteActual.Saldo);
+			UserMenuSaldo.Label = "{0:C2}".Format(DomiciliosApp.ClienteActual.Saldo);
 		}
 
 		void On_UserMenuClose_activate(object o, EventArgs args)

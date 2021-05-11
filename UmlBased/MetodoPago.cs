@@ -1,5 +1,4 @@
-﻿using KYLib.MathFn;
-using DO = Newtonsoft.Json.JsonObjectAttribute;
+﻿using DO = Newtonsoft.Json.JsonObjectAttribute;
 using DP = Newtonsoft.Json.JsonPropertyAttribute;
 
 namespace UmlBased
