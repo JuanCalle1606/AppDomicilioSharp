@@ -46,6 +46,20 @@ namespace Linux
 		}
 
 		[Author("Juan Pablo Calle")]
+		private void ClearList()
+		{
+			var list = ListaPedidos.Children;
+			foreach (ListBoxRow item in list)
+			{
+				using (item)
+				{
+					ListaPedidos.Remove(item);
+					item.Child.Dispose();
+				}
+			}
+		}
+
+		[Author("Juan Pablo Calle")]
 		private void Window_DeleteEvent(object o, EventArgs args) =>
 			Application.Quit();
 
@@ -53,6 +67,7 @@ namespace Linux
 		{
 			Ordenes ??= new();
 			Ordenes.Show();
+			ClearList();
 		}
 
 		void On_EditarMenuBtn_clicked(object o, EventArgs args)

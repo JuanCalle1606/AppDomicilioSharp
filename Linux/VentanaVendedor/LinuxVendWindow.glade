@@ -228,7 +228,7 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="label" translatable="yes">No te han hechos pedidos recientemente</property>
+                        <property name="label" translatable="yes">No te han hechos pedidos recientemente o ya los revisaste todos</property>
                       </object>
                     </child>
                   </object>
