@@ -1,6 +1,8 @@
 using System;
+using Gtk;
 using ICommon;
-using UI = Gtk.Builder.ObjectAttribute;
+using KYLib.Extensions;
+using UmlBased;
 
 namespace Linux
 {
@@ -21,6 +23,12 @@ namespace Linux
 		/// </summary>
 		void On_UserMenuAbout_activate(object o, EventArgs args) =>
 			AboutUs.Show();
+
+		private void OnSaldoChanged(object sender, EventArgs e)
+		{
+			var label = UserMenuSaldo.Child as AccelLabel;
+			label.Text = "{0:C2}".Format(DomiciliosApp.ClienteActual.Saldo);
+		}
 
 		void On_UserMenuClose_activate(object o, EventArgs args)
 		{

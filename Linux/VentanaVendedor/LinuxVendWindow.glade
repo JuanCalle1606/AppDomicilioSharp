@@ -37,6 +37,20 @@
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <child>
+      <object class="GtkMenuItem" id="UserMenuSaldo">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <property name="label" translatable="yes">Saldo</property>
+        <property name="use-underline">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem">
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+      </object>
+    </child>
+    <child>
       <object class="GtkImageMenuItem" id="UserMenuMenu">
         <property name="label" translatable="yes">Menú</property>
         <property name="visible">True</property>

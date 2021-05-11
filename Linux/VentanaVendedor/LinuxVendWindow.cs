@@ -21,6 +21,8 @@ namespace Linux
 
 		[UI] ListBox ListaPedidos = null;
 
+		[UI] MenuItem UserMenuSaldo = null;
+
 		public LinuxVendWindow() : this(new Builder("LinuxVendWindow.glade")) { }
 
 		private LinuxVendWindow(Builder builder) : base(builder.GetRawOwnedObject("LinuxVendWindow"))
@@ -35,7 +37,9 @@ namespace Linux
 		private void First()
 		{
 			if (DomiciliosApp.ClienteActual is not Vendedor user) return;
-			// en la aprte de inicio solo mostramos los ultimos 5 pedidos
+			DomiciliosApp.ClienteActual.SaldoChanged += OnSaldoChanged;
+			OnSaldoChanged(DomiciliosApp.ClienteActual, EventArgs.Empty);
+			// en la parte de inicio solo mostramos los ultimos 5 pedidos
 			Pedido[] pedidos;
 			if (user.Pedidos.Count <= 5) pedidos = user.Pedidos.ToArray();
 			else pedidos = user.Pedidos.ToArray()[^5..^1];
