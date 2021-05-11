@@ -42,6 +42,11 @@ namespace UmlBased
 		[DP] public Int NextPedId = 0;
 
 		/// <summary>
+		/// Lista de Productos que guarda a todos los productos que han sido creados.
+		/// </summary>
+		[DP] public List<Producto> Productos = new();
+
+		/// <summary>
 		/// Lista de Compradores que guarda a todos los usuarios de tipo comprador.
 		/// </summary>
 		[DP] public List<Comprador> Compradores = new();
@@ -50,11 +55,6 @@ namespace UmlBased
 		/// Lista de Vendedores que guarda a todos los usuarios de tipo Vendedor.
 		/// </summary>
 		[DP] public List<Vendedor> Vendedores = new();
-
-		/// <summary>
-		/// Lista de Productos que guarda a todos los productos que han sido creados.
-		/// </summary>
-		[DP] public List<Producto> Productos = new();
 
 		/// <summary>
 		/// Aqui se guarda el usuario que esta logeado actualmente.
