@@ -27,6 +27,10 @@ namespace Linux
 			if (configuredshow) return;
 			configuredshow = true;
 
+			var user = DomiciliosApp.ClienteActual as Comprador;
+			user.SaldoChanged += OnSaldoChanged;
+			OnSaldoChanged(user, EventArgs.Empty);
+
 			var foto = DomiciliosApp.ClienteActual.Foto;
 			UserAvatar.Load(foto, 20, 20);
 

@@ -18,6 +18,8 @@ namespace Linux
 
 		[UI] SearchEntry SearchInput = null;
 
+		[UI] MenuItem UserMenuSaldo = null;
+
 		public LinuxCompWindow() : this(new Builder("LinuxCompWindow.glade")) { }
 
 		private LinuxCompWindow(Builder builder) : base(builder.GetRawOwnedObject("LinuxCompWindow"))

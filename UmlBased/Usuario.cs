@@ -22,6 +22,11 @@ namespace UmlBased
 		private readonly object _locker = new();
 
 		/// <summary>
+		/// Evento disparado cuando el saldo cambia.
+		/// </summary>
+		public event EventHandler SaldoChanged;
+
+		/// <summary>
 		/// Identificador unico de esta cuenta.
 		/// </summary>
 		[DP] public Int Id { get; init; }
@@ -83,6 +88,7 @@ namespace UmlBased
 			{
 				//restamos el valor sin validar, esto significa que puede dar un valor negativo lo que quiere decir que el usuario esta endeudado.
 				Saldo -= valor;
+				SaldoChanged?.Invoke(this, EventArgs.Empty);
 			}
 		}
 
@@ -102,6 +108,7 @@ namespace UmlBased
 				else if (saldo > 0)
 				{
 					Saldo += saldo;
+					SaldoChanged?.Invoke(this, EventArgs.Empty);
 					return true;
 				}
 				else if (saldo < 0)
@@ -110,6 +117,7 @@ namespace UmlBased
 					if (Saldo + saldo >= 0)
 					{
 						Saldo += saldo;
+						SaldoChanged?.Invoke(this, EventArgs.Empty);
 						return true;
 					}
 				}
