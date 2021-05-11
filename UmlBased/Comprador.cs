@@ -67,8 +67,8 @@ namespace UmlBased
 				Descontar(pedido.ValorCuota);
 				//le decimos al pago que se ha procesado una cuota
 				pedido.Pago.ProcesarCuota();
-				//actualziamos el estado del pedido, de ser necesarios.
-				if (pedido.Pago.Finalizado)
+				//actualizamos el estado del pedido, de ser necesarios.
+				if (pedido.Pago.Finalizado && pedido.Estado == EstadoPedido.Entregado)
 					pedido.Estado = EstadoPedido.Finalizado;
 				//le damos el dinero al vendedor.
 				pedido.Producto.ObtenerVendedor().SaldoDelta(pedido.ValorCuota);
@@ -96,14 +96,14 @@ namespace UmlBased
 			if (SaldoDelta(-pago))
 			{
 				for (byte i = 0; i < cuotas; i++)
-				{
 					pedido.Pago.ProcesarCuota();
 
-				}
-
+				if (pedido.Pago.Finalizado && pedido.Estado == EstadoPedido.Entregado)
+					pedido.Estado = EstadoPedido.Finalizado;
+				//le damos el dinero al vendedor.
+				pedido.Producto.ObtenerVendedor().SaldoDelta(pedido.ValorCuota);
 				return true;
 			}
-
 			return false;
 		}
 	}
