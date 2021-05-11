@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+<diagram program="umlet" version="13.3">
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>980</x>
-      <y>300</y>
-      <w>210</w>
-      <h>200</h>
+      <x>756</x>
+      <y>174</y>
+      <w>126</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>/Usuario/
 --
@@ -21,38 +21,39 @@
 - correo: string
 - saldo: double
 --
-SaldoDelta(saldo):bool</panel_attributes>
+CambiarSaldo(saldo):bool
+Descontar(saldo):void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>490</y>
-      <w>210</w>
-      <h>140</h>
+      <x>708</x>
+      <y>294</y>
+      <w>126</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;40.0;10.0;40.0;10.0;120.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;40.0;10.0;40.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1080</x>
-      <y>490</y>
-      <w>260</w>
-      <h>140</h>
+      <x>816</x>
+      <y>294</y>
+      <w>156</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0;240.0;40.0;240.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;240.0;40.0;240.0;100.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>1010</y>
-      <w>280</w>
-      <h>230</h>
+      <x>438</x>
+      <y>594</y>
+      <w>168</w>
+      <h>138</h>
     </coordinates>
     <panel_attributes>Producto
 --
@@ -64,36 +65,20 @@ SaldoDelta(saldo):bool</panel_attributes>
 - calificacion: List&lt;byte&gt;
 - foto: string
 - fecha_creacion: DateTime
-- categoria: Categoria
 - permite_cuotas: bool
+- OwnerID: int
 --
-Calificar(byte calificacion)
-GetVendedor():Vendedor</panel_attributes>
++ Calificar(byte calificacion)
++ ObtenerVendedor():Vendedor</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>1090</y>
-      <w>330</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>Categoria
---
-- Nombre: string
---
-+ AllByCatEst(name):List&lt;Establecimientos&gt;
-+ AllByCatPro(name):List&lt;Producto&gt;</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>520</x>
-      <y>600</y>
-      <w>170</w>
-      <h>80</h>
+      <x>480</x>
+      <y>348</y>
+      <w>102</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>Enum TipoComprador
 --
@@ -105,10 +90,10 @@ GetVendedor():Vendedor</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>780</x>
-      <y>610</y>
-      <w>310</w>
-      <h>160</h>
+      <x>636</x>
+      <y>354</y>
+      <w>186</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>Comprador
 --
@@ -116,18 +101,18 @@ GetVendedor():Vendedor</panel_attributes>
 - carrito: Carrito
 - historial_pedidos:List&lt;Pedido&gt;
 --
-+ PagoCuotas()
-+ PagosPendientes():List&lt;Pedido&gt;
-+ Abonar(Pedido,saldo):bool</panel_attributes>
++ PagarCuotas():void
++ ObtenerPagosPendientes():List&lt;Pedido&gt;
++ Abonar(Pedido,cantidad):bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>630</y>
-      <w>120</w>
-      <h>30</h>
+      <x>576</x>
+      <y>366</y>
+      <w>72</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
@@ -135,10 +120,10 @@ GetVendedor():Vendedor</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>820</x>
-      <y>830</y>
-      <w>250</w>
-      <h>330</h>
+      <x>660</x>
+      <y>486</y>
+      <w>150</w>
+      <h>222</h>
     </coordinates>
     <panel_attributes>Pedido
 --
@@ -156,71 +141,72 @@ GetVendedor():Vendedor</panel_attributes>
 - valor_cuota: double
 - estado: EstadoPedido
 - pago: MetodoPago
+- OwnerID: int
 --
++ ObtenerComprador(): Comprador
 - CalcularTotal()
-- Actualizar(bool domicilio)
-- Actualizar(cantidad,cuotas)
-- Cancelar(): bool
++ Actualizar(bool domicilio)
++ Actualizar(cantidad,cuotas)
++ Cancelar(): bool
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>800</y>
-      <w>860</w>
-      <h>520</h>
+      <x>492</x>
+      <y>456</y>
+      <w>510</w>
+      <h>324</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=*
 m2=1
 ofrece</panel_attributes>
-    <additional_attributes>10.0;440.0;10.0;500.0;830.0;500.0;830.0;10.0</additional_attributes>
+    <additional_attributes>10.0;460.0;10.0;520.0;830.0;520.0;830.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>1150</y>
-      <w>390</w>
-      <h>140</h>
+      <x>528</x>
+      <y>702</y>
+      <w>234</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
 m2=*
 tiene</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;120.0;370.0;120.0;370.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;10.0;80.0;370.0;80.0;370.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1210</x>
-      <y>610</y>
-      <w>340</w>
-      <h>200</h>
+      <x>894</x>
+      <y>354</y>
+      <w>204</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>Vendedor
 --
 - menu:List&lt;Producto&gt;
 - calificacion: List&lt;byte&gt;
-- atencion_al_cliente: List&lt;DateTime&gt;
 - pedidos: List&lt;Pedido&gt;
 --
-+ AgregarPedido(Pedido): bool
++ Cancelar(Pedido):bool
 + AgregarPedidos(List&lt;Pedido&gt;):bool
 + AgregarProducto(Producto): bool
-+ AgregarProducto(List&lt;Producto&gt;):bool
++ RemoverProducto(Producto): bool
 + Calificar(byte calificacion)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>680</y>
-      <w>120</w>
-      <h>50</h>
+      <x>576</x>
+      <y>396</y>
+      <w>72</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-
 bg=black
@@ -231,33 +217,33 @@ posee</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>940</x>
+      <x>732</x>
       <y>0</y>
-      <w>320</w>
-      <h>200</h>
+      <w>192</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>/DomiciliosApp/
 --
+- NextUserId: int
+- UltimoPago: DateTime
+- NextPedId: int
 - Compradores: List&lt;Comprador&gt;
 - Vendedores: List&lt;Vendedor&gt;
 - Productos: List&lt;Producto&gt;
-- Categorias: List&lt;Categoria&gt;
 - ClienteActual: Usuario
 --
-GetCuenta(id): Cuenta
-GetProducto(id): Producto
-GetCat(string name): Categoria
-GetOrCreateCat(name): Categoria
+ObtenerVendedor(id): Vendedor
+ObtenerComprador(id): Comprador
 ProcesarDia()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1250</x>
-      <y>30</y>
-      <w>210</w>
-      <h>600</h>
+      <x>918</x>
+      <y>6</y>
+      <w>132</w>
+      <h>360</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=*
@@ -268,10 +254,10 @@ administra</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>60</y>
-      <w>590</w>
-      <h>1020</h>
+      <x>390</x>
+      <y>24</y>
+      <w>354</w>
+      <h>612</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=*
@@ -280,58 +266,17 @@ administra</panel_attributes>
     <additional_attributes>80.0;990.0;10.0;990.0;10.0;10.0;570.0;10.0</additional_attributes>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>270</x>
-      <y>1040</y>
-      <w>130</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-m1=*</panel_attributes>
-    <additional_attributes>10.0;50.0;10.0;10.0;110.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>240</x>
-      <y>800</y>
-      <w>1200</w>
-      <h>550</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-m1=*
-m2=*
-pertenece &lt;-</panel_attributes>
-    <additional_attributes>10.0;380.0;10.0;530.0;1180.0;530.0;1180.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>320</x>
-      <y>1100</y>
-      <w>150</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-m1=1
-m2=*
-pertenece &lt;-</panel_attributes>
-    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1150</x>
-      <y>960</y>
-      <w>180</w>
-      <h>120</h>
+      <x>858</x>
+      <y>564</y>
+      <w>108</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>MetodoPago
 --
 - CuotasTotales: byte
 - CuotasPagadas: byte
-- PrecioTotal: double
 - Finalizado: bool
 --
 + ProcesarCuota()
@@ -341,10 +286,10 @@ pertenece &lt;-</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>680</y>
-      <w>120</w>
-      <h>50</h>
+      <x>576</x>
+      <y>396</y>
+      <w>72</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m2=1
@@ -354,10 +299,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>830</x>
-      <y>30</y>
-      <w>130</w>
-      <h>600</h>
+      <x>666</x>
+      <y>6</y>
+      <w>78</w>
+      <h>360</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=*
@@ -368,24 +313,24 @@ administra</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>830</y>
-      <w>280</w>
-      <h>120</h>
+      <x>504</x>
+      <y>504</y>
+      <w>168</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=*
 m2=1
 almacena</panel_attributes>
-    <additional_attributes>260.0;90.0;10.0;90.0;10.0;10.0</additional_attributes>
+    <additional_attributes>260.0;60.0;10.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1120</x>
-      <y>1140</y>
-      <w>150</w>
-      <h>110</h>
+      <x>840</x>
+      <y>672</y>
+      <w>90</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>Enum EstadoPedido
 --
@@ -399,21 +344,21 @@ almacena</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1020</x>
-      <y>1150</y>
-      <w>120</w>
-      <h>60</h>
+      <x>804</x>
+      <y>696</y>
+      <w>48</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>100.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1060</x>
-      <y>1000</y>
-      <w>110</w>
-      <h>50</h>
+      <x>804</x>
+      <y>588</y>
+      <w>66</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
@@ -424,10 +369,10 @@ Utiliza</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>690</y>
-      <w>270</w>
-      <h>150</h>
+      <x>408</x>
+      <y>402</y>
+      <w>174</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>Carrito
 --
@@ -435,33 +380,35 @@ Utiliza</panel_attributes>
 - pedidos: List&lt;Pedido&gt;
 - costo_cuota: double
 --
-+ Agregar(producto, cuotas): bool
-+ Agregar(producto): bool
++ Vaciar():void
++ Contiene(Producto): Pedido
++ Agregar(Pedido): bool
 + Pagar():bool
-+ Eliminar(producto):bool</panel_attributes>
++ Eliminar(Pedido):bool
+- ActualizarDomicilio():void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1060</x>
-      <y>800</y>
-      <w>280</w>
-      <h>140</h>
+      <x>804</x>
+      <y>456</y>
+      <w>162</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=*
 m2=1
 posee &lt;-</panel_attributes>
-    <additional_attributes>10.0;110.0;250.0;110.0;250.0;10.0</additional_attributes>
+    <additional_attributes>10.0;130.0;250.0;130.0;250.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>730</y>
-      <w>120</w>
-      <h>180</h>
+      <x>600</x>
+      <y>426</y>
+      <w>72</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=*
@@ -472,15 +419,15 @@ almacena </panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1080</x>
-      <y>190</y>
-      <w>90</w>
-      <h>130</h>
+      <x>816</x>
+      <y>114</y>
+      <w>60</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=*
 m2=1
 administra </panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

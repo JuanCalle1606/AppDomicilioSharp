@@ -89,8 +89,7 @@ namespace UmlBased
 					// Creamos el metodo de pago de este pedido
 					P.Pago = new MetodoPago
 					{
-						CuotasTotales = P.Cuotas,
-						PrecioTotal = P.ValorTotal
+						CuotasTotales = P.Cuotas
 					};
 					// indicamos al metodo de pago que ya se procesado el primer pago
 					P.Pago.ProcesarCuota();
@@ -143,7 +142,7 @@ namespace UmlBased
 			Real maxdomicilio = 0;
 			unacuota.ForEach(P =>
 			{
-				//se actualizan todos por defecto como si contoran su domicilio.
+				//se actualizan todos por defecto como si no contoran su domicilio.
 				P.Actualizar(false);
 				//se valida si su domicilio es mayor.
 				if (P.Producto.ValorDomicilio > maxdomicilio)

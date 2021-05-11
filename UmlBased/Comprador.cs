@@ -47,7 +47,7 @@ namespace UmlBased
 		/// <summary>
 		/// 
 		/// </summary>
-		public void PagoCuotas()
+		public void PagarCuotas()
 		{
 			//fecha de hoy
 			var hoy = DateTime.Today;
@@ -56,7 +56,7 @@ namespace UmlBased
 			//ultimo dia del mes, 28 solo si es frebrero
 			var lastday = hoy.Month == 2 ? 28 : 30;
 			//obtenemos solo los pedidos que se deben pagar hoy, por ejemplo si hoy es 5 entonces se obtienen solo los pedidos que se deben pagar los 5.
-			var deudas = PagosPendientes().FindAll
+			var deudas = ObtenerPagosPendientes().FindAll
 			(P =>
 				 //el dia 28 de febrero se pagaran tambien los pedidos que se tengan que pagar los 29 y los 30
 				 P.Fecha.Day == hoy.Day || P.Fecha.Day >= lastday
@@ -78,7 +78,7 @@ namespace UmlBased
 		/// <summary>
 		/// Busca y devuelve todas los pedidos que aun no ha pagado este cliente.
 		/// </summary>
-		public List<Pedido> PagosPendientes() => HistorialPedidos.FindAll
+		public List<Pedido> ObtenerPagosPendientes() => HistorialPedidos.FindAll
 		(
 			//devolvemos los elementos que tengan el estado en entregado o en pagado(1 cuota) y es de varias cuotas.
 			P => P.Estado == EstadoPedido.Entregado || (P.Estado == EstadoPedido.Pagado && P.Cuotas > 1)

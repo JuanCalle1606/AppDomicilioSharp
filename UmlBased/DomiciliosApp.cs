@@ -61,12 +61,14 @@ namespace UmlBased
 		/// </summary>
 		public static Usuario ClienteActual { get; set; }
 
+		/*
 		/// <summary>
 		/// Busca entre todas las cuentas una que tenga ese id.
 		/// </summary>
 		/// <param name="id">Id de la cuenta a buscar.</param>
 		public static Usuario ObtenerCuenta(Int id) =>
 			(Usuario)ObtenerComprador(id) ?? ObtenerVendedor(id);
+		*/
 
 		/// <summary>
 		/// Obtiene una cuenta de comprador que tenga una id dada.
@@ -83,6 +85,6 @@ namespace UmlBased
 			Instance.Vendedores.Find(C => C.Id.Equals(id));
 
 		public static void ProcesarDia() =>
-			Instance.Compradores.ForEach(p => p.PagoCuotas());
+			Instance.Compradores.ForEach(p => p.PagarCuotas());
 	}
 }

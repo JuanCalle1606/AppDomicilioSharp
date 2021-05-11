@@ -134,7 +134,6 @@ namespace UmlBased
 			total += ValorDomicilio;
 			total += ValorAditivo;
 			total *= PorcentajeIVA;
-			//
 
 			ValorTotal = total;
 			ValorCuota = ValorTotal / Cuotas;

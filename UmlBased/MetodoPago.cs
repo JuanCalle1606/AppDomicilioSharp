@@ -21,14 +21,6 @@ namespace UmlBased
 		[DP] public byte CuotasPagadas { get; private set; } = 0;
 
 		/// <summary>
-		/// Indica el precio total del producto que se esta pagando.
-		/// </summary>
-		/// <remarks>
-		/// Esta propiedad solo se usa para la conversión a string.
-		/// </remarks>
-		[DP] public Real PrecioTotal { get; init; }
-
-		/// <summary>
 		/// Define si el producto relacionado a este metodo de pago ya se ha terminado de pagar.
 		/// </summary>
 		public bool Finalizado => CuotasTotales == CuotasPagadas;
@@ -42,11 +34,5 @@ namespace UmlBased
 		{
 			if (CuotasPagadas < CuotasTotales) CuotasPagadas++;
 		}
-
-		/// <inheritdoc/>
-		public override string ToString() =>
-			$"producto de {PrecioTotal}$ pagado a lo largo de {CuotasTotales} cuotas, actualmente pagado {CuotasPagadas} cuotas.";
 	}
-
 }
-

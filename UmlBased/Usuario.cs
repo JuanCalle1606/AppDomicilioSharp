@@ -72,10 +72,10 @@ namespace UmlBased
 		/// </summary>
 		[DP] public Real Saldo { get; private set; }
 
-		/// <summary>
+		/*/// <summary>
 		/// Devuelve un valor que indica lo que esta endeudado este usuario.
 		/// </summary>
-		public Real Deuda => Saldo < 0 ? Math.Abs(Saldo) : 0;
+		public Real Deuda => Saldo < 0 ? Math.Abs(Saldo) : 0;*/
 
 		/// <summary>
 		/// Descuenta un valor al saldo del usuario, este metodo se llama en los pagos mensuales.
