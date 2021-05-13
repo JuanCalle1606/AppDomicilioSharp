@@ -31,45 +31,19 @@ namespace DomicilioSharp
 
 		/// <inheritdoc/>
 		public object Deserialize(string source) =>
-			JsonConvert.DeserializeObject(source, Settings);
+			throw new System.NotImplementedException();
 
 		/// <inheritdoc/>
 		public T Deserialize<T>(string source) =>
-			JsonConvert.DeserializeObject<T>(source, Settings);
+			throw new System.NotImplementedException();
 
 		/// <inheritdoc/>
-		public object Load(string path)
-		{
-			string realpath = ValidatePath(path);
-			string content = File.ReadAllText(realpath);
-			return JsonConvert.DeserializeObject(content, Settings);
-		}
+		public object Load(string path) =>
+			throw new System.NotImplementedException();
 
 		/// <inheritdoc/>
-		public T Load<T>(string path)
-		{
-			string realpath = ValidatePath(path);
-			string content = File.ReadAllText(realpath);
-			return JsonConvert.DeserializeObject<T>(content, Settings);
-		}
-
-		/// <summary>
-		/// Usamos esta función para ver si existe el archivo solicitado.
-		/// </summary>
-		private string ValidatePath(string path)
-		{
-			string realpath;
-			//primero vemos si el archivo especificado existe, esto se hace por si el nombre pasado no tiene la extension del archivo
-			if (File.Exists(path))
-				realpath = path;
-			// ahora vemos si existe el archivo pero con extension especifica
-			else if (File.Exists(path + Extension))
-				realpath = path + Extension;
-			//si no existe se genera error
-			else
-				throw new FileNotFoundException("El archivo especificado no existe por lo que no puede ser cargado", path);
-			return realpath;
-		}
+		public T Load<T>(string path) =>
+			throw new System.NotImplementedException();
 
 		/// <inheritdoc/>
 		public void Save(object source, string path)
