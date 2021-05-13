@@ -108,6 +108,7 @@ namespace DomicilioSharp
 			Cons.Trace("Guardando datos de usuario", ForegroundColor.Green);
 			//guardamos los datos, aqui no es necesario crear la carpeta ya que ha sido creada al cargar los datos.
 			Files.Save(DomiciliosApp.Instance, SavesPath[SaveFile], JsonFile.Default);
+			Files.Save(DomiciliosApp.Instance, SavesPath["test.xml"], XmlFile.Default);
 		}
 
 		[DllImport("kernel32.dll", SetLastError = true)]
